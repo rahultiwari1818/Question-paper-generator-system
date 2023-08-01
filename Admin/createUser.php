@@ -11,6 +11,7 @@
     $lname = "";
     $email = "";
     $phno = "" ;
+    $gender = "";
     $username = "";
     $password = "";
     $fnameErr = "";
@@ -19,7 +20,7 @@
     $phnoErr = "";
     $usernameErr = "";
     $passwordErr = "";
-
+    $genderErr = "";
     try {
         // if(isset())
     } catch (\Throwable $th) {
@@ -35,7 +36,7 @@
     <title>Create User</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body style="background:url('./assets/images/background.jpg')">
+<body style="background:url('../Assets/images/background.jpg')">
     <div class="flex justify-center items-center   ">
             <form action="login.php" method="post" class="p-16  lg:p-24 bg-blue-400 rounded-2xl shadow-2xl">
                 <div class="md:flex justify-between gap-10 items-start">
@@ -70,8 +71,38 @@
                                         echo "<p class='text-red-500 my-3 '> $usernameErr </p>";
                                     }
                                 ?>
-                        </div>  
+                            </div>  
+                            <div class="my-4">
+                                <label for="gender" class="text-white">Gender :</label>
+                                <br>
+                                <?php
+                                    if(!$gender){
+                                        echo '
+                                        <label for="gender">Male : <input type="radio" name="gender" value="male" ></label>
+                                        <label for="gender">Female : <input type="radio" name="gender" value="female"></label>
+                                        ';
+                                    }
+                                    else{
+                                        if($gender=="male"){
 
+                                            echo '   Male:<input type="radio" name="gender" value="male" id="male" checked>
+                                            Female:<input type="radio" name="gender" value="female" id="female" >';
+                                                   }
+                                                   else{
+                       
+                                            echo '   Male:<input type="radio" name="gender" value="male" id="male" >
+                                            Female:<input type="radio" name="gender" value="female" id="female" checked >';
+                                                   }
+                                               
+                                    }
+                                ?>
+
+                                <?php
+                                    if($genderErr){
+                                        echo "<p class='text-red-500 my-3 '> $genderErr </p>";
+                                    }
+                                ?>
+                            </div> 
                     </div>
                     <div>
 

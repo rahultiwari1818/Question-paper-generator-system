@@ -1,5 +1,5 @@
 <?php
-
+    include("./Partials/connection.php");
     $username = "";
     $password = "";
     $usernameErr = "";
@@ -21,7 +21,7 @@
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body style="background:url('./assets/images/background.jpg')">
+<body style="background:url('./Assets/images/background.jpg')">
     <div class="flex justify-center items-center  h-[90vh] ">
             <form action="login.php" method="post" class="p-16  lg:p-24 bg-blue-400 rounded-2xl shadow-2xl">
                 <div class="flex justify-center items-center">
