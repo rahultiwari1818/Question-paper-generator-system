@@ -121,11 +121,23 @@
     if($successfull){
         echo "
             <section class='p-[3vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl'>
+            <p class='  absolute top-5 right-5' onclick='removeMsg()'>
+            x
+        </p>
+    
                 <p class='flex justify-center items-center'> Question added Successfully</p>
             </section>
         ";
     }
     ?>
+
+<script>
+            function removeMsg(){
+                <?php
+                    $successfull = false;
+                ?>
+            }
+        </script>
 
     <main class="mt-5 ">
         <section class="flex justify-center items-center ">
