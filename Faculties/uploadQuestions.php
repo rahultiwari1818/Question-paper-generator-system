@@ -1,5 +1,4 @@
 <?php
-
     include("../Partials/connection.php");
     $question = "" ;
     $type="";
@@ -242,13 +241,23 @@
     </main>
 
     <script type="text/javascript">
+        // to add preloader
+        $("body").append('    <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>');
+                        
         $(document).ready(()=>{
 
-                $("#option-div").hide();
+            // To remove Preloader
+             $("#preLoader").remove();
+            // To options initially
+             $("#option-div").hide();
+            //  to disable subjects initially
+            $("#sub").attr("disabled",true)
+            //  to show options when errors are there after submitting
             if($("#type").val()=="mcqs"){
                 $("#option-div").show();
 
             }
+            // To Show Options When user select Mcqs
             $("#type").change(()=>{
                 if($("#type").val() == "mcqs"){
                     $("#option-div").show();
