@@ -15,7 +15,9 @@
 </head>
 <body>
 
-        <select name="type" id="viewtype" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onchange="filterByType()">
+
+
+        <select name="type" id="viewtype" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onchange="searchQuestion()">
                         <div class="bg-white p-2">
                             <option value=""  <?php if($type=="") echo "selected";?>> ------- Select a Question Type ----------</option>
                             <option value="mcqs" <?php if($type=="mcqs") echo "selected";?>> MCQS </option>
@@ -39,25 +41,48 @@
         </tr>
         </thead>
         <tbody id="questionsTbody">
-        <?php
-            $srno = 1;
-            $sql = "select * from tbl_questions";
-            $result = mysqli_query($conn,$sql);
-            while($row = $result->fetch_assoc()){
-                echo "<tr>
-                    <td class='border p-[10px]' >".$srno."</td>
-                    <td class='border p-[10px]' >".$row["q_type"]."</td>
-                    <td class='border p-[10px]' >".$row["question"]."</td>
-                    <td class='border p-[10px]' >".$row["options"]."</td>
-                    <td class='border p-[10px]' >".$row["level"]."</td>
-                    <td class='border p-[10px]' >".$row["weightage"]."</td>
-                    <td class='border p-[10px]' >".$row["date_added"]."</td>
-                </tr>";
-                $srno= $srno+1;
-            }
-        ?>
+
         </tbody>
     </table>
 
+
+
+    <!--------------------------------------------------------- Delete Confirmation Modal ---------------------------------------------------- -->
+
+    <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100" id="deleteCnfBox">
+        <div class="p-10 shadow-2xl rounded-xl border border-blue-500">
+            <p class="text-xl text-black text-center">Are You Sure To Delete This Question Permanently?</p>
+            <div class="flex justify-around my-5 gap-10">
+
+                <button class="px-7 rounded-lg shadow-xl py-3 outline outline-blue-500 text-blue-500 hover:text-white hover:bg-blue-500" onclick="closeDeleteModal()">Cancel</button>
+                <button class="px-7 rounded-lg shadow-xl py-3 outline outline-red-500 text-red-500 hover:text-white hover:bg-red-500" onclick="deleteQuestion()">Delete</button>
+            </div>
+        </div>
+
+    </div>
+
+     <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
+
+
+    <!-- <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100" id="">
+        <div class="p-10 shadow-2xl rounded-xl border">
+            <p class="text-xl text-black text-center">Are You Sure To Delete This Question Permanently?</p>
+            <div class="flex justify-around my-5 gap-10">
+
+                <button class="px-7 rounded-lg shadow-xl py-3 outline outline-blue-500 text-blue-500 hover:text-white hover:bg-blue-500" onclick="closeDeleteModal()">Cancel</button>
+                <button class="px-7 rounded-lg shadow-xl py-3 outline outline-red-500 text-red-500 hover:text-white hover:bg-red-500" onclick="deleteQuestion()">Delete</button>
+            </div>
+        </div>
+
+    </div> -->
+
+
+
+    <script type="text/javascript">
+            $("#deleteCnfBox").hide();
+            $(document).ready(()=>{
+                searchQuestion();
+            })
+    </script>
 </body>
 </html>

@@ -75,22 +75,22 @@
             if($conn->query($sql) === TRUE){
                 $successfull = true;
                 $question = "" ;
-    $type="";
-    $level = "";
-    $class = "";
-    $sub = "";
-    $weightage = "";
-    $option1 = "";
-    $option2 = "";
-    $option3 = "";
-    $option4 = "";
-    $questionErr="";
-    $typeErr = "";
-    $levelErr = "";
-    $classErr = "";
-    $subErr = "";
-    $weightageErr = "";
-    $optionErr = "";
+                $type="";
+                $level = "";
+                $class = "";
+                $sub = "";
+                $weightage = "";
+                $option1 = "";
+                $option2 = "";
+                $option3 = "";
+                $option4 = "";
+                $questionErr="";
+                $typeErr = "";
+                $levelErr = "";
+                $classErr = "";
+                $subErr = "";
+                $weightageErr = "";
+                $optionErr = "";
             }
             else{
                 $successfull = false;
