@@ -64,7 +64,10 @@
      <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 
 
-    <!-- <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100" id="">
+     <!--------------------------------------------------------- Update Modal ---------------------------------------------------- -->
+
+
+    <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100" id="updateModal">
         <div class="p-10 shadow-2xl rounded-xl border">
             <p class="text-xl text-black text-center">Are You Sure To Delete This Question Permanently?</p>
             <div class="flex justify-around my-5 gap-10">
@@ -74,12 +77,15 @@
             </div>
         </div>
 
-    </div> -->
+    </div>
+
+     <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 
 
 
     <script type="text/javascript">
             $("#deleteCnfBox").hide();
+            $("#updateModal").hide();
             $(document).ready(()=>{
                 searchQuestion();
             })
