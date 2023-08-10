@@ -38,6 +38,8 @@
             <th class="p-[10px] border">Level</th>
             <th class="p-[10px] border">WeightAge</th>
             <th class="p-[10px] border">Date Added</th>
+            <th class="p-[10px] border"></th>
+            <th class="p-[10px] border"></th>
         </tr>
         </thead>
         <tbody id="questionsTbody">
@@ -68,11 +70,10 @@
 
 
     <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100" id="updateModal">
-        <div class="p-10 shadow-2xl rounded-xl border">
-            <p class="text-xl text-black text-center">Are You Sure To Delete This Question Permanently?</p>
+        <div class="p-10 shadow-2xl rounded-xl h-[80vh] overflow-scroll border">
+                
             <div class="flex justify-around my-5 gap-10">
-
-                <button class="px-7 rounded-lg shadow-xl py-3 outline outline-blue-500 text-blue-500 hover:text-white hover:bg-blue-500" onclick="closeDeleteModal()">Cancel</button>
+                <button class="px-7 rounded-lg shadow-xl py-3 outline outline-blue-500 text-blue-500 hover:text-white hover:bg-blue-500" onclick="closeUpdateModal()">Cancel</button>
                 <button class="px-7 rounded-lg shadow-xl py-3 outline outline-red-500 text-red-500 hover:text-white hover:bg-red-500" onclick="deleteQuestion()">Delete</button>
             </div>
         </div>

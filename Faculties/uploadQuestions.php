@@ -96,11 +96,6 @@
                 $successfull = false;
             }
         }
-
-
-        
-        
-
     }
 
 ?>
@@ -251,7 +246,12 @@
             // To options initially
              $("#option-div").hide();
             //  to disable subjects initially
-            $("#sub").attr("disabled",true)
+            $("#sub").attr("disabled",true);
+
+            $("#class").change(()=>{
+                $("#sub").attr("disabled",false);
+
+            })
             //  to show options when errors are there after submitting
             if($("#type").val()=="mcqs"){
                 $("#option-div").show();
