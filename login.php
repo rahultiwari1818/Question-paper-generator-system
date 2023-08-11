@@ -5,8 +5,14 @@
     $usernameErr = "";
     $passwordErr = "";
 
+
+    if(isset($_POST["loginhojabhai"]) && $_POST["loginhojabhai"]=="Login"){
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+    }
+
     try {
-        // if(isset())
+
     } catch (\Throwable $th) {
         
     }
@@ -49,7 +55,7 @@
                     </div>
                 </div>
                 <div class="flex justify-center items-center p-5">
-                    <input type="submit" value="Login" class="px-5 py-2 bg-white text-red-500 border border-red-500 hover:bg-red-500 hover:text-white rounded-lg shadow-lg">
+                    <input type="submit" name="loginhojabhai" value="Login" class="px-5 py-2 bg-white text-red-500 border border-red-500 hover:bg-red-500 hover:text-white rounded-lg shadow-lg">
                 </div>
             </form>
     </div>
