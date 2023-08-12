@@ -82,6 +82,14 @@
             $valid = false;
         }
 
+        // $sql = "select * from tbl_users where username = '$username'";
+        // $result = $conn->query($sql);
+
+        // if($result->num_rows >=1){
+        //     $usernameErr = "Username Already Exists.!";
+        //     $valid = false;
+        // }
+
         if($valid){
             try {
                 $password = password_hash($password,1);

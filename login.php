@@ -9,6 +9,39 @@
     if(isset($_POST["loginhojabhai"]) && $_POST["loginhojabhai"]=="Login"){
         $username = $_POST["username"];
         $password = $_POST["password"];
+        $sql = "select * from tbl_users where username = '$username'";
+        $result = $conn -> query($sql);
+        $valid = true;
+        if($result->num_rows != 1 ){
+            $usernameErr = "Incorrect Username.!";
+            $valid = false;
+        }
+        if($valid){
+            $row = $result->fetch_assoc();
+            $hashedPasswd = $row["password"];
+            if(!password_verify($password,$hashedPasswd)){
+                $passwordErr = "Incorrect Password.!";
+            }
+            else{
+                session_start();
+                $_SESSION["loggedin"] = true;
+                $_SESSION["role"] = $row["role"];
+                $_SESSION["uId"] = $row["uId"];
+                $_SESSION["username"] = $row["username"];
+                $_SESSION["fname"] = $row["fname"];
+                if($row["role"]=="ADMIN"){
+                    header("location: ./Admin/createUser.php");
+                }
+                else{
+                    header("location : ./Faculties/uploadQuestions.php");
+                }
+            }
+
+            
+        }
+
+
+
     }
 
     try {

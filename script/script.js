@@ -105,3 +105,20 @@ function deleteQuestion(){
 
 }
 
+
+function checkUsernameExists(){
+    let username = $("#username").val();
+
+    fetch(`http://localhost/qpg/Partials/checkUserName.php?username=${username}`)
+    .then((res)=>res.json())
+    .then((res)=>{
+        if(res.exists){
+            $("#usernameErr").text(res.message);
+            $("#submitBtn").attr("disabled",true);
+        }
+        else{
+            $("#usernameErr").text("");
+            $("#submitBtn").attr("disabled",false);
+        }
+    })
+}
