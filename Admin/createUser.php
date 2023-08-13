@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION["uId"]) || $_SESSION["role"]!="ADMIN"){
-        header("location:login.php");
+        header("location:../login.php");
         exit;
     }
 
@@ -85,7 +85,12 @@
                     $password = password_hash($password,1);
                     $sql = "insert into tbl_users values(NULL,'$fname','$lname','USER','$phno','$email','$gender','$username','$password')";
                     if($conn->query($sql) == TRUE){
-                        //Code to Mail credentials to user      
+                        //Code to Mail credentials to user   
+                        
+                        
+                            
+
+
                     }
                     else{
                         echo $conn->error;
