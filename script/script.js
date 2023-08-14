@@ -122,3 +122,12 @@ function checkUsernameExists(){
         }
     })
 }
+
+function checkClassExists(){
+    let className = $("#className").val();
+    fetch()
+    .then(res=>res.json())
+    .then((res)=>{
+        
+    })
+}

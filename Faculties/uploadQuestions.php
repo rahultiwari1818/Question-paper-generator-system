@@ -69,7 +69,7 @@
         }
 
         if(!$err){
-            $question = htmlspecialchars($question);
+            $question = addslashes($question);
             $currentDate = date("Y-m-d");
             $sql = "insert into tbl_questions values(NULL,'$question','$type','$options','$level',$weightage,1,1,1,'$currentDate')";
             if($conn->query($sql) === TRUE){
