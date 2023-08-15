@@ -106,6 +106,7 @@
     <title>Upload Questions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../script/jquery-3.6.3.js"></script>
+    <script src="../script/script.js"></script>
 </head>
 <body style="background:url('../Assets/images/background.jpg')">
     <?
@@ -114,10 +115,10 @@
     <?php
     if($successfull){
         echo "
-            <section class='p-[3vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl'>
-            <p class='  absolute top-5 right-5' onclick='removeMsg()'>
-            x
-        </p>
+            <section class='p-[3vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
+            <p class='  absolute top-5 right-5 cursor-pointer' onclick='removeMsg()'>
+                x
+            </p>
     
                 <p class='flex justify-center items-center'> Question added Successfully</p>
             </section>
@@ -125,13 +126,6 @@
     }
     ?>
 
-<script>
-            function removeMsg(){
-                <?php
-                    $successfull = false;
-                ?>
-            }
-        </script>
 
     <main class="mt-5 ">
         <section class="flex justify-center items-center ">
@@ -266,6 +260,9 @@
                     $("#option-div").hide();
                 }
             })
+
+
+
         })
     </script>
 </body>

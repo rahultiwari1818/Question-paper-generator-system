@@ -48,7 +48,8 @@
             <form action="addClass.php" method="post">
                 <div>
                     <input type="text" name="class" id="className"  value="<?php echo $className;?>" required  placeholder="Class Name" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onkeyup="checkClassExists()">
-                    <?php
+                    <p class='text-red-500 my-3 ' id='classNameErr'>      </p>
+                   <?php
                         if($classErr){
                             echo "<p class='text-red-500 my-3 '> $classErr </p>";
                         }
@@ -59,6 +60,26 @@
                 </div>
             </form>
         </div>
+        
     </div>
+    <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Sr NO</td>
+                            <td>Class</td>
+                        </tr>
+                    </thead>
+                    <tbody id="classTableTbody">
+
+                    </tbody>
+                </table>
+    </div>
+
+    <script type="text/javascript">
+        $(documment).ready(()=>{
+            fetchClasses();
+        })
+    </script>
 </body>
 </html>

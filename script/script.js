@@ -106,6 +106,12 @@ function deleteQuestion(){
 }
 
 
+function removeMsg(){
+    console.log("clicked")
+    $("#successMessage").remove();
+}
+
+
 function checkUsernameExists(){
     let username = $("#username").val();
 
@@ -125,9 +131,27 @@ function checkUsernameExists(){
 
 function checkClassExists(){
     let className = $("#className").val();
-    fetch()
+    className = className.trim();
+    fetch(`http://localhost/qpg/Partials/checkClassExists.php?className=${className}`)
     .then(res=>res.json())
     .then((res)=>{
-        
+        if(res?.exists){
+            $("#classNameErr").text(res.message);
+        }
+        else{
+            $("#classNameErr").text("");
+        }
+    })
+}
+
+function fetchClasses(){
+    let rows  = "";
+    fetch("http://localhost/qpg/Partials/fetchClasses.php")
+    .then(res=>res.json())
+    .then(res=>{
+        let data = res?.data;
+        data.forEach((row)=>{
+            let tr = `<tr>`;
+        })
     })
 }
