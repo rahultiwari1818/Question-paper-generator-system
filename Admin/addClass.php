@@ -11,6 +11,7 @@
 
     $className = "";
     $classErr  = "";
+    $successfull = false;
     $error = false;
     if(isset($_POST["addhojabhai"]) && $_POST["addhojabhai"] == "Add"){
         $className = $_POST["class"];
@@ -21,7 +22,16 @@
             $error = true;
         }
         if(!$error){
-
+            $sql = "insert into tbl_class values(NULL,'$className')";
+            $result = mysqli_query($conn,$sql);
+            if($result == TRUE){
+                $successfull = true;
+                $className= "";
+                $classErr="";
+            }
+            else{
+                $successfull = true;
+            }
         }
     }
 
@@ -41,6 +51,20 @@
     <script src="../script/jquery-3.6.3.js"></script>
 </head>
 <body style="background:url('../Assets/images/background.jpg')">
+
+    <?php 
+        if($successfull){
+            echo "
+                <section class='p-[3vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
+                <p class='  absolute top-5 right-5 cursor-pointer' onclick='removeMsg()'>
+                    x
+                </p>
+        
+                    <p class='flex justify-center items-center'> Class added Successfully</p>
+                </section>
+            ";
+        }
+    ?>
 
     <h2 class="text-2xl text-center p-5 text-white">Add New Class </h2>
     <div class="flex justify-center items-center">
@@ -62,24 +86,62 @@
         </div>
         
     </div>
-    <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Sr NO</td>
-                            <td>Class</td>
-                        </tr>
-                    </thead>
-                    <tbody id="classTableTbody">
-
-                    </tbody>
-                </table>
+    <div class="my-5">
+            <h2 class="text-white text-2xl text-center"> List Of Existing Classes</h2>
+            <div class="flex justify-center items-center my-5">
+                        <table class="text-white">
+                            <thead class="text-xl">
+                                <tr>
+                                    <td class="border p-[10px]">Sr NO</td>
+                                    <td class="border p-[10px]">Class</td>
+                                </tr>
+                            </thead>
+                            <tbody id="classTableTbody" class="text-lg">
+        
+                            </tbody>
+                        </table>
+            </div>
     </div>
 
     <script type="text/javascript">
-        $(documment).ready(()=>{
+        $(document).ready(()=>{
+
+            function fetchClasses(){
+                fetch("http://localhost/qpg/Partials/fetchClasses.php")
+                .then(res=>res.json())
+                .then(res=>{
+                    let data = res?.data;
+                    let srno  = 1;
+                    let rows = "";
+                    // console.log(res)
+                    data.forEach((row)=>{
+                        let tr = `<tr>
+                            <td class="border p-[10px]">${srno}</td>
+                            <td class="border p-[10px]">${row.class}</td>
+                            </tr>
+                        `;
+                        rows+=tr;
+                        srno+=1;            
+                    })
+                    // console.log("called")
+                    $("#classTableTbody").html(rows);
+            })
+}
+
             fetchClasses();
+            
         })
     </script>
+
+
+    <!-- Script to Prevent Form Submission during Page Reload -->
+
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+
+
 </body>
 </html>

@@ -144,14 +144,23 @@ function checkClassExists(){
     })
 }
 
-function fetchClasses(){
-    let rows  = "";
+function fetchClassesInSubject(){
     fetch("http://localhost/qpg/Partials/fetchClasses.php")
     .then(res=>res.json())
     .then(res=>{
         let data = res?.data;
+        let rows = `                       <option value=""   <?php if($class=="") echo "selected"; ?>-------- Select Class -----------</option>
+        `;
+        // console.log(res)
+
         data.forEach((row)=>{
-            let tr = `<tr>`;
+            let tr = `
+                <option value="${row.cId}" >
+            ${row.class}</option>
+            `;
+            rows+=tr;         
         })
-    })
+        // console.log("called")
+        $("#classInSubject").html(rows);
+})
 }

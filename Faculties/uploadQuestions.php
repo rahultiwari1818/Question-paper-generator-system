@@ -229,6 +229,14 @@
         </section>
     </main>
 
+    <!-- Script to Prevent Form Submission during Page Reload -->
+
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+
     <script type="text/javascript">
         // to add preloader
         $("body").append('    <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>');
