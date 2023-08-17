@@ -93,7 +93,7 @@ function deleteQuestion(){
     .then((res)=>res.json())
     .then((res)=>{
         if(res?.result == true){
-            alert(res.message);
+            // alert(res.message);
             deleteId = undefined;
             searchQuestion();
         }
@@ -103,6 +103,24 @@ function deleteQuestion(){
     })
 
 
+}
+
+
+function checkEmailExists(){
+    let email = $('#userEmail').val();
+
+    fetch(`http://localhost/qpg/Partials/checkEmailExists.php?email=${email}`)
+    .then(res=>res.json())
+    .then((res)=>{
+        if(res.exists){
+            $("#userEmailErr").text(res.message);
+            $("#submitBtn").attr("disabled",true);
+        }
+        else{
+            $("#userEmailErr").text("");
+            $("#submitBtn").attr("disabled",false);
+        }
+    })
 }
 
 
@@ -163,4 +181,13 @@ function fetchClassesInSubject(){
         // console.log("called")
         $("#classInSubject").html(rows);
 })
+}
+
+
+function checkSubjectExists(){
+    fetch()
+    .then(res=>res.json())
+    .then(res=>{
+        
+    })
 }

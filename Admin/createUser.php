@@ -28,6 +28,7 @@
     $usernameErr = "";
     $passwordErr = "";
     $genderErr = "";
+    $successfull = false;
     try {
         if(isset($_POST["submithojabhai"]) && $_POST["submithojabhai"] == "Create User"){
             $fname = $_POST["fname"];
@@ -93,35 +94,48 @@
                     $sql = "insert into tbl_users values(NULL,'$fname','$lname','USER','$phno','$email','$gender','$username','$password')";
                     if($conn->query($sql) == TRUE){
                         //Code to Mail credentials to user   
-                        
-                        
+                        $successfull = true;
+                        $fname = "";
+                        $lname = "";
+                        $email = "";
+                        $phno = "" ;
+                        $gender = "";
+                        $username = "";
+                        $password = "";
+                        $fnameErr = "";
+                        $lnameErr = "";
+                        $emailErr = "";
+                        $phnoErr = "";
+                        $usernameErr = "";
+                        $passwordErr = "";
+                        $genderErr = "";
                        
                          
-                        $mail = new PHPMailer(true);
+                        // $mail = new PHPMailer(true);
                          
-                        try {
-                            $mail->SMTPDebug = 2;                                      
-                            $mail->isSMTP();                                           
-                            $mail->Host       = 'smtp.gfg.com;';                   
-                            $mail->SMTPAuth   = true;                            
-                            $mail->Username   = '';                
-                            $mail->Password   = 'password';                       
-                            $mail->SMTPSecure = 'tls';                             
-                            $mail->Port       = 587; 
+                        // try {
+                        //     $mail->SMTPDebug = 2;                                      
+                        //     $mail->isSMTP();                                           
+                        //     $mail->Host       = 'smtp.gfg.com;';                   
+                        //     $mail->SMTPAuth   = true;                            
+                        //     $mail->Username   = '';                
+                        //     $mail->Password   = 'password';                       
+                        //     $mail->SMTPSecure = 'tls';                             
+                        //     $mail->Port       = 587; 
                          
-                            $mail->setFrom('from@gfg.com', 'Name');          
-                            $mail->addAddress('receiver1@gfg.com');
-                            $mail->addAddress('receiver2@gfg.com', 'Name');
+                        //     $mail->setFrom('from@gfg.com', 'Name');          
+                        //     $mail->addAddress('receiver1@gfg.com');
+                        //     $mail->addAddress('receiver2@gfg.com', 'Name');
                               
-                            $mail->isHTML(true);                                 
-                            $mail->Subject = 'Subject';
-                            $mail->Body    = 'HTML message body in <b>bold</b> ';
-                            $mail->AltBody = 'Body in plain text for non-HTML mail clients';
-                            $mail->send();
-                            echo "Mail has been sent successfully!";
-                        } catch (Exception $e) {
-                            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                        }
+                        //     $mail->isHTML(true);                                 
+                        //     $mail->Subject = 'Subject';
+                        //     $mail->Body    = 'HTML message body in <b>bold</b> ';
+                        //     $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+                        //     $mail->send();
+                        //     echo "Mail has been sent successfully!";
+                        // } catch (Exception $e) {
+                        //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                        // }
 
 
                     }
@@ -155,6 +169,23 @@
     
 </head>
 <body style="background:url('../Assets/images/background.jpg')">
+
+
+    <?php
+        if($successfull){
+            echo "
+                <section class='p-[3vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
+                <p class='  absolute top-5 right-5 cursor-pointer' onclick='removeMsg()'>
+                    x
+                </p>
+        
+                    <p class='flex justify-center items-center'> User added Successfully</p>
+                </section>
+            ";
+        }
+    ?>
+
+
     <div class="flex justify-center items-center   ">
             <form action="createUser.php" method="post" class="p-16  lg:p-24 bg-blue-400 rounded-2xl shadow-2xl">
             <div class="md:flex justify-between gap-10 items-start">
@@ -228,7 +259,8 @@
                     <div class="my-4">
                                 <label for="email" class="text-white">E-Mail :</label>
                                 <br>
-                                <input type="email" name="email" value="<?php echo $email;?>" placeholder="Enter E-Mail " class="p-2 my-2 rounded-lg shadow-lg" required>
+                                <input type="email" id="userEmail" name="email" value="<?php echo $email;?>" placeholder="Enter E-Mail " class="p-2 my-2 rounded-lg shadow-lg" required onkeyup="checkEmailExists()">
+                                <p class='text-red-500 my-3 ' id='userEmailErr'>      </p>
                                 <?php
                                     if($emailErr){
                                         echo "<p class='text-red-500 my-3 '> $emailErr </p>";
