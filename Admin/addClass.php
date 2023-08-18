@@ -5,7 +5,7 @@
     include("../Partials/connection.php");
     if(!isset($_SESSION["uId"]) || $_SESSION["role"]!="ADMIN"){
         header("location:../login.php");
-        exit;
+        exit();
     }
 
 
@@ -46,19 +46,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Class</title>
+<body>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../script/script.js"></script>
     <script src="../script/jquery-3.6.3.js"></script>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
-<body style="background:url('../Assets/images/background.jpg')">
+<body>
 
     <?php 
         if($successfull){
             echo "
-                <section class='p-[3vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
-                <p class='  absolute top-5 right-5 cursor-pointer' onclick='removeMsg()'>
-                    x
-                </p>
+                <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
+                <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeMsg()'>
+                <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
+            </p>
         
                     <p class='flex justify-center items-center'> Class added Successfully</p>
                 </section>
@@ -104,9 +106,13 @@
     </div>
 
     <script type="text/javascript">
+
+
+
         $(document).ready(()=>{
 
-            function fetchClasses(){
+
+            function displayClassesInTable(){
                 fetch("http://localhost/qpg/Partials/fetchClasses.php")
                 .then(res=>res.json())
                 .then(res=>{
@@ -125,10 +131,16 @@
                     })
                     // console.log("called")
                     $("#classTableTbody").html(rows);
-            })
-}
+                })
+            }
+                    
 
-            fetchClasses();
+            displayClassesInTable();
+
+        // Set Time Out to remove message Automatically after 3 seconds
+            setTimeout(()=>{
+                removeMsg();
+            },3000)
             
         })
     </script>

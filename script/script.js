@@ -167,8 +167,7 @@ function fetchClassesInSubject(){
     .then(res=>res.json())
     .then(res=>{
         let data = res?.data;
-        let rows = `                       <option value=""   <?php if($class=="") echo "selected"; ?>-------- Select Class -----------</option>
-        `;
+        let rows = `<option value=""   <?php if($class=="") echo "selected"; ?>-------- Select Class -----------</option>`;
         // console.log(res)
 
         data.forEach((row)=>{
@@ -180,8 +179,32 @@ function fetchClassesInSubject(){
         })
         // console.log("called")
         $("#classInSubject").html(rows);
-})
+    })
 }
+
+function fetchClassesInUploadQuestion(){
+    fetch("http://localhost/qpg/Partials/fetchClasses.php")
+    .then(res=>res.json())
+    .then(res=>{
+        let data = res?.data;
+        let rows = `<option value=""   <?php if($class=="") echo "selected"; ?>-------- Select Class -----------</option>`;
+        // console.log(res)
+
+        data.forEach((row)=>{
+            let tr = `
+                <option value="${row.cId}" >
+            ${row.class}</option>
+            `;
+            rows+=tr;         
+        })
+        $("#classUPQ").html(rows)
+    })
+}
+
+
+
+
+
 
 
 function checkSubjectExists(){
@@ -189,5 +212,28 @@ function checkSubjectExists(){
     .then(res=>res.json())
     .then(res=>{
         
+    })
+}
+
+function fetchSubjectsClassWise(){
+    let classId = $("#classUPQ").val();
+
+
+
+    fetch(`http://localhost/qpg/Partials/fetchSubjectsClassWise.php?class=${classId}`)
+    .then(res=>res.json())
+    .then(res=>{
+        let data = res?.data;
+        let rows = `<option value=""   <?php if($sub=="") echo "selected"; ?>-------- Select Subject -----------</option>`;
+        // console.log(res)
+        console.log(res)
+        data.forEach((row)=>{
+            let tr = `
+                <option value="${row.sId}" >
+            ${row.subject}</option>
+            `;
+            rows+=tr;         
+        })
+        $("#subUPQ").html(rows)
     })
 }

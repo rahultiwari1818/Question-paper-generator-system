@@ -1,5 +1,16 @@
 <?php
+    session_start();
     include("../Partials/connection.php");
+
+
+    if(!isset($_SESSION["uId"])){
+        header("location:../login.php");
+        exit();
+    }
+
+
+
+
     $question = "" ;
     $type="";
     $level = "";
@@ -67,11 +78,14 @@
             }
             $options = $option1 ." , ".$option2 ." , ".$option3 ." , ".$option4;
         }
+        $uid = $_SESSION["uId"];
+
 
         if(!$err){
             $question = addslashes($question);
+            $options = addslashes($options);
             $currentDate = date("Y-m-d");
-            $sql = "insert into tbl_questions values(NULL,'$question','$type','$options','$level',$weightage,1,1,1,'$currentDate')";
+            $sql = "insert into tbl_questions values(NULL,'$question','$type','$options','$level',$weightage,$class,$sub,$uid,'$currentDate')";
             if($conn->query($sql) === TRUE){
                 $successfull = true;
                 $question = "" ;
@@ -105,20 +119,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Questions</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../script/jquery-3.6.3.js"></script>
     <script src="../script/script.js"></script>
+    <script src="../script/jquery-3.6.3.js"></script>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
-<body style="background:url('../Assets/images/background.jpg')">
+<body>
     <?
         include("../Partials/navbar.php");
     ?>
     <?php
     if($successfull){
         echo "
-            <section class='p-[3vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
-            <p class='  absolute top-5 right-5 cursor-pointer' onclick='removeMsg()'>
-                x
-            </p>
+        <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
+        <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeMsg()'>
+            <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
+         </p>
     
                 <p class='flex justify-center items-center'> Question added Successfully</p>
             </section>
@@ -193,12 +208,9 @@
                     ?>
                 </div>
                 <div class="my-2">
-                    <select name="class" required id="class" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
+                    <select name="class" required id="classUPQ" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
                         <div class="bg-white my-2">
-                            <option value=""  <?php if($class=="") echo "selected"; ?>>-------- Select Class -----------</option>
-                            <option value="fy"    <?php if($class=="fy") echo "selected"; ?>>FY</option>
-                            <option value="sy"   <?php if($class=="sy") echo "selected"; ?>>SY</option>
-                            <option value="ty"   <?php if($class=="ty") echo "selected"; ?>>TY</option>
+                             <option value=""   <?php if($class=="") echo "selected"; ?>>-------- Select Class ----------- </option>
                         </div>
                     </select>
                     <?php
@@ -208,14 +220,9 @@
                     ?>
                 </div>
                 <div class="my-2">
-                    <select name="sub" value="<?php echo $sub;?>" required id="sub" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
+                    <select name="sub" value="<?php echo $sub;?>" required id="subUPQ" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
                         <div class="bg-white my-2">
                             <option value=""   <?php if($sub=="") echo "selected"; ?>>-------- Select Subject -----------</option>
-                            <option value="501"  <?php if($sub=="501") echo "selected"; ?> >AWD</option>
-                            <option value="502"  <?php if($sub=="502") echo "selected"; ?>>Network Technology</option>
-                            <option value="503"  <?php if($sub=="503") echo "selected"; ?>>WFS</option>
-                            <option value="504"  <?php if($sub=="504") echo "selected"; ?>>ASP.Net</option>
-                            <option value="505"  <?php if($sub=="505") echo "selected"; ?>>Unix</option>
                         </div>
                     </select>
                     <?php
@@ -239,7 +246,11 @@
 
     <script type="text/javascript">
         // to add preloader
-        $("body").append('    <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>');
+        $("body").append('<div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>');
+
+
+
+
                         
         $(document).ready(()=>{
 
@@ -248,10 +259,11 @@
             // To options initially
              $("#option-div").hide();
             //  to disable subjects initially
-            $("#sub").attr("disabled",true);
+            $("#subUPQ").attr("disabled",true);
 
-            $("#class").change(()=>{
-                $("#sub").attr("disabled",false);
+            $("#classUPQ").change(()=>{
+                $("#subUPQ").attr("disabled",false);
+                fetchSubjectsClassWise();
 
             })
             //  to show options when errors are there after submitting
@@ -268,6 +280,16 @@
                     $("#option-div").hide();
                 }
             })
+
+            fetchClassesInUploadQuestion();
+
+             // Set Time Out to remove message Automatically after 3 seconds
+            setTimeout(()=>{
+                removeMsg();
+            },3000)
+
+
+
 
 
 

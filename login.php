@@ -1,9 +1,21 @@
 <?php
+    session_start();
     include("./Partials/connection.php");
     $username = "";
     $password = "";
     $usernameErr = "";
     $passwordErr = "";
+
+
+    if(isset($_SESSION["uId"]) && $_SESSION["role"]=="ADMIN"){
+        header("location: ./Admin/createUser.php");
+        exit();
+    }
+
+    if(isset($_SESSION["uId"]) && $_SESSION["role"]=="USER"){
+        header("location: ./Faculties/uploadQuestions.php");
+        exit();
+    }
 
 
     if(isset($_POST["loginhojabhai"]) && $_POST["loginhojabhai"]=="Login"){
@@ -31,9 +43,11 @@
                 $_SESSION["fname"] = $row["fname"];
                 if($row["role"]=="ADMIN"){
                     header("location: ./Admin/createUser.php");
+                    exit();
                 }
                 else{
                     header("location : ./Faculties/uploadQuestions.php");
+                    exit();
                 }
             }
 
