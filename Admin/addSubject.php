@@ -143,21 +143,24 @@
     <div class="my-5">
             <h2 class="text-white text-2xl text-center"> List Of Existing Subjects</h2>
             <div class="flex justify-center items-center my-5">
-                        <table class="text-white">
-                            <thead class="text-xl">
-                                <tr>
-                                    <td class="border p-[10px]">Sr NO</td>
-                                    <td class="border p-[10px]">Subject</td>
-                                    <td class="border p-[10px]">Class</td>
-                                    <td class="border p-[10px]"></td>
-                                    <td class="border p-[10px]"></td>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody id="subjectTableTbody" class="text-lg">
-        
-                            </tbody>
-                        </table>
+                <div class="bg-white rounded-xl shadow p-5   overflow-scroll">
+
+                    <table class="p-5  text-black rounded-xl border">
+                        <thead class="text-xl">
+                            <tr>
+                                <td class="border p-[10px]">Sr NO</td>
+                                <td class="border p-[10px]">Subject</td>
+                                <td class="border p-[10px]">Class</td>
+                                <td class="border p-[10px]"></td>
+                                <td class="border p-[10px]"></td>
+                                
+                            </tr>
+                        </thead>
+                        <tbody id="subjectTableTbody" class="text-lg">
+    
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             
@@ -215,7 +218,7 @@
             }
         </script>
 
-<footer class="bg-white bottom-0 p-[1vh] absolute w-screen ">
+        <footer class="bg-white bottom-0 p-[1vh] absolute w-screen ">
             <section class="flex justify-center items-center">
                 <p class="font-serif antialiased font-black lg:text-xl text-base	"></p>
                 Developed With <img src="../Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">

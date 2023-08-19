@@ -367,3 +367,34 @@ function deleteClass(){
     })
 
 }
+
+function fetchUsers(){
+
+    fetch("http://localhost/qpg/Partials/fetchUsers.php")
+    .then(res=>res.json())
+    .then(res=>{
+        let data = res?.data;
+        let srno  = 1;
+        let rows = "";
+        // console.log(res)
+        data.forEach((row)=>{
+            let tr = `<tr>
+                <td class="border p-[10px]">${srno}</td>
+                <td class="border p-[10px]">${row.fname}</td>
+                <td class="border p-[10px]">${row.lname}</td>
+                <td class="border p-[10px]">${row.phno}</td>
+                <td class="border p-[10px]">${row.email}</td>
+                <td class="border p-[10px]">${row.gender}</td>
+                <td class="border p-[10px]">${row.username}</td>
+                <td class='border p-[10px]' onclick=''><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                <td class='border p-[10px]' onclick=''><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                </tr>
+            `;
+            rows+=tr;
+            srno+=1;            
+        })
+        // console.log("called")
+        $("#viewUsersTbody").html(rows);
+    })
+
+}
