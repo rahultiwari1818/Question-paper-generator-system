@@ -66,14 +66,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Subject</title>
-<body>
+    <title>Subject</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../script/script.js"></script>
     <script src="../script/jquery-3.6.3.js"></script>
+    <script src="../script/script.js"></script>
     <link rel="stylesheet" href="../style/style.css">
 </head>
-<body  style="background:url('../Assets/images/background.jpg')">
+<body>
 
 
     <?php 
@@ -141,9 +140,65 @@
         
     </div>
 
-    <script>
+    <div class="my-5">
+            <h2 class="text-white text-2xl text-center"> List Of Existing Subjects</h2>
+            <div class="flex justify-center items-center my-5">
+                        <table class="text-white">
+                            <thead class="text-xl">
+                                <tr>
+                                    <td class="border p-[10px]">Sr NO</td>
+                                    <td class="border p-[10px]">Subject</td>
+                                    <td class="border p-[10px]">Class</td>
+                                    <td class="border p-[10px]"></td>
+                                    <td class="border p-[10px]"></td>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody id="subjectTableTbody" class="text-lg">
+        
+                            </tbody>
+                        </table>
+            </div>
+
+            
+        </div>
+
+    <!--------------------------------------------------------- Delete Confirmation Modal ---------------------------------------------------- -->
+
+        
+        <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100" id="deleteSubjectCnfBox">
+                <div class="p-10 bg-white shadow-2xl rounded-xl border border-blue-500">
+                    <p class="text-xl text-black text-center">Are You Sure To Delete This Subject Permanently?</p>
+                    <div class="flex justify-around my-5 gap-10">
+        
+                        <button class="px-7 rounded-lg shadow-xl py-3 outline outline-blue-500 text-blue-500 hover:text-white hover:bg-blue-500" onclick="closeSubjectDeleteModal()">Cancel</button>
+                        <button class="px-7 rounded-lg shadow-xl py-3 outline outline-red-500 text-red-500 hover:text-white hover:bg-red-500" onclick="deleteSubject()">Delete</button>
+                    </div>
+                </div>
+        </div>
+    <!--------------------------------------------------------- PreLoader ---------------------------------------------------- -->
+
+        <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>
+
+    <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
+
+
+
+                     
+
+
+    <script type="text/javascript">
+
+        $("#deleteSubjectCnfBox").hide();   
+
         $(document).ready(()=>{
+            
             fetchClassesInSubject();
+            fetchSubjects();
+            $("#preLoader").hide();
+
+
+
 
         // Set Time Out to remove message Automatically after 3 seconds
         setTimeout(()=>{
@@ -159,6 +214,15 @@
                 window.history.replaceState( null, null, window.location.href );
             }
         </script>
+
+<footer class="bg-white bottom-0 p-[1vh] absolute w-screen ">
+            <section class="flex justify-center items-center">
+                <p class="font-serif antialiased font-black lg:text-xl text-base	"></p>
+                Developed With <img src="../Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">
+                 By Team LinkedList
+            </section>
+        </footer>
+
 
 </body>
 </html>

@@ -1,8 +1,11 @@
 
 
-let deleteId = undefined;
-let updateId = undefined;
-
+let deleteQuesId = undefined;
+let updateQuesId = undefined;
+let deleteSubId = undefined;
+let updateSubId = undefined;
+let deleteClassId = undefined;
+let updateClassId = undefined;
 
 // function debouncedSearch(){
 //     let timeoutId;
@@ -54,13 +57,13 @@ function searchQuestion(){
 
 function showUpdateModal(id){
     $("#updateModal").show();
-    updateId = id;
+    updateQuesId = id;
 }   
 
 
 function closeUpdateModal(){
     $("#updateModal").hide();
-    updateId = undefined;
+    updateQuesId = undefined;
 }
 
 
@@ -68,19 +71,19 @@ function closeUpdateModal(){
 
 function showDeleteModal(id){
         $("#deleteCnfBox").show();
-        deleteId = id;
+        deleteQuesId = id;
 }
 
 function closeDeleteModal(){
     $("#deleteCnfBox").hide();
-    deleteId = undefined;
+    deleteQuesId = undefined;
 }
 
 
 function deleteQuestion(){
 
     let data = {
-        id:deleteId
+        id:deleteQuesId
     };
 
     fetch("http://localhost/qpg/Partials/deleteQuestion.php",{
@@ -94,7 +97,7 @@ function deleteQuestion(){
     .then((res)=>{
         if(res?.result == true){
             // alert(res.message);
-            deleteId = undefined;
+            deleteQuesId = undefined;
             searchQuestion();
         }
     })
@@ -236,4 +239,131 @@ function fetchSubjectsClassWise(){
         })
         $("#subUPQ").html(rows)
     })
+}
+
+function fetchSubjects(){
+    fetch("http://localhost/qpg/Partials/fetchSubjects.php")
+    .then(res=>res.json())
+    .then(res=>{
+        let data = res?.data;
+        let srno  = 1;
+        let rows = "";
+        console.log(res)
+        data.forEach((row)=>{
+            let tr = `<tr>
+                <td class="border p-[10px]">${srno}</td>
+                <td class="border p-[10px]">${row.subject}</td>
+                <td class="border p-[10px]">${row.class}</td>
+                <td class='border p-[10px]' onclick='showUpdateModal(${row.sId})'><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                <td class='border p-[10px]' onclick='openSubjectDeleteModal(${row.sId})'><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                </tr>
+            `;
+            rows+=tr;
+            srno+=1;            
+        })
+        // console.log("called")
+        $("#subjectTableTbody").html(rows);
+    })
+}
+
+
+function displayClassesInTable(){
+    fetch("http://localhost/qpg/Partials/fetchClasses.php")
+    .then(res=>res.json())
+    .then(res=>{
+        let data = res?.data;
+        let srno  = 1;
+        let rows = "";
+        // console.log(res)
+        data.forEach((row)=>{
+            let tr = `<tr>
+                <td class="border p-[10px]">${srno}</td>
+                <td class="border p-[10px]">${row.class}</td>
+                <td class='border p-[10px]' onclick='showUpdateModal(${row.cId})'><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                <td class='border p-[10px]' onclick='openClassDeleteModal(${row.cId})'><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                </tr>
+            `;
+            rows+=tr;
+            srno+=1;            
+        })
+        // console.log("called")
+        $("#classTableTbody").html(rows);
+    })
+}
+ 
+function openClassDeleteModal(id){
+    $("#deleteClassCnfBox").show();
+    deleteClassId = id;
+}
+
+function closeClassDeleteModal(){
+    $("#deleteClassCnfBox").hide();
+    deleteClassId = undefined;
+}
+
+
+function openSubjectDeleteModal(id){
+    $("#deleteSubjectCnfBox").show();
+    deleteSubId = id;
+}
+
+
+function closeSubjectDeleteModal(){
+    $("#deleteSubjectCnfBox").hide();
+    deleteSubId = undefined;
+}
+
+function deleteSubject(){
+
+    let data = {
+        id:deleteSubId
+    };
+
+    fetch("http://localhost/qpg/Partials/deleteSubject.php",{
+        method:"POST",
+        headers: {
+            'Content-Type': 'application/json' // Set the content type to JSON for sending data as JSON
+          },        
+        body:JSON.stringify(data),
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+        if(res?.result == true){
+            // alert(res.message);
+            deleteSubId = undefined;
+            fetchSubjects();
+        }
+    })
+    .finally(()=>{
+        closeSubjectDeleteModal();
+    })
+
+}
+
+
+function deleteClass(){
+
+    let data = {
+        id:deleteClassId
+    };
+
+    fetch("http://localhost/qpg/Partials/deleteClass.php",{
+        method:"POST",
+        headers: {
+            'Content-Type': 'application/json' // Set the content type to JSON for sending data as JSON
+          },        
+        body:JSON.stringify(data),
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+        if(res?.result == true){
+            // alert(res.message);
+            deleteClassId = undefined;
+            displayClassesInTable();
+        }
+    })
+    .finally(()=>{
+        closeClassDeleteModal();
+    })
+
 }

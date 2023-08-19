@@ -7,7 +7,7 @@
         header("location:../login.php");
         exit();
     }
-
+    
 
 
 
@@ -236,6 +236,14 @@
         </section>
     </main>
 
+
+    <!--------------------------------------------------------- PreLoader ---------------------------------------------------- -->
+
+             <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>
+
+        <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
+
+
     <!-- Script to Prevent Form Submission during Page Reload -->
 
     <script>
@@ -245,8 +253,7 @@
     </script>
 
     <script type="text/javascript">
-        // to add preloader
-        $("body").append('<div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>');
+        
 
 
 
@@ -255,7 +262,7 @@
         $(document).ready(()=>{
 
             // To remove Preloader
-             $("#preLoader").remove();
+             $("#preLoader").hide();
             // To options initially
              $("#option-div").hide();
             //  to disable subjects initially
@@ -295,5 +302,14 @@
 
         })
     </script>
+
+        <footer class="bg-white bottom-0 p-[1vh] absolute w-screen ">
+            <section class="flex justify-center items-center">
+                <p class="font-serif antialiased font-black lg:text-xl text-base	"></p>
+                Developed With <img src="../Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">
+                 By Team LinkedList
+            </section>
+        </footer>
+
 </body>
 </html>

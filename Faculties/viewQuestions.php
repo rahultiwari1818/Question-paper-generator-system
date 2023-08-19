@@ -17,44 +17,53 @@
 </head>
 <body>
 
+    <main>
+        <section class="flex   justify-center items-center m-5 ">
+            <section class="overflow-scroll">
+            <select name="type" id="viewtype" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onchange="searchQuestion()">
+                            <div class="bg-white p-2">
+                                <option value=""  <?php if($type=="") echo "selected";?>> ------- Select a Question Type ----------</option>
+                                <option value="mcqs" <?php if($type=="mcqs") echo "selected";?>> MCQS </option>
+                                <option value="fib" <?php if($type=="fib") echo "selected";?>> Fill In The Blanks</option>
+                                <option value="tf"> <?php if($type=="tf") echo "selected";?>True Or False</option>
+                                <option value="atf" <?php if($type=="atf") echo "selected";?>> Answer The Following Question. </option>
+                            </div>
+            </select>
+            <input type="search" name="search"  id="searchQuestion" placeholder="Search Questions" class="block shadow-xl  my-1  appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" onkeyup="searchQuestion()" onblur="searchQuestion()"> 
+            <section class=" flex justify-center items-center bg-white rounded-xl shadow p-5 mx-5 my-10 overflow-scroll">
+
+                <table class="p-5  text-black rounded-xl border ">
+                    <thead>
+                    <tr>
+                        <th  class="p-[10px] border">Sr No</th>
+                        <th class="p-[10px] border">Question Type</th>
+                        <th class="p-[10px] border">Question</th>
+                        <th class="p-[10px] border">Options</th>
+                        <th class="p-[10px] border">Level</th>
+                        <th class="p-[10px] border">WeightAge</th>
+                        <th class="p-[10px] border">Date Added</th>
+                        <th class="p-[10px] border"></th>
+                        <th class="p-[10px] border"></th>
+                    </tr>
+                    </thead>
+                    <tbody id="questionsTbody">
+            
+                    </tbody>
+                </table>
+            </section>
+            </section>
+
+        </section>
+    </main>
 
 
-        <select name="type" id="viewtype" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onchange="searchQuestion()">
-                        <div class="bg-white p-2">
-                            <option value=""  <?php if($type=="") echo "selected";?>> ------- Select a Question Type ----------</option>
-                            <option value="mcqs" <?php if($type=="mcqs") echo "selected";?>> MCQS </option>
-                            <option value="fib" <?php if($type=="fib") echo "selected";?>> Fill In The Blanks</option>
-                            <option value="tf"> <?php if($type=="tf") echo "selected";?>True Or False</option>
-                            <option value="atf" <?php if($type=="atf") echo "selected";?>> Answer The Following Question. </option>
-                        </div>
-        </select>
-        <input type="search" name="search"  id="searchQuestion" placeholder="Search Questions" class="block shadow-xl  my-1  appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" onkeyup="searchQuestion()" onblur="searchQuestion()"> 
-
-    <table class="p-5 my-10">
-        <thead>
-        <tr>
-            <th  class="p-[10px] border">Sr No</th>
-            <th class="p-[10px] border">Question Type</th>
-            <th class="p-[10px] border">Question</th>
-            <th class="p-[10px] border">Options</th>
-            <th class="p-[10px] border">Level</th>
-            <th class="p-[10px] border">WeightAge</th>
-            <th class="p-[10px] border">Date Added</th>
-            <th class="p-[10px] border"></th>
-            <th class="p-[10px] border"></th>
-        </tr>
-        </thead>
-        <tbody id="questionsTbody">
-
-        </tbody>
-    </table>
 
 
 
     <!--------------------------------------------------------- Delete Confirmation Modal ---------------------------------------------------- -->
 
     <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100" id="deleteCnfBox">
-        <div class="p-10 shadow-2xl rounded-xl border border-blue-500">
+        <div class="p-10 bg-white shadow-2xl rounded-xl border border-blue-500">
             <p class="text-xl text-black text-center">Are You Sure To Delete This Question Permanently?</p>
             <div class="flex justify-around my-5 gap-10">
 
@@ -84,14 +93,31 @@
 
      <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 
+         <!--------------------------------------------------------- PreLoader ---------------------------------------------------- -->
+
+
+
+         <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>
+
+    <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 
 
     <script type="text/javascript">
             $("#deleteCnfBox").hide();
             $("#updateModal").hide();
             $(document).ready(()=>{
+                $("#preLoader").hide();
                 searchQuestion();
             })
     </script>
+
+<footer class="bg-white bottom-0 p-[1vh] absolute w-screen ">
+            <section class="flex justify-center items-center">
+                <p class="font-serif antialiased font-black lg:text-xl text-base	"></p>
+                Developed With <img src="../Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">
+                 By Team LinkedList
+            </section>
+        </footer>
+
 </body>
 </html>

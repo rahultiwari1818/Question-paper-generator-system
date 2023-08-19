@@ -1,13 +1,16 @@
 <?php
+    session_start();
     header("Access-Control-Allow-Origin:*");
     include("./connection.php");
     try {
         $str = $_GET["question"];
         $type = $_GET["type"];
+        $uid = $_SESSION["uId"];
+
         $str = strtolower($str);
         $str = trim($str);
         if(empty($str) && empty($type)){
-            $sql = "select * from tbl_questions";
+            $sql = "select * from tbl_questions where uId = $uid";
             $result = mysqli_query($conn,$sql);
             $arr = array();
             while($row = $result->fetch_assoc()){
@@ -16,7 +19,7 @@
             echo json_encode(["status"=>200,"data"=>$arr,"result"=>true]);
         }
         else if(empty($type)){
-            $sql = "select * from tbl_questions";
+            $sql = "select * from tbl_questions  where uId = $uid";
             $result = mysqli_query($conn,$sql);
             $arr = array();
             while($row = $result->fetch_assoc()){
@@ -29,7 +32,7 @@
             echo json_encode(["status"=>200,"data"=>$arr,"result"=>true]);
         }
         else if(empty($str)){
-            $sql = "select * from tbl_questions where q_type = '$type'";
+            $sql = "select * from tbl_questions where q_type = '$type' and   uId = $uid";
             $result = mysqli_query($conn,$sql);
             $arr = array();
             while($row = $result->fetch_assoc()){
@@ -38,7 +41,7 @@
             echo json_encode(["status"=>200,"data"=>$arr,"result"=>true]);
         }
         else{
-            $sql = "select * from tbl_questions where q_type = '$type'";
+            $sql = "select * from tbl_questions where q_type = '$type'  and uId = $uid";
         $result = mysqli_query($conn,$sql);
         $arr = array();
         while($row = $result->fetch_assoc()){

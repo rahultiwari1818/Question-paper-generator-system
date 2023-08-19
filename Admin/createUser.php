@@ -166,8 +166,8 @@
     <title>Create User</title>
 <body>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../script/script.js"></script>
     <script src="../script/jquery-3.6.3.js"></script>
+    <script src="../script/script.js"></script>
     <link rel="stylesheet" href="../style/style.css">
     
 </head>
@@ -175,6 +175,10 @@
 
 
     <?php
+        
+        include("../Partials/navbar.php");
+
+
         if($successfull){
             echo "
             <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
@@ -187,6 +191,8 @@
             ";
         }
     ?>
+
+    
 
 
     <div class="flex justify-center items-center   ">
@@ -300,12 +306,22 @@
             </form>
     </div>
 
+        <!--------------------------------------------------------- PreLoader ---------------------------------------------------- -->
+
+        <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>
+
+    <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
+
+
+
 
     <script>
         $(document).ready(()=>{
+            $("#preLoader").hide();
 
-        // Set Time Out to remove message Automatically after 3 seconds
-        setTimeout(()=>{
+
+            // Set Time Out to remove message Automatically after 3 seconds
+            setTimeout(()=>{
                 removeMsg();
             },3000)
         })
@@ -322,7 +338,14 @@
 
 
 
-        
+<footer class="bg-white bottom-0 p-[1vh] absolute w-screen ">
+            <section class="flex justify-center items-center">
+                <p class="font-serif antialiased font-black lg:text-xl text-base	"></p>
+                Developed With <img src="../Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">
+                 By Team LinkedList
+            </section>
+        </footer>
+
 
     
 </body>
