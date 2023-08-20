@@ -218,7 +218,7 @@
             }
         </script>
 
-        <footer class="bg-white bottom-0 p-[1vh] absolute w-screen ">
+        <footer class="bg-white bottom-0  p-[1vh] sticky w-screen ">
             <section class="flex justify-center items-center">
                 <p class="font-serif antialiased font-black lg:text-xl text-base	"></p>
                 Developed With <img src="../Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">
