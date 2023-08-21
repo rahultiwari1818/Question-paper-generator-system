@@ -6,6 +6,8 @@ let deleteSubId = undefined;
 let updateSubId = undefined;
 let deleteClassId = undefined;
 let updateClassId = undefined;
+let deleteUserId = undefined;
+let updateUserId = undefined;
 
 // function debouncedSearch(){
 //     let timeoutId;
@@ -332,6 +334,10 @@ function deleteSubject(){
             // alert(res.message);
             deleteSubId = undefined;
             fetchSubjects();
+            $("#successSDMessage").show();
+            setTimeout(()=>{
+                removeSDMsg();
+            },3000)
         }
     })
     .finally(()=>{
@@ -360,6 +366,10 @@ function deleteClass(){
             // alert(res.message);
             deleteClassId = undefined;
             displayClassesInTable();
+            $("#successCDMessage").show();
+            setTimeout(()=>{
+                removeCDMsg();
+            },3000)
         }
     })
     .finally(()=>{
@@ -387,7 +397,7 @@ function fetchUsers(){
                 <td class="border p-[10px]">${row.gender}</td>
                 <td class="border p-[10px]">${row.username}</td>
                 <td class='border p-[10px]' onclick=''><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
-                <td class='border p-[10px]' onclick=''><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                <td class='border p-[10px]' onclick='openUserDeleteModal(${row.uId})'><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
                 </tr>
             `;
             rows+=tr;
@@ -397,4 +407,65 @@ function fetchUsers(){
         $("#viewUsersTbody").html(rows);
     })
 
+}
+
+function openUserDeleteModal(id){
+    $("#deleteUserCnfModal").show();
+    deleteUserId = id;
+}
+
+function closeUserDeleteModal(){
+    $("#deleteUserCnfModal").hide();
+    deleteUserId = undefined;
+}
+
+
+function deleteUser(){
+
+    let data = {
+        id:deleteUserId
+    };
+
+    // console.log(data);
+
+    fetch("http://localhost/qpg/Partials/deleteUser.php",{
+        method:"POST",
+        headers: {
+            'Content-Type': 'application/json' // Set the content type to JSON for sending data as JSON
+          },        
+        body:JSON.stringify(data),
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+        if(res?.result == true){
+            // alert(res.message);
+            deleteUserId = undefined;
+            fetchUsers();
+            $("#successUserDeletionMessage").show();
+
+            setTimeout(()=>{
+                removeUDMsg();
+            },3000)
+
+        }
+    })
+    .finally(()=>{
+        closeUserDeleteModal();
+    })
+}
+
+function removeUDMsg(){
+    $("#successUserDeletionMessage").hide();
+
+}
+
+function removeSIMsg(){
+    $("#successSIMessage").hide();
+}
+
+function removeSDMsg(){
+    $("#successSDMessage").hide();
+}
+function removeCDMsg(){
+    $("#successCDMessage").hide();
 }

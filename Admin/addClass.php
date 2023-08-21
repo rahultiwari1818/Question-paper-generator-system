@@ -67,6 +67,16 @@
         }
     ?>
 
+
+
+<section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successCDMessage'>
+                <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeCDMsg()'>
+                <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
+            </p>
+        
+                    <p class='flex justify-center items-center'> Class Removed Successfully</p>
+                </section>
+
     <h2 class="text-2xl text-center p-5 text-white">Add New Class </h2>
     <div class="flex justify-center items-center">
         <div class=" p-10 rounded-xl shadow-xl bg-blue-500">
@@ -139,6 +149,7 @@
 
 
         $("#deleteClassCnfBox").hide();
+        $("successCDMessage").hide();
         $(document).ready(()=>{
             $("#preLoader").hide();
             displayClassesInTable();
@@ -160,7 +171,7 @@
         }
     </script>
 
-        <footer class="bg-white bottom-0  p-[1vh] sticky w-screen ">
+        <footer class="bg-white bottom-0  p-[1vh] fixed w-screen ">
             <section class="flex justify-center items-center">
                 <p class="font-serif antialiased font-black lg:text-xl text-base	"></p>
                 Developed With <img src="../Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">

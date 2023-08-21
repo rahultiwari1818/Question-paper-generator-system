@@ -35,7 +35,7 @@
                 $passwordErr = "Incorrect Password.!";
             }
             else{
-                session_start();
+                // session_start();
                 $_SESSION["loggedin"] = true;
                 $_SESSION["role"] = $row["role"];
                 $_SESSION["uId"] = $row["uId"];
@@ -46,7 +46,7 @@
                     exit();
                 }
                 else{
-                    header("location : ./Faculties/uploadQuestions.php");
+                    header("location: ./Faculties/uploadQuestions.php");
                     exit();
                 }
             }

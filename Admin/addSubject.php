@@ -78,8 +78,8 @@
     <?php 
             if($successfull){
                 echo "
-                <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
-                <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeMsg()'>
+                <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successSIMessage'>
+                <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeSIMsg()'>
                     <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
                 </p>
             
@@ -88,6 +88,14 @@
                 ";
             }
     ?>
+
+<section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successSDMessage'>
+                <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeSDMsg()'>
+                    <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
+                </p>
+            
+                        <p class='flex justify-center items-center'> Subject Removed Successfully</p>
+                    </section>
 
 
 
@@ -193,7 +201,7 @@
     <script type="text/javascript">
 
         $("#deleteSubjectCnfBox").hide();   
-
+        $("#successSDMessage").hide();
         $(document).ready(()=>{
             
             fetchClassesInSubject();
@@ -205,7 +213,7 @@
 
         // Set Time Out to remove message Automatically after 3 seconds
         setTimeout(()=>{
-                removeMsg();
+                removeSIMsg();
             },3000)
         })
     </script>
@@ -218,7 +226,7 @@
             }
         </script>
 
-        <footer class="bg-white bottom-0  p-[1vh] sticky w-screen ">
+        <footer class="bg-white bottom-0  p-[1vh] fixed w-screen ">
             <section class="flex justify-center items-center">
                 <p class="font-serif antialiased font-black lg:text-xl text-base	"></p>
                 Developed With <img src="../Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">

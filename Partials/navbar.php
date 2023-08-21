@@ -71,7 +71,6 @@
 
 <script type="text/javascript">
 
-
         $('#navbarDiv').hide();
         $('#closeIcon').hide();
         $(document).ready(()=>{
