@@ -1,6 +1,8 @@
 <?php
         include("../Partials/connection.php");
         $type = "";
+        $class = "";
+        $subject = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,10 +19,20 @@
 </head>
 <body>
 
+
+
+        <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successQDMessage'>
+                <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeQDMsg()'>
+                <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
+            </p>
+        
+                    <p class='flex justify-center items-center'> Question Deleted Successfully</p>
+        </section>  
+
     <main>
         <section class="flex   justify-center items-center m-5 ">
             <section class="overflow-scroll">
-            <select name="type" id="viewtype" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onchange="searchQuestion()">
+            <select name="type" id="viewtype" class="my-2 mx-2 shadow-xl appearance-none  py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onchange="searchQuestion()">
                             <div class="bg-white p-2">
                                 <option value=""  <?php if($type=="") echo "selected";?>> ------- Select a Question Type ----------</option>
                                 <option value="mcqs" <?php if($type=="mcqs") echo "selected";?>> MCQS </option>
@@ -29,7 +41,15 @@
                                 <option value="atf" <?php if($type=="atf") echo "selected";?>> Answer The Following Question. </option>
                             </div>
             </select>
-            <input type="search" name="search"  id="searchQuestion" placeholder="Search Questions" class="block shadow-xl  my-1  appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" onkeyup="searchQuestion()" onblur="searchQuestion()"> 
+            <select name="type" id="viewClass" class="my-2 mx-2 shadow-xl appearance-none  py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onchange="searchQuestion()">
+                                <option value=""  <?php if($class=="") echo "selected";?>> ------- Select a Question's Class ----------</option>
+                        
+            </select>
+            <select name="type" id="viewSubject" class="my-2 mx-2 shadow-xl appearance-none  py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onchange="searchQuestion()">
+                                <option value=""  <?php if($subject=="") echo "selected";?>> ------- Select a Question's Subject ----------</option>
+                            
+            </select>
+            <input type="search" name="search"  id="searchQuestion" placeholder="Search Questions" class="my-2 mx-2 shadow-xl  my-1  appearance-none  py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" onkeyup="searchQuestion()" onblur="searchQuestion()"> 
             <section class=" flex justify-center items-center bg-white rounded-xl shadow p-5 mx-5 my-10 overflow-scroll">
 
                 <table class="p-5  text-black rounded-xl border ">
@@ -39,6 +59,9 @@
                         <th class="p-[10px] border">Question Type</th>
                         <th class="p-[10px] border">Question</th>
                         <th class="p-[10px] border">Options</th>
+                        <th class="p-[10px] border">Chapter</th>
+                        <th class="p-[10px] border">Subject</th>
+                        <th class="p-[10px] border">Class</th>
                         <th class="p-[10px] border">Level</th>
                         <th class="p-[10px] border">WeightAge</th>
                         <th class="p-[10px] border">Date Added</th>
@@ -105,9 +128,21 @@
     <script type="text/javascript">
             $("#deleteCnfBox").hide();
             $("#updateModal").hide();
+            $("#successQDMessage").hide();
             $(document).ready(()=>{
-                $("#preLoader").hide();
+                fetchClassesInSubject
                 searchQuestion();
+                fetchClassesInSubject();
+                $("#preLoader").hide();
+                $("#viewClass").change(()=>{
+                    $("#viewSubject").attr("disabled",false);
+                    fetchSubjectsForView();
+                })
+                
+                $("#viewSubject").change(()=>{
+                                    
+                })
+                $("#viewSubject").attr("disabled",true);
             })
     </script>
 

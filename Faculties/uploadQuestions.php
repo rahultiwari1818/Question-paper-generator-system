@@ -17,6 +17,7 @@
     $class = "";
     $sub = "";
     $weightage = "";
+    $chapter="";
     $option1 = "";
     $option2 = "";
     $option3 = "";
@@ -26,6 +27,7 @@
     $typeErr = "";
     $levelErr = "";
     $classErr = "";
+    $chapterErr="";
     $subErr = "";
     $weightageErr = "";
     $optionErr = "";
@@ -39,6 +41,7 @@
         $class = $_POST["class"];
         $sub = $_POST["sub"];
         $weightage = $_POST["weightage"];
+        $chapter = $_POST["chapter"];
 
         $err = false;
 
@@ -66,6 +69,10 @@
             $weightageErr = "Please Enter Weightage of Question *";
             $err = true;
         }
+        if(trim($chapter) == ""){
+            $chapterErr = "Please Enter Chapter to Which Chapter Belongs *";
+            $err = true;
+        }
         if(trim($type)=="mcqs"){
             $option1 = $_POST["opt1"];
             $option2 = $_POST["opt2"];
@@ -85,7 +92,7 @@
             $question = addslashes($question);
             $options = addslashes($options);
             $currentDate = date("Y-m-d");
-            $sql = "insert into tbl_questions values(NULL,'$question','$type','$options','$level',$weightage,$class,$sub,$uid,'$currentDate')";
+            $sql = "insert into tbl_questions values(NULL,'$question','$type','$option1','$option2','$option3','$option4','$level',$weightage,$chapter,$class,$sub,$uid,'$currentDate')";
             if($conn->query($sql) === TRUE){
                 $successfull = true;
                 $question = "" ;
@@ -94,6 +101,7 @@
                 $class = "";
                 $sub = "";
                 $weightage = "";
+                $chapter="";
                 $option1 = "";
                 $option2 = "";
                 $option3 = "";
@@ -105,6 +113,7 @@
                 $subErr = "";
                 $weightageErr = "";
                 $optionErr = "";
+                $chapterErr="";
             }
             else{
                 $successfull = false;
@@ -144,7 +153,9 @@
 
     <main class="my-5 ">
         <section class="flex justify-center items-center ">
-        
+            <section>
+                <h2 class="text-center text-white text-xl my-3">Insert a Question</h2>
+
             <form action="uploadQuestions.php" method="post" class="bg-white shadow-xl rounded-xl p-10">
                 <div class="my-2">
                     <select name="type" id="type" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" required>
@@ -171,13 +182,13 @@
                     ?>
                 </div>
                 <div class="my-2" id="option-div">
-                        <input type="text" name="opt1"  placeholder="Option1" class="block shadow-xl  my-1  appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"> 
+                        <input type="text" name="opt1"  value="<?php echo $option1 ?>"  placeholder="Option1" class="block shadow-xl  my-1  appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"> 
                       
-                        <input type="text" name="opt2" placeholder="Option2" class="block shadow-xl my-1  appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
+                        <input type="text" name="opt2" value="<?php echo $option2 ?>" placeholder="Option2" class="block shadow-xl my-1  appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
                       
-                        <input type="text" name="opt3" placeholder="Option3" class="block shadow-xl my-1  appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
+                        <input type="text" name="opt3" value="<?php echo $option4 ?>" placeholder="Option3" class="block shadow-xl my-1  appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
                       
-                        <input type="text" name="opt4" placeholder="Option4" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
+                        <input type="text" name="opt4" value="<?php echo $option4 ?>" placeholder="Option4" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
                         <?php
                         if($optionErr){
                             echo "<p class='text-red-500 my-3 '> $optionErr </p>";
@@ -208,6 +219,14 @@
                     ?>
                 </div>
                 <div class="my-2">
+                    <input type="number" required name="chapter" value="<?php echo $chapter;?>" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" placeholder="Chapter ">
+                    <?php
+                        if($chapterErr){
+                            echo "<p class='text-red-500 my-3 '> $chapterErr </p>";
+                        }
+                    ?>
+                </div>
+                <div class="my-2">
                     <select name="class" required id="classUPQ" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
                         <div class="bg-white my-2">
                              <option value=""   <?php if($class=="") echo "selected"; ?>>-------- Select Class ----------- </option>
@@ -233,6 +252,8 @@
                 </div>
                 <input type="submit" name="addhojabhai" value="Add" class="px-5 w-full py-2 bg-white text-red-500 border border-red-500 hover:bg-red-500 hover:text-white rounded-lg shadow-xl">
             </form>
+            </section>
+        
         </section>
     </main>
 

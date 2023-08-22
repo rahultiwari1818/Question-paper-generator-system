@@ -69,13 +69,13 @@
 
 
 
-<section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successCDMessage'>
+        <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successCDMessage'>
                 <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeCDMsg()'>
                 <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
             </p>
         
                     <p class='flex justify-center items-center'> Class Removed Successfully</p>
-                </section>
+        </section>
 
     <h2 class="text-2xl text-center p-5 text-white">Add New Class </h2>
     <div class="flex justify-center items-center">
@@ -149,7 +149,7 @@
 
 
         $("#deleteClassCnfBox").hide();
-        $("successCDMessage").hide();
+        $("#successCDMessage").hide();
         $(document).ready(()=>{
             $("#preLoader").hide();
             displayClassesInTable();

@@ -5,6 +5,8 @@
     try {
         $str = $_GET["question"];
         $type = $_GET["type"];
+        $class = $_GET["class"];
+        $subject = $_GET["subject"];
         $uid = $_SESSION["uId"];
         $role = $_SESSION["role"];
         $uidStr = "uId = $uid";
@@ -15,13 +17,13 @@
 
         $str = strtolower($str);
         $str = trim($str);
-        if(empty($str) && empty($type)){
+        if(empty($str) && empty($type) && empty($class) && empty($subject)){
             if(empty($uidStr)){
-                $sql = "select * from tbl_questions";
+                $sql = "select a.*,b.class,c.subject from tbl_questions a,tbl_class b,tbl_subjects c where a.subId=c.sId and a.classId=b.cId";
             }
             else{
 
-                $sql = "select * from tbl_questions  where $uidStr ";
+                $sql = "select a.*,b.class,c.subject from tbl_questions a,tbl_class b,tbl_subjects c where a.subId=c.sId and a.classId=b.cId and $uidStr ";
             }
             $result = mysqli_query($conn,$sql);
             $arr = array();
@@ -33,11 +35,11 @@
         else if(empty($type)){
 
             if(empty($uidStr)){
-                $sql = "select * from tbl_questions";
+                $sql = "select a.*,b.class,c.subject from tbl_questions a,tbl_class b,tbl_subjects c where a.subId=c.sId and a.classId=b.cId";
             }
             else{
 
-                $sql = "select * from tbl_questions  where $uidStr ";
+                $sql = "select a.*,b.class,c.subject from tbl_questions a,tbl_class b,tbl_subjects c where a.subId=c.sId and a.classId=b.cId and $uidStr ";
             }
             $result = mysqli_query($conn,$sql);
             $arr = array();
@@ -52,11 +54,11 @@
         }
         else if(empty($str)){
             if(empty($uidStr)){
-                $sql = "select * from tbl_questions where q_type = '$type'";
+                $sql = "select a.*,b.class,c.subject from tbl_questions a,tbl_class b,tbl_subjects c where a.subId=c.sId and a.classId=b.cId and a.q_type = '$type'";
             }
             else{
 
-                $sql = "select * from tbl_questions where q_type = '$type' and   $uidStr";
+                $sql = "select a.*,b.class,c.subject from tbl_questions a,tbl_class b,tbl_subjects c where a.subId=c.sId and a.classId=b.cId and a.q_type = '$type' and   $uidStr";
             }
             $result = mysqli_query($conn,$sql);
             $arr = array();
@@ -67,11 +69,11 @@
         }
         else{
             if(empty($uidStr)){
-                $sql = "select * from tbl_questions where q_type = '$type'";
+                $sql = "select a.*,b.class,c.subject from tbl_questions a,tbl_class b,tbl_subjects c where a.subId=c.sId and a.classId=b.cId and a.q_type = '$type'";
             }
             else{
 
-                $sql = "select * from tbl_questions where q_type = '$type' and   $uidStr";
+                $sql = "select a.*,b.class,c.subject from tbl_questions a,tbl_class b,tbl_subjects c where a.subId=c.sId and a.classId=b.cId and a.q_type = '$type' and   $uidStr";
             }
         $result = mysqli_query($conn,$sql);
         $arr = array();

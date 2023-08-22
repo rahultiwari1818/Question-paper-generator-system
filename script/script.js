@@ -23,7 +23,10 @@ let updateUserId = undefined;
 function searchQuestion(){
              let searchString = $("#searchQuestion").val();
              let type = $('#viewtype').val();
-             fetch(`http://localhost/qpg/Partials/searchQuestion.php?question=${searchString}&type=${type}`)
+             let _class = $("#viewClass").val();
+             let subject = $("#viewSubject").val();
+
+             fetch(`http://localhost/qpg/Partials/searchQuestion.php?question=${searchString}&type=${type}&class=${_class}&subject=${subject}`)
              .then((res)=>res.json())
              .then((res)=>{
                  if(res?.data){
@@ -32,12 +35,20 @@ function searchQuestion(){
                      if(data.length == 0){
                          tbodyHtml = " <p class='text-lg text-dark p-5'>No Data Found</p>";
                      }
+                     else{
+
+                     
                      data.forEach((question,idx) => {
-                         let row = `<tr>
+                         let row= "";
+                        if(question.q_type!="mcqs"){
+                             row = `<tr>
                                  <td class='border p-[10px]' >${idx+1}</td>
                                  <td class='border p-[10px]' >${question.q_type}</td>
                                  <td class='border p-[10px]' >${question.question}</td>
-                                 <td class='border p-[10px]' >${question.options}</td>
+                                 <td class='border p-[10px]' >${question.option1}</td>
+                                 <td class='border p-[10px]' >${question.chapter}</td>
+                                 <td class='border p-[10px]' >${question.subject}</td>
+                                 <td class='border p-[10px]' >${question.class}</td>
                                  <td class='border p-[10px]' >${question.level}</td>
                                  <td class='border p-[10px]' >${question.weightage}</td>
                                  <td class='border p-[10px]' >${question.date_added}</td>
@@ -45,9 +56,33 @@ function searchQuestion(){
                                  <td class='border p-[10px]' onclick='showDeleteModal(${question.qId})'><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
                              </tr>
                          `;
+                        }
+                        else{
+                             row = `<tr>
+                                    <td class='border p-[10px]' >${idx+1}</td>
+                                    <td class='border p-[10px]' >${question.q_type}</td>
+                                    <td class='border p-[10px]' >${question.question}</td>
+                                    <td class='border ' >
+                                    <div  class='border p-[4px]' >${question.option1}</div>
+                                    <div  class='border p-[4px]'>${question.option2}</div>
+                                    <div  class='border p-[4px]'>${question.option3}</div>
+                                    <div  class='border p-[4px]'>${question.option4}</div>
+                                    </td>
+                                 <td class='border p-[10px]' >${question.chapter}</td>
+                                 <td class='border p-[10px]' >${question.subject}</td>
+                                 <td class='border p-[10px]' >${question.class}</td>
+                                    <td class='border p-[10px]' >${question.level}</td>
+                                    <td class='border p-[10px]' >${question.weightage}</td>
+                                    <td class='border p-[10px]' >${question.date_added}</td>
+                                    <td class='border p-[10px]' onclick='showUpdateModal(${question.qId})'><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                                    <td class='border p-[10px]' onclick='showDeleteModal(${question.qId})'><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                                </tr>
+                            `;
+                        }
                          tbodyHtml+=row;
                      });
                      $("#questionsTbody").html(tbodyHtml);
+                    }
                  }
              })
      
@@ -101,6 +136,12 @@ function deleteQuestion(){
             // alert(res.message);
             deleteQuesId = undefined;
             searchQuestion();
+            $("#successQDMessage").show();
+
+            setTimeout(()=>{
+                removeQDMsg();
+            },3000)
+
         }
     })
     .finally(()=>{
@@ -183,6 +224,7 @@ function fetchClassesInSubject(){
             rows+=tr;         
         })
         // console.log("called")
+        $("#viewClass").html(rows);
         $("#classInSubject").html(rows);
     })
 }
@@ -240,6 +282,29 @@ function fetchSubjectsClassWise(){
             rows+=tr;         
         })
         $("#subUPQ").html(rows)
+    })
+}
+
+function fetchSubjectsForView(){
+    let classId = $("#viewClass").val();
+
+
+
+    fetch(`http://localhost/qpg/Partials/fetchSubjectsClassWise.php?class=${classId}`)
+    .then(res=>res.json())
+    .then(res=>{
+        let data = res?.data;
+        let rows = `<option value=""   <?php if($sub=="") echo "selected"; ?>-------- Select Subject -----------</option>`;
+        // console.log(res)
+        console.log(res)
+        data.forEach((row)=>{
+            let tr = `
+                <option value="${row.sId}" >
+            ${row.subject}</option>
+            `;
+            rows+=tr;         
+        })
+        $("#viewSubject").html(rows)
     })
 }
 
@@ -384,27 +449,32 @@ function fetchUsers(){
     .then(res=>res.json())
     .then(res=>{
         let data = res?.data;
-        let srno  = 1;
-        let rows = "";
-        // console.log(res)
-        data.forEach((row)=>{
-            let tr = `<tr>
-                <td class="border p-[10px]">${srno}</td>
-                <td class="border p-[10px]">${row.fname}</td>
-                <td class="border p-[10px]">${row.lname}</td>
-                <td class="border p-[10px]">${row.phno}</td>
-                <td class="border p-[10px]">${row.email}</td>
-                <td class="border p-[10px]">${row.gender}</td>
-                <td class="border p-[10px]">${row.username}</td>
-                <td class='border p-[10px]' onclick=''><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
-                <td class='border p-[10px]' onclick='openUserDeleteModal(${row.uId})'><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
-                </tr>
-            `;
-            rows+=tr;
-            srno+=1;            
-        })
-        // console.log("called")
-        $("#viewUsersTbody").html(rows);
+        if(data.length == 0){
+                    $("#viewUsersTbody").html("<tr><td colspan='9'><p class='text-xl text-center'>No Users Found</p></td></tr>");
+        }
+        else{
+            let srno  = 1;
+            let rows = "";
+            // console.log(res)
+            data.forEach((row)=>{
+                let tr = `<tr>
+                    <td class="border p-[10px]">${srno}</td>
+                    <td class="border p-[10px]">${row.fname}</td>
+                    <td class="border p-[10px]">${row.lname}</td>
+                    <td class="border p-[10px]">${row.phno}</td>
+                    <td class="border p-[10px]">${row.email}</td>
+                    <td class="border p-[10px]">${row.gender}</td>
+                    <td class="border p-[10px]">${row.username}</td>
+                    <td class='border p-[10px]' onclick=''><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                    <td class='border p-[10px]' onclick='openUserDeleteModal(${row.uId})'><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                    </tr>
+                `;
+                rows+=tr;
+                srno+=1;            
+            })
+            // console.log("called")
+            $("#viewUsersTbody").html(rows);
+        }
     })
 
 }
@@ -456,7 +526,6 @@ function deleteUser(){
 
 function removeUDMsg(){
     $("#successUserDeletionMessage").hide();
-
 }
 
 function removeSIMsg(){
@@ -468,4 +537,7 @@ function removeSDMsg(){
 }
 function removeCDMsg(){
     $("#successCDMessage").hide();
+}
+function removeQDMsg(){
+    $("#successQDMessage").hide();
 }

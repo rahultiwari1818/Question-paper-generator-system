@@ -30,6 +30,7 @@
     $passwordErr = "";
     $genderErr = "";
     $successfull = false;
+    $emailSentMsg = "";
     try {
         if(isset($_POST["submithojabhai"]) && $_POST["submithojabhai"] == "Create User"){
             $fname = $_POST["fname"];
@@ -95,6 +96,33 @@
                     $sql = "insert into tbl_users values(NULL,'$fname','$lname','USER','$phno','$email','$gender','$username','$password')";
                     if($conn->query($sql) == TRUE){
                         //Code to Mail credentials to user   
+
+                        $mail = new PHPMailer(true);
+                         
+                        try {
+                            $mail->SMTPDebug = 2;                                      
+                            $mail->isSMTP();                                           
+                            $mail->Host       = 'smtp.gmail.com;';                   
+                            $mail->SMTPAuth   = true;                            
+                            $mail->Username   = 'qpg.system@gmail.com';                
+                            $mail->Password   = '';                       
+                            $mail->SMTPSecure = 'tls';                             
+                            $mail->Port       = 587; 
+                         
+                            $mail->setFrom('qpg.system@gmail.com', 'Admin ');          
+                            $mail->addAddress($email,$fname);
+                              
+                            // $mail->isHTML(true);                                 
+                            $mail->Subject = 'Successfully Registered in Question Paper Generator System';
+                            $mail->Body    = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System.<br> Your Username is '.$username.' and Password is '.$password.' .';
+                            // $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+                            $mail->send();
+                            $emailSentMsg = "Username and Password Mailed to User Successfully.!";
+                        } catch (Exception $e) {
+                            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                        }
+
+
                         $successfull = true;
                         $fname = "";
                         $lname = "";
@@ -112,32 +140,6 @@
                         $genderErr = "";
                        
                          
-                        // $mail = new PHPMailer(true);
-                         
-                        // try {
-                        //     $mail->SMTPDebug = 2;                                      
-                        //     $mail->isSMTP();                                           
-                        //     $mail->Host       = 'smtp.gfg.com;';                   
-                        //     $mail->SMTPAuth   = true;                            
-                        //     $mail->Username   = '';                
-                        //     $mail->Password   = 'password';                       
-                        //     $mail->SMTPSecure = 'tls';                             
-                        //     $mail->Port       = 587; 
-                         
-                        //     $mail->setFrom('from@gfg.com', 'Name');          
-                        //     $mail->addAddress('receiver1@gfg.com');
-                        //     $mail->addAddress('receiver2@gfg.com', 'Name');
-                              
-                        //     $mail->isHTML(true);                                 
-                        //     $mail->Subject = 'Subject';
-                        //     $mail->Body    = 'HTML message body in <b>bold</b> ';
-                        //     $mail->AltBody = 'Body in plain text for non-HTML mail clients';
-                        //     $mail->send();
-                        //     echo "Mail has been sent successfully!";
-                        // } catch (Exception $e) {
-                        //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                        // }
-
 
                     }
                     else{
@@ -186,7 +188,7 @@
                 <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
              </p>
         
-                    <p class='flex justify-center items-center'> User added Successfully</p>
+                    <p class='flex justify-center items-center'> User added Successfully .<br>". $emailSentMsg ."</p>
                 </section>
             ";
         }
