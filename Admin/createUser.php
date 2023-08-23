@@ -97,31 +97,45 @@
                     if($conn->query($sql) == TRUE){
                         //Code to Mail credentials to user   
 
-                        $mail = new PHPMailer(true);
+                        // $mail = new PHPMailer(true);
                          
-                        try {
-                            $mail->SMTPDebug = 2;                                      
-                            $mail->isSMTP();                                           
-                            $mail->Host       = 'smtp.gmail.com;';                   
-                            $mail->SMTPAuth   = true;                            
-                            $mail->Username   = 'qpg.system@gmail.com';                
-                            $mail->Password   = '';                       
-                            $mail->SMTPSecure = 'tls';                             
-                            $mail->Port       = 587; 
+                        // try {
+                        //     $mail->SMTPDebug = 2;                                      
+                        //     $mail->isSMTP();                                           
+                        //     $mail->Host       = 'smtp.gmail.com;';                   
+                        //     $mail->SMTPAuth   = true;                            
+                        //     $mail->Username   = 'qpg.system@gmail.com';                
+                        //     $mail->Password   = '';                       
+                        //     $mail->SMTPSecure = 'tls';                             
+                        //     $mail->Port       = 587; 
                          
-                            $mail->setFrom('qpg.system@gmail.com', 'Admin ');          
-                            $mail->addAddress($email,$fname);
+                        //     $mail->setFrom('qpg.system@gmail.com', 'Admin ');          
+                        //     $mail->addAddress($email,$fname);
                               
-                            // $mail->isHTML(true);                                 
-                            $mail->Subject = 'Successfully Registered in Question Paper Generator System';
-                            $mail->Body    = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System.<br> Your Username is '.$username.' and Password is '.$password.' .';
-                            // $mail->AltBody = 'Body in plain text for non-HTML mail clients';
-                            $mail->send();
-                            $emailSentMsg = "Username and Password Mailed to User Successfully.!";
-                        } catch (Exception $e) {
-                            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                        }
+                        //     // $mail->isHTML(true);                                 
+                        //     $mail->Subject = 'Successfully Registered in Question Paper Generator System';
+                        //     $mail->Body    = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System.<br> Your Username is '.$username.' and Password is '.$password.' .';
+                        //     // $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+                        //     $mail->send();
+                        //     $emailSentMsg = "Username and Password Mailed to User Successfully.!";
+                        // } catch (Exception $e) {
+                        //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                        // }
 
+                        
+                        // $to = $email;
+                        // $subject = 'Successfully Registered in Question Paper Generator System';
+                        // $message = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System.<br> Your Username is '.$username.' and Password is '.$password.' .';
+                        // $headers = 'From: qpg.system@gmail.com' . "\r\n" .
+                        //     'Reply-To: qpg.system@gmail.com' . "\r\n" .
+                        //     'X-Mailer: PHP/' . phpversion();
+                        
+                        // if (mail($to, $subject, $message, $headers)) {
+                        //     $emailSentMsg = "Username and Password Mailed to User Successfully.!";
+                        // } else {
+                        //     // echo 'Email sending failed.';
+                        //     $emailSentMsg = "Email Could not be sent.!";
+                        // }
 
                         $successfull = true;
                         $fname = "";

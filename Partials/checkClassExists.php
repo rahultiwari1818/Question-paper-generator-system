@@ -22,7 +22,7 @@
 
     } catch (\Throwable $th) {
         //throw $th;
-        echo $th;
+        // echo $th;
         http_response_code(500);
         echo json_encode(["status"=>500,"result"=>false,"message"=>"Some Error Occured"]);
     }

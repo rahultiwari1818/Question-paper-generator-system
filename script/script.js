@@ -29,59 +29,60 @@ function searchQuestion(){
              fetch(`http://localhost/qpg/Partials/searchQuestion.php?question=${searchString}&type=${type}&class=${_class}&subject=${subject}`)
              .then((res)=>res.json())
              .then((res)=>{
+                console.log(res)
                  if(res?.data){
                      data = res.data;
                      let tbodyHtml = "";
+                     console.log(data);
                      if(data.length == 0){
-                         tbodyHtml = " <p class='text-lg text-dark p-5'>No Data Found</p>";
+                        console.log("hey")
+                        $("#questionsTbody").html( "<tr><td colspan='9'><p class='text-xl text-center'>No Data Found</p></td></tr>");
                      }
                      else{
-
-                     
-                     data.forEach((question,idx) => {
-                         let row= "";
-                        if(question.q_type!="mcqs"){
-                             row = `<tr>
-                                 <td class='border p-[10px]' >${idx+1}</td>
-                                 <td class='border p-[10px]' >${question.q_type}</td>
-                                 <td class='border p-[10px]' >${question.question}</td>
-                                 <td class='border p-[10px]' >${question.option1}</td>
-                                 <td class='border p-[10px]' >${question.chapter}</td>
-                                 <td class='border p-[10px]' >${question.subject}</td>
-                                 <td class='border p-[10px]' >${question.class}</td>
-                                 <td class='border p-[10px]' >${question.level}</td>
-                                 <td class='border p-[10px]' >${question.weightage}</td>
-                                 <td class='border p-[10px]' >${question.date_added}</td>
-                                 <td class='border p-[10px]' onclick='showUpdateModal(${question.qId})'><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
-                                 <td class='border p-[10px]' onclick='showDeleteModal(${question.qId})'><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
-                             </tr>
-                         `;
-                        }
-                        else{
-                             row = `<tr>
+                        data.forEach((question,idx) => {
+                            let row= "";
+                            if(question.q_type!="mcqs"){
+                                row = `<tr>
                                     <td class='border p-[10px]' >${idx+1}</td>
                                     <td class='border p-[10px]' >${question.q_type}</td>
                                     <td class='border p-[10px]' >${question.question}</td>
-                                    <td class='border ' >
-                                    <div  class='border p-[4px]' >${question.option1}</div>
-                                    <div  class='border p-[4px]'>${question.option2}</div>
-                                    <div  class='border p-[4px]'>${question.option3}</div>
-                                    <div  class='border p-[4px]'>${question.option4}</div>
-                                    </td>
-                                 <td class='border p-[10px]' >${question.chapter}</td>
-                                 <td class='border p-[10px]' >${question.subject}</td>
-                                 <td class='border p-[10px]' >${question.class}</td>
+                                    <td class='border p-[10px]' >${question.option1}</td>
+                                    <td class='border p-[10px]' >${question.chapter}</td>
+                                    <td class='border p-[10px]' >${question.subject}</td>
+                                    <td class='border p-[10px]' >${question.class}</td>
                                     <td class='border p-[10px]' >${question.level}</td>
                                     <td class='border p-[10px]' >${question.weightage}</td>
                                     <td class='border p-[10px]' >${question.date_added}</td>
-                                    <td class='border p-[10px]' onclick='showUpdateModal(${question.qId})'><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                                    <td class='border p-[10px]' onclick='redirectToUpdate(${question.qId})'><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
                                     <td class='border p-[10px]' onclick='showDeleteModal(${question.qId})'><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
                                 </tr>
                             `;
-                        }
-                         tbodyHtml+=row;
-                     });
-                     $("#questionsTbody").html(tbodyHtml);
+                            }
+                            else{
+                                row = `<tr>
+                                        <td class='border p-[10px]' >${idx+1}</td>
+                                        <td class='border p-[10px]' >${question.q_type}</td>
+                                        <td class='border p-[10px]' >${question.question}</td>
+                                        <td class='border ' >
+                                        <div  class='border p-[4px]' >${question.option1}</div>
+                                        <div  class='border p-[4px]'>${question.option2}</div>
+                                        <div  class='border p-[4px]'>${question.option3}</div>
+                                        <div  class='border p-[4px]'>${question.option4}</div>
+                                        </td>
+                                    <td class='border p-[10px]' >${question.chapter}</td>
+                                    <td class='border p-[10px]' >${question.subject}</td>
+                                    <td class='border p-[10px]' >${question.class}</td>
+                                        <td class='border p-[10px]' >${question.level}</td>
+                                        <td class='border p-[10px]' >${question.weightage}</td>
+                                        <td class='border p-[10px]' >${question.date_added}</td>
+                                        <td class='border p-[10px]' onclick='redirectToUpdate(${question.qId})'><img src='../Assets/Icons/EditIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                                        <td class='border p-[10px]' onclick='showDeleteModal(${question.qId})'><img src='../Assets/Icons/DeleteIcon.svg' alt='' class='cursor-pointer' srcset=''></td>
+                                    </tr>
+                                `;
+                            }
+                            tbodyHtml+=row;
+                        });
+                        $("#questionsTbody").html(tbodyHtml);
                     }
                  }
              })
@@ -114,6 +115,10 @@ function showDeleteModal(id){
 function closeDeleteModal(){
     $("#deleteCnfBox").hide();
     deleteQuesId = undefined;
+}
+
+function redirectToUpdate(id){
+    window.location.href=`http://localhost/qpg/Faculties/updateQuestion.php?question=${id}`;
 }
 
 
