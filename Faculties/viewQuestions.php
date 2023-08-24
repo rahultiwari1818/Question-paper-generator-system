@@ -21,13 +21,21 @@
 
 
 
-        <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successQDMessage'>
+        <section class='p-[1vw] w-[100vw] z-20 bg-green-500 absolute top-0 shadow-xl' id='successQDMessage'>
                 <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeQDMsg()'>
                 <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
             </p>
         
                     <p class='flex justify-center items-center'> Question Deleted Successfully</p>
         </section>  
+
+        <section class='p-[1vw] w-[100vw]  z-20 bg-green-500 absolute top-0 shadow-xl' id='successQUPDMessage'>
+                <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeQUPDMsg()'>
+                <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
+            </p>
+        
+                    <p class='flex justify-center items-center'> Question Updated Successfully</p>
+        </section> 
 
     <main>
         <section class="flex   justify-center items-center m-5 ">
@@ -125,12 +133,54 @@
     <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 
 
+    <!-- Script to Prevent Form Submission during Page Reload -->
+
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+
     <script type="text/javascript">
             $("#deleteCnfBox").hide();
             $("#updateModal").hide();
             $("#successQDMessage").hide();
+            $("#successQUPDMessage").hide();
             $(document).ready(()=>{
-                fetchClassesInSubject
+
+                function removeParamFromCurrentURL(paramToRemove) {
+                    try {
+                        const urlWithoutParam = window.location.href.replace(
+                        new RegExp(`([?&])${paramToRemove}=[^&#]*(#.*)?$`), '$1');  
+
+                        window.history.replaceState({}, document.title, urlWithoutParam);
+                    } catch (error) {
+                        
+                    }
+
+                }
+                // setTimeout(()=>{
+
+                // },2000)
+
+                try {
+                    const params = new URLSearchParams(window.location.search);
+                    const success = params.get("success");
+                    if(success){
+                        $("#successQUPDMessage").show();
+
+                        setTimeout(()=>{
+                            $("#successQUPDMessage").hide();
+                            const paramToRemove = "success";
+                            removeParamFromCurrentURL(paramToRemove);
+                        },3000)
+                    }
+                } catch (error) {
+                    
+                }
+
+
+
                 searchQuestion();
                 fetchClassesInSubject();
                 $("#preLoader").hide();

@@ -99,7 +99,7 @@
         $conditions = array();
 
         // Always include the uId condition
-        if(!empty($uid)){
+        if(!empty($uid) && $role!="ADMIN"){
             $conditions[] = "uId = $uid";
         }
 

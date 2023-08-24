@@ -234,7 +234,7 @@ function fetchClassesInSubject(){
     })
 }
 
-function fetchClassesInUploadQuestion(){
+function fetchClassesInUploadQuestion(id){
     fetch("http://localhost/qpg/Partials/fetchClasses.php")
     .then(res=>res.json())
     .then(res=>{
@@ -243,13 +243,11 @@ function fetchClassesInUploadQuestion(){
         // console.log(res)
 
         data.forEach((row)=>{
-            let tr = `
-                <option value="${row.cId}" >
-            ${row.class}</option>
-            `;
+            let tr = (id && id==row.cId) ?`<option value="${row.cId}" selected >${row.class}</option>`: `<option value="${row.cId}" >${row.class}</option>`;
             rows+=tr;         
         })
-        $("#classUPQ").html(rows)
+        $("#classUPQ").html(rows);
+        $("#updateClassUPQ").html(rows);
     })
 }
 
@@ -267,10 +265,10 @@ function checkSubjectExists(){
     })
 }
 
-function fetchSubjectsClassWise(){
-    let classId = $("#classUPQ").val();
-
-
+function fetchSubjectsClassWise(cId,subId){
+    console.log(subId,cId)
+    let classId =  (cId)? cId : $("#classUPQ").val();
+    console.log(subId,classId)
 
     fetch(`http://localhost/qpg/Partials/fetchSubjectsClassWise.php?class=${classId}`)
     .then(res=>res.json())
@@ -280,13 +278,12 @@ function fetchSubjectsClassWise(){
         // console.log(res)
         console.log(res)
         data.forEach((row)=>{
-            let tr = `
-                <option value="${row.sId}" >
-            ${row.subject}</option>
-            `;
+            console.log(subId, subId==row.sId)
+            let tr = subId && subId==row.sId ?`<option value="${row.sId}" selected >${row.subject}</option>` :`<option value="${row.sId}" >${row.subject}</option>` ;
             rows+=tr;         
         })
         $("#subUPQ").html(rows)
+        $("#updateSubUPQ").html(rows)
     })
 }
 
@@ -545,4 +542,30 @@ function removeCDMsg(){
 }
 function removeQDMsg(){
     $("#successQDMessage").hide();
+}
+
+
+function getQuestionData(id){
+    fetch(`http://localhost/qpg/Partials/getSpecificQuestion.php?qid=${id}`)
+    .then(res=>res.json())
+    .then(res=>{
+        if(res.result){
+            console.log(res)
+            let data = res.data[0];
+            $("#updateQuestion").text(data.question);
+            $("#updateType").val(data.q_type);
+            if(data.q_type=="mcqs"){
+                $("#updateOption1").val(data.option1);
+                $("#updateOption2").val(data.option2);
+                $("#updateOption3").val(data.option3);
+                $("#updateOption4").val(data.option4);
+            }
+            $("#updateWeightage").val(data.weightage);
+            $("#updateChapter").val(data.chapter);
+            $("#updateLevel").val(data.level);
+            //to fetch classes
+            fetchClassesInUploadQuestion(data.classId);
+            fetchSubjectsClassWise(data?.classId,data?.subId)
+        }
+    })
 }
