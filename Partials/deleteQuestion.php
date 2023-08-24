@@ -2,6 +2,10 @@
     header("Access-Control-Allow-Origin:*");
     include("./connection.php");
 
+    if(!isset($_SESSION["uId"])){
+        header("location:../login.php");
+        exit();
+    }
     try {
     
         $json = file_get_contents('php://input');

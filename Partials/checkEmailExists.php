@@ -2,6 +2,11 @@
     header("Access-Control-Allow-Origin:*");
 
     include("./connection.php");
+    if(!isset($_SESSION["uId"]) || $_SESSION["role"]!="ADMIN"){
+        header("location:../login.php");
+        exit();
+    }
+
 
     try {
 

@@ -3,6 +3,11 @@
 
     include("./connection.php");
 
+    if(!isset($_SESSION["uId"]) || $_SESSION["role"]!="ADMIN"){
+        header("location:../login.php");
+        exit();
+    }
+
     try {
 
         $sql = "select * from tbl_users where role != 'ADMIN'";

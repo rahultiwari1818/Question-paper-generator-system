@@ -1,6 +1,11 @@
 <?php 
     header("Access-Control-Allow-Origin:*");
     include("./connection.php");
+
+    if(!isset($_SESSION["uId"])){
+        header("location:../login.php");
+        exit();
+    }
     try {
         
         $sql = "select a.*,b.class from tbl_subjects a,tbl_class b where a.cId=b.cId";

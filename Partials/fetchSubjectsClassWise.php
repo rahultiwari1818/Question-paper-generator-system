@@ -3,6 +3,11 @@
 
     include("./connection.php");
 
+    if(!isset($_SESSION["uId"])){
+        header("location:../login.php");
+        exit();
+    }
+
     try {
         $class = $_GET["class"];
         if(empty($class)){

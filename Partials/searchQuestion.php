@@ -2,6 +2,11 @@
     session_start();
     header("Access-Control-Allow-Origin:*");
     include("./connection.php");
+
+    if(!isset($_SESSION["uId"])){
+        header("location:../login.php");
+        exit();
+    }
     // try {
     //     $str = $_GET["question"];
     //     $type = $_GET["type"];

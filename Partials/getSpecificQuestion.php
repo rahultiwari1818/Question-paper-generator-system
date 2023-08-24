@@ -1,6 +1,12 @@
 <?php
     header("Allow-Origin-Access-Content:*");
     include("./connection.php");
+
+    if(!isset($_SESSION["uId"])){
+        header("location:../login.php");
+        exit();
+    }
+    
     try {
         $qid = $_GET["qid"];
         $sql = "select * from tbl_questions where qId = $qid";
