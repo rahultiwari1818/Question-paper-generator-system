@@ -77,12 +77,20 @@
                     <p class='flex justify-center items-center'> Class Removed Successfully</p>
         </section>
 
+
+        <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successCUpdMessage'>
+                <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeCUpdMsg()'>
+                <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
+            </p>
+        
+                    <p class='flex justify-center items-center'> Class Updated Successfully</p>
+        </section>
     <h2 class="text-2xl text-center p-5 text-white">Add New Class </h2>
     <div class="flex justify-center items-center">
         <div class=" p-10 rounded-xl shadow-xl bg-blue-500">
             <form action="addClass.php" method="post">
                 <div>
-                    <input type="text" name="class" id="className"  value="<?php echo $className;?>" required  placeholder="Class Name" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onkeyup="checkClassExists()">
+                    <input type="text" name="class" id="className"  value="<?php echo $className;?>" required  placeholder="Class Name" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onkeyup="checkClassExists('className','classNameErr')">
                     <p class='text-red-500 my-3 ' id='classNameErr'>      </p>
                    <?php
                         if($classErr){
@@ -142,7 +150,41 @@
 
     <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 
+    <!--------------------------------------------------------- Update Modal ---------------------------------------------------- -->
 
+
+
+    <div id="updateClassModal" class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100">
+        <div class="bg-white p-10 rounded-xl shadow-xl">
+
+            <div class="float-right -mt-7 -mr-3 cursor-pointer" onclick="closeClassUpdateModal()">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.40002 13.6534L0.346191 12.5995L5.94619 6.99953L0.346191 1.39953L1.40002 0.345703L7.00002 5.9457L12.6 0.345703L13.6538 1.39953L8.05384 6.99953L13.6538 12.5995L12.6 13.6534L7.00002 8.05335L1.40002 13.6534Z" fill="#000000"/>
+                </svg>
+
+            </div>
+            <div class=" p-10 rounded-xl shadow-xl bg-blue-500">
+                <form action="addClass.php" method="post" id="updateForm" name="updateForm">
+                    <div>
+                        <input type="text" name="class" id="updateClassName"  value="<?php echo $className;?>" required  placeholder="Class Name" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onkeyup="checkClassExists('updateClassName','UpdateClassNameErr')">
+                        <p class='text-red-500 my-3 ' id='UpdateClassNameErr'>      </p>
+                       <?php
+                            if($classErr){
+                                echo "<p class='text-red-500 my-3 '> $classErr </p>";
+                            }
+                        ?>
+                    </div>
+                    <div class="my-5">
+                        <input type="submit" value="Update" name="updateHoJaBhai" class="px-5 w-full py-2 bg-white text-red-500 border border-red-500 hover:bg-red-500 hover:text-white rounded-lg shadow-xl">
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+    <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
+     
 
     <script type="text/javascript">
 
@@ -150,6 +192,8 @@
 
         $("#deleteClassCnfBox").hide();
         $("#successCDMessage").hide();
+        $("#updateClassModal").hide();
+        $("#successCUpdMessage").hide();
         $(document).ready(()=>{
             $("#preLoader").hide();
             displayClassesInTable();
@@ -158,7 +202,20 @@
             setTimeout(()=>{
                 removeMsg();
             },3000)
-            
+
+            $("#updateForm").submit(function(e){
+                e.preventDefault();
+                let error = false;
+                if($("#updateClassName").val().trim()==""){
+                    error = true;
+                    $("#UpdateClassNameErr").text("Class Name Can not be Empty.!");
+                }
+
+                // console.log("clickedupdate")
+                if(!error){
+                    updateClass();
+                }
+            })
         })
     </script>
 

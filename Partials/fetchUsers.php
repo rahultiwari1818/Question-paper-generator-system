@@ -1,4 +1,5 @@
 <?php
+    session_start();
     header("Access-Content-Allow-Origin:*");
 
     include("./connection.php");

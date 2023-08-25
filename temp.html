@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <nav class='flex justify-between items-center  lg:py-7 md:py-4 bg-white  shadow-xl top-0 sticky' id="navbar">
+    <!-- <nav class='flex justify-between items-center  lg:py-7 md:py-4 bg-white  shadow-xl top-0 sticky' id="navbar">
         <section class='lg:block hidden'>
 
             <div class=''>
@@ -36,10 +36,10 @@
                     <button class='px-7 rounded-lg shadow-xl bg-white py-3 outline outline-red-500 text-red-500 hover:text-white hover:bg-red-500 w-full' id='logoutBtn'>Logout</button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
-    <script>
+    <!-- <script>
         $('#navbarDiv').hide();
         $('#closeIcon').hide();
         $(document).ready(()=>{
@@ -56,7 +56,34 @@
                 $('#navbar').show();
             })
         })
-    </script>
+    </script> -->
 
+    <form  id="form">
+        <input type="text">
+        <input type="number" name="num" id="">
+        <input type="submit" value="submit">
+    </form>
+
+    <script>
+            $(document).ready(()=>{
+                $("#form").submit(function(e){
+                        e.preventDefault();
+                        console.log("submitted")
+                })
+            })
+    </script>
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Find the form element
+            var form = document.getElementById("form");
+    
+            // Attach the submit event handler
+            form.addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent the default form submission behavior
+                // alert("Form submission prevented. Custom logic can be added here.");
+                // Add your custom logic here
+            });
+        });
+    </script> -->
 </body>
 </html>

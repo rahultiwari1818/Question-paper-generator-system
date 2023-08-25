@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     header("Access-Control-Allow-Origin:*");
     include("./connection.php");
     if(!isset($_SESSION["uId"]) || $_SESSION["role"]!="ADMIN"){
