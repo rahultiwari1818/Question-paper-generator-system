@@ -94,7 +94,7 @@
 
     <!--------------------------------------------------------- Delete Confirmation Modal ---------------------------------------------------- -->
 
-    <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100" id="deleteCnfBox">
+    <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] fixed bg-opacity-80  bg-gray-100" id="deleteCnfBox">
         <div class="p-10 bg-white shadow-2xl rounded-xl border border-blue-500">
             <p class="text-xl text-black text-center">Are You Sure To Delete This Question Permanently?</p>
             <div class="flex justify-around my-5 gap-10">

@@ -14,12 +14,20 @@
     $data = json_decode($json,true);
     $id = $data["id"];
 
-    $sql = "delete from tbl_subjects where sId = $id";
+
+    $sql = "delete from tbl_questions where subId = $id";
     $result = $conn -> query($sql);
+
     if($result == TRUE){
-        echo json_encode(["status"=>200,"message"=>"Subject Deleted Successfully.!","result"=>true]);
-    }
-    else{
+        
+            $sql = "delete from tbl_subjects where sId = $id";
+            $result = $conn -> query($sql);
+            if($result == TRUE){
+                echo json_encode(["status"=>200,"message"=>"Subject Deleted Successfully.!","result"=>true]);
+            }
+            else{
+        
+            }
 
     }
     } catch (\Throwable $th) {

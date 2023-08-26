@@ -34,29 +34,28 @@
         </section>  
 
     <main class="">
-        <section class=" flex justify-center items-center my-10">
-                <section class="bg-white md:p-5 md:mx-5 p-[10px] mx-[14px]  rounded-xl shadow md:text-base text-[10px]">
-
-                    <table class="md:p-5 p-[6px] text-black rounded-xl border  overflow-scroll ">
-                        <thead>
+        <section class=" flex justify-center items-center mx-5 my-5   ">
+                    <section class=" max-h-[80vh] overflow-y-scroll  bg-white rounded-xl shadow p-5">
+                        <table class="p-5  text-black rounded-xl border ">
+                        <thead class="text-white top-0 sticky">
                         <tr>
-                            <th  class="md:p-[10px] p-[5px] border">Sr No</th>
-                            <th class="md:p-[10px] p-[5px] border">FirstName</th>
-                            <th class="md:p-[10px] p-[5px] border">LastName</th>
-                            <th class="md:p-[10px] p-[5px] border">Phone No.</th>
-                            <th class="md:p-[10px] p-[5px] border">E-mail</th>
-                            <th class="md:p-[10px] p-[5px] border">Gender</th>
-                            <th class="md:p-[10px] p-[5px] border">Username</th>
-                            <th class="md:p-[10px] p-[5px] border"></th>
-                            <th class="md:p-[10px] p-[5px] border"></th>
+                            <th  class="md:p-[10px] p-[5px] border bg-blue-500">Sr No</th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500">FirstName</th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500">LastName</th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500">Phone No.</th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500">E-mail</th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500">Gender</th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500">Username</th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500"></th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500"></th>
                         </tr>
                         </thead>
-                        <tbody id="viewUsersTbody">
+                        <tbody id="viewUsersTbody"  class="max-h-[77vh] overflow-y-scroll">
         
                         </tbody>
                     </table>
-                </section>
-        </section>
+                    </section>
+            </section>
     </main>
 
 

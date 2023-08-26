@@ -16,18 +16,25 @@
 
         $classId = $data["id"];
 
-        $sql = "delete from tbl_subjects where cId = $classId";
+        $sql = "delete from tbl_questions where classId=$classId";
 
         $result = mysqli_query($conn,$sql);
 
         if($result == TRUE){
 
-            $sql = "delete from tbl_class where cId = $classId";
-
+            $sql = "delete from tbl_subjects where cId = $classId";
+    
             $result = mysqli_query($conn,$sql);
-
+    
             if($result == TRUE){
-                echo json_encode(["status"=>200,"message"=>"Class Deleted Successfully.!","result"=>true]);
+    
+                $sql = "delete from tbl_class where cId = $classId";
+    
+                $result = mysqli_query($conn,$sql);
+    
+                if($result == TRUE){
+                    echo json_encode(["status"=>200,"message"=>"Class Deleted Successfully.!","result"=>true]);
+                }
             }
         }
 

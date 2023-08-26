@@ -107,7 +107,24 @@
     </div>
     <div class="my-5">
             <h2 class="text-white text-2xl text-center"> List Of Existing Classes</h2>
-            <div class="flex justify-center items-center my-5 mx-5 ">
+            <section class=" flex justify-center items-center mx-5 my-5   ">
+                    <section class=" max-h-[80vh] overflow-y-scroll  bg-white rounded-xl shadow p-5">
+                        <table class="p-5  text-black rounded-xl border ">
+                        <thead class="text-white top-0 sticky">
+                        <tr>
+                            <th  class="md:p-[10px] p-[5px] border bg-blue-500">Sr No</th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500">Class</th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500"></th>
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="classTableTbody"  class="max-h-[77vh] overflow-y-scroll">
+        
+                        </tbody>
+                    </table>
+                    </section>
+            </section>
+            <!-- <div class="flex justify-center items-center my-5 mx-5 ">
                 <div class="bg-white rounded-xl shadow p-5   overflow-scroll">
 
                     <table class="p-5  text-black rounded-xl border ">
@@ -124,13 +141,13 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> -->
     </div>
     
 
     <!--------------------------------------------------------- Delete Confirmation Modal ---------------------------------------------------- -->
 
-    <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100" id="deleteClassCnfBox">
+    <div class="flex justify-center items-center top-0 w-[100vw] h-[100vh] fixed bg-opacity-80  bg-gray-100" id="deleteClassCnfBox">
                 <div class="p-10 bg-white shadow-2xl rounded-xl border border-blue-500">
                      <p class="text-xl text-black text-center">Are You Sure To Delete This Class Permanently?</p>
                      <div class="flex justify-around my-5 gap-10">
@@ -154,7 +171,7 @@
 
 
 
-    <div id="updateClassModal" class="flex justify-center items-center top-0 w-[100vw] h-[100vh] absolute bg-opacity-80  bg-gray-100">
+    <div id="updateClassModal" class="flex justify-center items-center top-0 w-[100vw] h-[100vh] fixed bg-opacity-80  bg-gray-100">
         <div class="bg-white p-10 rounded-xl shadow-xl">
 
             <div class="float-right -mt-7 -mr-3 cursor-pointer" onclick="closeClassUpdateModal()">
