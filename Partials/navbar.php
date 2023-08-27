@@ -100,8 +100,8 @@
 
 <script type="text/javascript">
 
-        $("#hamburgerSection").hide();
-        $(document).ready(()=>{
+    $(document).ready(()=>{
+            $("#hamburgerSection").hide();
             $("#hamburgerIcon").click(()=>{
                 $("#hamburgerSection").show();
                 $("#hamburgerIcon").hide();
