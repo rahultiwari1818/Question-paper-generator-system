@@ -24,8 +24,11 @@
 </head>
 <body class="max-h-screen max-w-screen">
 
+    <?php
+                include("../Partials/navbar.php");
+    ?>
 
-        <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successUserDeletionMessage'>
+        <section class='p-[1vw] w-[100vw] z-30  bg-green-500 absolute top-0 shadow-xl' id='successUserDeletionMessage'>
             <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeUDMsg()'>
                 <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
              </p>
@@ -34,6 +37,9 @@
         </section>  
 
     <main class="">
+        <section class=" flex justify-center items-center mx-5 my-3">
+            <input type="search" name="search"  id="searchUser" placeholder="Search User" class="my-2 mx-2 shadow-xl    appearance-none  py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" onkeyup="searchUser()" onblur="searchUser()"> 
+        </section>
         <section class=" flex justify-center items-center mx-5 my-5   ">
                     <section class=" max-h-[80vh] overflow-y-scroll  bg-white rounded-xl shadow p-5">
                         <table class="p-5  text-black rounded-xl border ">
@@ -79,7 +85,7 @@
 
 
 
-    <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>
+    <div id="preLoader" class="absolute h-[100vh] z-50 w-[100vw] top-0 bg-white"></div>
 
     <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 
@@ -87,9 +93,9 @@
     
 
     <script type="text/javascript">
-        $("#deleteUserCnfModal").hide();
-        $("#successUserDeletionMessage").hide();
         $(document).ready(()=>{
+            $("#deleteUserCnfModal").hide();
+            $("#successUserDeletionMessage").hide();
             fetchUsers();
 
             $("#preLoader").hide();

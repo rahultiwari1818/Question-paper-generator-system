@@ -139,7 +139,7 @@
     <?php
     if($successfull){
         echo "
-        <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
+        <section class='p-[1vw] z-30 w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
         <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeMsg()'>
             <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
          </p>
@@ -260,7 +260,7 @@
 
     <!--------------------------------------------------------- PreLoader ---------------------------------------------------- -->
 
-             <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>
+             <div id="preLoader" class="absolute h-[100vh] z-50 w-[100vw] top-0 bg-white"></div>
 
         <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 

@@ -1,4 +1,11 @@
 <?php
+        session_start();
+
+        if(!isset($_SESSION["uId"])){
+            header("location: ../login.php");
+            exit();
+        }
+        
         include("../Partials/connection.php");
         $type = "";
         $class = "";
@@ -19,9 +26,12 @@
 </head>
 <body>
 
+    <?php
+            include("../Partials/navbar.php");
+    ?>
 
 
-        <section class='p-[1vw] w-[100vw] z-20 bg-green-500 absolute top-0 shadow-xl' id='successQDMessage'>
+        <section class='p-[1vw] w-[100vw] z-30 bg-green-500 absolute top-0 shadow-xl' id='successQDMessage'>
                 <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeQDMsg()'>
                 <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
             </p>
@@ -29,7 +39,7 @@
                     <p class='flex justify-center items-center'> Question Deleted Successfully</p>
         </section>  
 
-        <section class='p-[1vw] w-[100vw]  z-20 bg-green-500 absolute top-0 shadow-xl' id='successQUPDMessage'>
+        <section class='p-[1vw] w-[100vw]  z-30 bg-green-500 absolute top-0 shadow-xl' id='successQUPDMessage'>
                 <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeQUPDMsg()'>
                 <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
             </p>
@@ -53,13 +63,13 @@
                                 <option value=""  <?php if($class=="") echo "selected";?>> ------- Select a Question's Class ----------</option>
                         
             </select>
-            <select name="type" id="viewSubject" class="my-2 mx-2 shadow-xl appearance-none  py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  onchange="searchQuestion()">
+            <select name="type" id="viewSubject" class="my-2 mx-2 shadow-xl appearance-none  py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300 disabled:z-0"  onchange="searchQuestion()">
                                 <option value=""  <?php if($subject=="") echo "selected";?>> ------- Select a Question's Subject ----------</option>
                             
             </select>
             <input type="search" name="search"  id="searchQuestion" placeholder="Search Questions" class="my-2 mx-2 shadow-xl    appearance-none  py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" onkeyup="searchQuestion()" onblur="searchQuestion()"> 
             <section class=" flex justify-center items-center bg-white rounded-xl shadow p-5 mx-5 my-5   ">
-                    <section class=" h-[80vh] overflow-y-scroll ">
+                    <section class=" max-h-[80vh] overflow-y-scroll ">
                         <table class="p-5  text-black rounded-xl border ">
                             <thead class="text-white top-0 sticky">
                             <tr>
@@ -129,7 +139,7 @@
 
 
 
-         <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>
+         <div id="preLoader" class="absolute z-50 h-[100vh] w-[100vw] top-0 bg-white"></div>
 
     <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 
@@ -143,11 +153,12 @@
     </script>
 
     <script type="text/javascript">
+            $(document).ready(()=>{
+
             $("#deleteCnfBox").hide();
             $("#updateModal").hide();
             $("#successQDMessage").hide();
             $("#successQUPDMessage").hide();
-            $(document).ready(()=>{
 
                 function removeParamFromCurrentURL(paramToRemove) {
                     try {

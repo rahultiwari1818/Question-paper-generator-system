@@ -156,6 +156,9 @@
 </head>
 <body>
 
+    <?php
+                    include("../Partials/navbar.php");
+    ?>
 
 <main class="my-5 ">
         <section class="flex justify-center items-center ">
@@ -267,7 +270,7 @@
 
     <!--------------------------------------------------------- PreLoader ---------------------------------------------------- -->
 
-             <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>
+             <div id="preLoader" class="absolute h-[100vh] z-50 w-[100vw] top-0 bg-white"></div>
 
         <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 

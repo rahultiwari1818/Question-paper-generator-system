@@ -54,9 +54,12 @@
 <body>
 
     <?php 
+
+        include("../Partials/navbar.php");
+
         if($successfull){
             echo "
-                <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
+                <section class='p-[1vw] w-[100vw] z-30  bg-green-500 absolute top-0 shadow-xl' id='successMessage'>
                 <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeMsg()'>
                 <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
             </p>
@@ -69,7 +72,7 @@
 
 
 
-        <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successCDMessage'>
+        <section class='p-[1vw] w-[100vw] z-30  bg-green-500 absolute top-0 shadow-xl' id='successCDMessage'>
                 <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeCDMsg()'>
                 <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
             </p>
@@ -78,7 +81,7 @@
         </section>
 
 
-        <section class='p-[1vw] w-[100vw]  bg-green-500 absolute top-0 shadow-xl' id='successCUpdMessage'>
+        <section class='p-[1vw] w-[100vw] z-30  bg-green-500 absolute top-0 shadow-xl' id='successCUpdMessage'>
                 <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeCUpdMsg()'>
                 <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
             </p>
@@ -163,7 +166,7 @@
 
 
 
-    <div id="preLoader" class="absolute h-[100vh] w-[100vw] top-0 bg-white"></div>
+    <div id="preLoader" class="absolute h-[100vh] z-50 w-[100vw] top-0 bg-white"></div>
 
     <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
 
@@ -207,13 +210,14 @@
 
 
 
-        $("#deleteClassCnfBox").hide();
-        $("#successCDMessage").hide();
-        $("#updateClassModal").hide();
-        $("#successCUpdMessage").hide();
+
         $(document).ready(()=>{
-            $("#preLoader").hide();
+            $("#deleteClassCnfBox").hide();
+            $("#successCDMessage").hide();
+            $("#updateClassModal").hide();
+            $("#successCUpdMessage").hide();
             displayClassesInTable();
+            $("#preLoader").hide();
 
         // Set Time Out to remove message Automatically after 3 seconds
             setTimeout(()=>{
