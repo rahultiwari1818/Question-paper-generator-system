@@ -52,7 +52,7 @@
                             <th class="md:p-[10px] p-[5px] border bg-blue-500">E-mail</th>
                             <th class="md:p-[10px] p-[5px] border bg-blue-500">Gender</th>
                             <th class="md:p-[10px] p-[5px] border bg-blue-500">Username</th>
-                            <th class="md:p-[10px] p-[5px] border bg-blue-500"></th>
+                            <!-- <th class="md:p-[10px] p-[5px] border bg-blue-500"></th> -->
                             <th class="md:p-[10px] p-[5px] border bg-blue-500"></th>
                         </tr>
                         </thead>

@@ -93,7 +93,8 @@
             if($valid){
                 try {
                     $password = password_hash($password,1);
-                    $sql = "insert into tbl_users values(NULL,'$fname','$lname','USER','$phno','$email','$gender','$username','$password')";
+                    $instituteName = $_SESSION["instituteName"];
+                    $sql = "insert into tbl_users values(NULL,'$fname','$lname','USER','$phno','$email','$gender','$username','$password','$instituteName')";
                     if($conn->query($sql) == TRUE){
                         //Code to Mail credentials to user   
 

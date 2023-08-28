@@ -17,7 +17,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Questions</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../script/script.js"></script>
     <script src="../script/jquery-3.6.3.js"></script>
@@ -198,7 +197,7 @@
                 $("#preLoader").hide();
                 $("#viewClass").change(()=>{
                     $("#viewSubject").attr("disabled",false);
-                    fetchSubjectsForView();
+                    fetchSubjectsForView("viewSubject",$("#viewClass").val());
                 })
                 
                 $("#viewSubject").change(()=>{

@@ -11,11 +11,17 @@
 
             <section>
                 <section class='lg:block hidden'>
-                    <section>
+                    <section class='flex justify-between items-center'>
                         <a href='./addClass.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Classes</a>
                         <a href='./addSubject.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Subjects</a>
                         <a href='./viewUsers.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Users</a>
-                        <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-2 '>Logout</a>
+                        <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-2 flex justify-around items-center gap-5  '>
+                            <p>  Logout</p>
+                            <svg xmlns='http://www.w3.org/2000/svg'  height='1em' viewBox='0 0 512 512'>
+                            <!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path d='M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z' fill=''/>
+                            </svg>
+                        </a>
                     </section>
                 </section>
                 <section class='lg:hidden block'>
@@ -32,10 +38,14 @@
                                 </svg>
                                 
                         </section>
-                        <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Home</a>
-                        <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Home</a>
-                        <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Home</a>
-                        <a href='./logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-3  block'>Logout</a>
+                        <a href='./addClass.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Classes</a>
+                        <a href='./addSubject.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Subjects</a>
+                        <a href='./viewUsers.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Users</a>
+                        <a href='./logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-3  flex justify-around items-center gap-5'>
+
+                            <p>  Logout</p>
+                            <svg xmlns='http://www.w3.org/2000/svg'  height='1em' viewBox='0 0 512 512'><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d='M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z' fill=''/></svg>
+                        </a>
                     </section>
                 </section>
                 <!-- for Menu -->
@@ -52,18 +62,23 @@
         <section class='lg:flex justify-around items-center'>
 
             <section>
-            <img src='../Assets/images/QPG_Logo.png' alt='' srcset='' class='lg:h-[80px] lg:w-[400px]'>
+            <img src='../Assets/images/QPG_Logo.png' alt='' srcset='' class='lg:h-[80px] lg:w-[400px] md:h-[70px] md:w-[80%] h-[50px] w-[80%]'>
 
                 <!-- for Logo -->
             </section>
 
             <section>
                 <section class='lg:block hidden'>
-                    <section>
+                    <section class='flex justify-between items-center'>
                         <a href='./uploadQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Upload Questions</a>
                         <a href='./viewQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Questions</a>
                         <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Generate Question Paper</a>
-                        <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-2 '>Logout</a>
+                        <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-2 flex justify-around items-center gap-5'>
+
+                            <p>  Logout</p>
+                            <svg xmlns='http://www.w3.org/2000/svg'  height='1em' viewBox='0 0 512 512'><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d='M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z' fill=''/></svg>
+                        
+                        </a>
                     </section>
                 </section>
                 <section class='lg:hidden block'>
@@ -80,10 +95,15 @@
                                 </svg>
                                 
                         </section>
-                        <a href='./viewQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Home</a>
-                        <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Home</a>
-                        <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Home</a>
-                        <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-3  block'>Logout</a>
+                        <a href='./uploadQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Upload Questions</a>
+                        <a href='./viewQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>View Questions</a>
+                        <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Generate Question Paper</a>
+                        <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-3  flex justify-around items-center gap-5'>
+
+                            <p>  Logout</p>
+                            <svg xmlns='http://www.w3.org/2000/svg'  height='1em' viewBox='0 0 512 512'><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d='M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z' fill=''/></svg>
+                        
+                        </a>
                     </section>
                 </section>
                 <!-- for Menu -->

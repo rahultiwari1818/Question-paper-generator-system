@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<button id="toggleButton">Toggle Div</button>
+<div id="myDiv" style="display: none;">This is a hidden div.</div>
+
+<script>
+$(document).ready(function() {
+  $('#myDiv').on('shown', function() {
+    // Your function logic here
+    console.log("The div is now shown.");
+  });
+
+  $('#toggleButton').click(function() {
+    $('#myDiv').toggle(function() {
+      $(this).trigger('shown');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

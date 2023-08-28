@@ -82,7 +82,7 @@
 
             if($successfull){
                 echo "
-                <section class='p-[1vw] w-[100vw] z-30  bg-green-500 absolute top-0 shadow-xl' id='successSIMessage'>
+                <section class='p-[1vw] w-[100vw] z-30  bg-green-500 fixed top-0 shadow-xl' id='successSIMessage'>
                 <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeSIMsg()'>
                     <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
                 </p>
@@ -93,7 +93,7 @@
             }
     ?>
 
-                    <section class='p-[1vw] w-[100vw] z-30  bg-green-500 absolute top-0 shadow-xl' id='successSDMessage'>
+                    <section class='p-[1vw] w-[100vw] z-30  bg-green-500 fixed top-0 shadow-xl' id='successSDMessage'>
                         <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeSDMsg()'>
                             <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
                         </p>
@@ -101,7 +101,7 @@
                         <p class='flex justify-center items-center'> Subject Removed Successfully</p>
                     </section>
 
-                    <section class='p-[1vw] w-[100vw] z-30  bg-green-500 absolute top-0 shadow-xl' id='successSubUpdMessage'>
+                    <section class='p-[1vw] w-[100vw] z-30  bg-green-500 fixed top-0 shadow-xl' id='successSubUpdMessage'>
                         <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeSubUpdMsg()'>
                             <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
                         </p>
