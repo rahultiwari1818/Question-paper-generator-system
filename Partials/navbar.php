@@ -116,7 +116,7 @@
 
 ?>
 
-<script src="../script/jquery-3.6.3.js"></script>
+<!-- <script src="../script/jquery-3.6.3.js"></script> -->
 
 <script type="text/javascript">
 

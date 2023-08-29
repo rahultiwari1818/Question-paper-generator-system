@@ -106,7 +106,7 @@
             $question = addslashes($question);
             $options = addslashes($options);
             $currentDate = date("Y-m-d");
-            echo "$qid id hai bhai";
+            // echo "$qid id hai bhai";
             $sql = "update tbl_questions set question='$question', q_type='$type',option1='$option1',option2='$option2',option3='$option3',option4='$option4',level='$level',weightage=$weightage,chapter=$chapter,classId=$class,subId=$sub where qId=$qid";
             // $sql = "insert into tbl_questions values(NULL,'$question','$type','$option1','$option2','$option3','$option4','$level',$weightage,$chapter,$class,$sub,$uid,'$currentDate')";
             if($conn->query($sql) === TRUE){
@@ -220,7 +220,10 @@
                     ?>
                 </div>
                 <div class="my-2">
-                    <input type="number" id="updateWeightage" required name="weightage" value="<?php echo $weightage;?>" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" placeholder="Weightage ">
+                    <select name="weightage" id="updateWeightage" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" >
+                         <option value=""  >-------- Select Weightage of Your Question -----------</option>
+                    </select>
+                    <!-- <input type="number" id="" required name="weightage" value="" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" placeholder="Weightage "> -->
                     <?php
                         if($weightageErr){
                             echo "<p class='text-red-500 my-3 '> $weightageErr </p>";
@@ -317,13 +320,40 @@
             }
             
             $("#cancelBtn").click(()=>{
-                console.log("clicked")
+                // console.log("clicked")
                 window.location.href="http://localhost/qpg/Faculties/viewQuestions.php";
             })
             
 
             // To remove Preloader
              $("#preLoader").hide();
+
+             setTimeout(()=>{
+
+                let selectedValue = $("#updateType").val();
+
+                if(["mcqs","fib","tf"].includes(selectedValue)){
+                    let options = `
+                        <option value = "" disabled>-------- Select Weightage of Your Question -----------</option>
+                         <option value="1" >1</option>
+                    `;
+                    $("#updateWeightage").html(options);
+
+                }
+                else{
+                    let options = `
+                        <option value = "" disabled>-------- Select Weightage of Your Question -----------</option>
+                         <option value="1" >1</option>
+                         <option value="2" >2</option>
+                         <option value="3" >3</option>
+                         <option value="4" >4</option>
+                         <option value="5" >5</option>
+                         <option value="7" >7</option>
+                    `;
+                    $("#updateWeightage").html(options);
+
+                }
+             },700)
 
 
 
@@ -334,17 +364,43 @@
 
             })
             //  to show options when errors are there after submitting
-            if($("#type").val()=="mcqs"){
+            if($("#updateType").val()=="mcqs"){
                 $("#option-div").show();
 
             }
+            let count = 0;
             // To Show Options When user select Mcqs
-            $("#type").change(()=>{
-                if($("#type").val() == "mcqs"){
+            $("#updateType").change(()=>{
+                if($("#updateType").val() == "mcqs"){
                     $("#option-div").show();
                 }
                 else{
                     $("#option-div").hide();
+                }
+
+
+                let selectedValue = $("#updateType").val();
+
+                if(["mcqs","fib","tf"].includes(selectedValue)){
+                    let options = `
+                        <option value = "" disabled>-------- Select Weightage of Your Question -----------</option>
+                         <option value="1" >1</option>
+                    `;
+                    $("#updateWeightage").html(options);
+
+                }
+                else{
+                    let options = `
+                        <option value = "" disabled>-------- Select Weightage of Your Question -----------</option>
+                         <option value="1" >1</option>
+                         <option value="2" >2</option>
+                         <option value="3" >3</option>
+                         <option value="4" >4</option>
+                         <option value="5" >5</option>
+                         <option value="7" >7</option>
+                    `;
+                    $("#updateWeightage").html(options);
+
                 }
             })
 

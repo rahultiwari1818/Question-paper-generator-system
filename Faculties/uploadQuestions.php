@@ -160,7 +160,7 @@
                 <div class="my-2">
                     <select name="type" id="type" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" required>
                         <div class="bg-white p-2">
-                            <option value=""  <?php if($type=="") echo "selected";?>> ------- Select a Question Type ----------</option>
+                            <option value="" disabled <?php if($type=="") echo "selected";?>> ------- Select a Question Type ----------</option>
                             <option value="mcqs" <?php if($type=="mcqs") echo "selected";?>> MCQS </option>
                             <option value="fib" <?php if($type=="fib") echo "selected";?>> Fill In The Blanks</option>
                             <option value="tf"> <?php if($type=="tf") echo "selected";?>True Or False</option>
@@ -198,7 +198,7 @@
                 <div class="my-2">
                     <select name="level" required id="level" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
                         <div class="bg-white my-2">
-                            <option value=""  <?php if($level=="") echo "selected"; ?>>-------- Select Level of Your Question -----------</option>
+                            <option value="" disabled <?php if($level=="") echo "selected"; ?>>-------- Select Level of Your Question -----------</option>
                             <option value="easy" <?php if($level=="easy") echo "selected"; ?>>Easy</option>
                             <option value="medium" <?php if($level=="medium") echo "selected"; ?>>Medium</option>
                             <option value="hard" <?php if($level=="hard") echo "selected"; ?>>Hard</option>
@@ -211,7 +211,10 @@
                     ?>
                 </div>
                 <div class="my-2">
-                    <input type="number" required name="weightage" value="<?php echo $weightage;?>" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" placeholder="Weightage ">
+                    <select name="weightage" id="weightage" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" >
+                         <option value="" disabled  <?php if($weightage=="") echo "selected";  ?> >-------- Select Weightage of Your Question -----------</option>
+                    </select>
+                    <!-- <input type="number" required name="weightage" value="" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" placeholder="Weightage "> -->
                     <?php
                         if($weightageErr){
                             echo "<p class='text-red-500 my-3 '> $weightageErr </p>";
@@ -229,7 +232,7 @@
                 <div class="my-2">
                     <select name="class" required id="classUPQ" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
                         <div class="bg-white my-2">
-                             <option value=""   <?php if($class=="") echo "selected"; ?>>-------- Select Class ----------- </option>
+                             <option value=""    <?php if($class=="") echo "selected"; ?>>-------- Select Class ----------- </option>
                         </div>
                     </select>
                     <?php
@@ -241,7 +244,7 @@
                 <div class="my-2">
                     <select name="sub" value="<?php echo $sub;?>" required id="subUPQ" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
                         <div class="bg-white my-2">
-                            <option value=""   <?php if($sub=="") echo "selected"; ?>>-------- Select Subject -----------</option>
+                            <option value=""    <?php if($sub=="") echo "selected"; ?>>-------- Select Subject -----------</option>
                         </div>
                     </select>
                     <?php
@@ -302,10 +305,35 @@
             // To Show Options When user select Mcqs
             $("#type").change(()=>{
                 if($("#type").val() == "mcqs"){
+                    
                     $("#option-div").show();
                 }
                 else{
                     $("#option-div").hide();
+                }
+
+                let selectedValue = $("#type").val();
+
+                if(["mcqs","fib","tf"].includes(selectedValue)){
+                    let options = `
+                        <option value = "" disabled>-------- Select Weightage of Your Question -----------</option>
+                         <option value="1" >1</option>
+                    `;
+                    $("#weightage").html(options);
+
+                }
+                else{
+                    let options = `
+                        <option value = "" disabled>-------- Select Weightage of Your Question -----------</option>
+                         <option value="1" >1</option>
+                         <option value="2" >2</option>
+                         <option value="3" >3</option>
+                         <option value="4" >4</option>
+                         <option value="5" >5</option>
+                         <option value="7" >7</option>
+                    `;
+                    $("#weightage").html(options);
+
                 }
             })
 

@@ -40,10 +40,35 @@
                             
                         </select>
                     </section>
-                    <section>
-                        <table>
-                            
-                        </table>
+                    <section id="section3">
+                        <select name="type" id="selectedType" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" required>
+                            <div class="bg-white p-2">
+                                <option value=""  > ------- Select a Question Type ----------</option>
+                                <option value="mcqs"> MCQS </option>
+                                <option value="fib"> Fill In The Blanks</option>
+                                <option value="tf">True Or False</option>
+                                <option value="atf"> Answer The Following Question. </option>
+                            </div>
+                        </select>
+                    </section>
+                    <section id="section4">
+                        <section class="md:flex justify-between items-center gap-5">
+
+                            <select name="" id="selectedChapter" class=" shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
+
+                            </select>
+                            <select name="" id="selectedMarks" class=" shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
+
+                            </select>
+                            <select name="level"  id="selectedLevel" class=" shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
+                                <div class="bg-white my-2">
+                                    <option value=""  > Level </option>
+                                    <option value="easy" >Easy</option>
+                                    <option value="medium" >Medium</option>
+                                    <option value="hard" >Hard</option>
+                               </div>
+                            </select>
+                        </section>
                     </section>
                 </form>
                 <!-- <section class="my-4 flex justify-between items-center">
@@ -100,10 +125,13 @@
                 
                     // $("#nextButton").attr("disabled");
                     let selectedValue = $(this).val();
-                    sessionStorage.setItem("selectedClass",selectedValue);
-                    fetchSubjectsForView("selectedSubject",$(this).val());
-                    $(this).parent().hide();
-                    $(this).parent().next().show();
+                    if(selectedValue!=""){
+
+                        sessionStorage.setItem("selectedClass",selectedValue);
+                        fetchSubjectsForView("selectedSubject",$(this).val());
+                        $(this).parent().hide();
+                        $(this).parent().next().show();
+                    }
 
                     
             })
@@ -111,16 +139,67 @@
             $("#selectedSubject").change(function(){
 
                     let selectedValue = $(this).val();
-                    sessionStorage.setItem("selectedSubject",selectedValue);
-                     fetchSubjectsForView("selectedSubject",$(this).val());
-                    $(this).parent().hide();
-                    $(this).parent().next().show();
+                    if(selectedValue!=""){
+
+                        sessionStorage.setItem("selectedSubject",selectedValue);
+                         fetchSubjectsForView("selectedSubject",$(this).val());
+                        $(this).parent().hide();
+                        $(this).parent().next().show();
+                    }
+            })
+
+            $("#selectedType").change(function(){
+                    let selectedValue = $(this).val();
+                    if(selectedValue!=""){
+                        
+                        sessionStorage.setItem("selectedType",selectedValue);
+    
+                        $(this).parent().hide();
+                        $(this).parent().next().show();
+                        fetch(``)
+                        .then(res=>res.json())
+                        .then(res=>{
+                            
+                        })
+                    }
             })
 
 
+            setTimeout(()=>{
 
-            
-            
+                
+                if(sessionStorage.getItem("selectedClass")){
+                    $("#selectedClass").val(sessionStorage.getItem("selectedClass"));
+                }
+                if(sessionStorage.getItem("selectedSubject")){
+                    $("#selectedSubject").val(sessionStorage.getItem("selectedSubject"));
+                }
+                if(sessionStorage.getItem("selectedType")){
+                    let selectedType = sessionStorage.getItem("selectedType");
+                    $("#selectedType").val(selectedType);
+                    if(["mcqs","fib","tf"].includes(selectedType)){
+                        $("#selectedMarks").html(`                        <option value = "" disabled> Weightage <\option>
+                         <option value="1" selected>1</option>`);
+                        
+                    }
+                    else if(selectedType=="atf"){
+                        let options = `
+                            <option value = "" disabled>-------- Select Weightage of Your Question -----------</option>
+                            <option value="1" >1</option>
+                            <option value="2" >2</option>
+                            <option value="3" >3</option>
+                            <option value="4" >4</option>
+                            <option value="5" >5</option>
+                            <option value="7" >7</option>
+                        `;
+                        $("#selectedMarks").html(options);
+                    }
+                }
+            },800)
+
+
+
+
 
 
         })

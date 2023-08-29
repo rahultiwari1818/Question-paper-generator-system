@@ -294,7 +294,7 @@ function openClassUpdateModal(id) {
             if (res.result) {
                 console.log(res)
                 let data = res.data[0];
-                console.log(data.class)
+                // console.log(data.class)
                 $("#updateClassName").val(data.class);
             }
         })
@@ -526,7 +526,7 @@ function fetchClassesInSubject(ctrlId, sid) {
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
-            let rows = `<option value=""   <?php if($class=="") echo "selected"; ?>-------- Select Class -----------</option>`;
+            let rows = `<option value=""    <?php if($class=="") echo "selected"; ?>-------- Select Class -----------</option>`;
             // console.log(res)
 
             data.forEach((row) => {
@@ -697,7 +697,7 @@ function fetchClassesInUploadQuestion(id) {
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
-            let rows = `<option value=""   <?php if($class=="") echo "selected"; ?>-------- Select Class -----------</option>`;
+            let rows = `<option value=""    <?php if($class=="") echo "selected"; ?>-------- Select Class -----------</option>`;
             // console.log(res)
 
             data.forEach((row) => {
@@ -720,7 +720,7 @@ function fetchSubjectsClassWise(cId, subId) {
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
-            let rows = `<option value=""   <?php if($sub=="") echo "selected"; ?>-------- Select Subject -----------</option>`;
+            let rows = `<option value=""    <?php if($sub=="") echo "selected"; ?>-------- Select Subject -----------</option>`;
             // console.log(res)
             console.log(res)
             data.forEach((row) => {
@@ -742,7 +742,7 @@ function fetchSubjectsForView(divId,classId) {
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
-            let rows = `<option value=""   <?php if($sub=="") echo "selected"; ?>-------- Select Subject -----------</option>`;
+            let rows = `<option value=""    <?php if($sub=="") echo "selected"; ?>-------- Select Subject -----------</option>`;
             // console.log(res)
             console.log(res)
             data.forEach((row) => {
@@ -768,7 +768,7 @@ function getQuestionData(id) {
         .then(res => res.json())
         .then(res => {
             if (res.result) {
-                console.log(res)
+                // console.log(res)
                 let data = res.data[0];
                 $("#updateQuestion").text(data.question);
                 $("#updateType").val(data.q_type);
@@ -781,6 +781,7 @@ function getQuestionData(id) {
                 $("#updateWeightage").val(data.weightage);
                 $("#updateChapter").val(data.chapter);
                 $("#updateLevel").val(data.level);
+                // console.log(data.weightage,"weightage")
                 //to fetch classes
                 fetchClassesInUploadQuestion(data.classId);
                 fetchSubjectsClassWise(data?.classId, data?.subId)
