@@ -154,7 +154,8 @@
     <main class="my-5 ">
         <section class="flex justify-center items-center ">
             <section>
-                <h2 class="text-center text-white text-xl my-3">Insert a Question</h2>
+            <h2 class="px-10 py-3 text-blue-500 lg:text-2xl text-lg bg-white text-center rounded-lg shadow-lg my-5 ">Insert a Question</h2>
+
 
             <form action="uploadQuestions.php" method="post" class="bg-white shadow-xl rounded-xl p-10">
                 <div class="my-2">
@@ -198,7 +199,7 @@
                 <div class="my-2">
                     <select name="level" required id="level" class="block shadow-xl appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300">
                         <div class="bg-white my-2">
-                            <option value="" disabled <?php if($level=="") echo "selected"; ?>>-------- Select Level of Your Question -----------</option>
+                            <option value=""  <?php if($level=="") echo "selected"; ?>>-------- Select Level of Your Question -----------</option>
                             <option value="easy" <?php if($level=="easy") echo "selected"; ?>>Easy</option>
                             <option value="medium" <?php if($level=="medium") echo "selected"; ?>>Medium</option>
                             <option value="hard" <?php if($level=="hard") echo "selected"; ?>>Hard</option>

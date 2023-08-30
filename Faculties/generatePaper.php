@@ -159,7 +159,7 @@
                         fetch(``)
                         .then(res=>res.json())
                         .then(res=>{
-                            
+
                         })
                     }
             })
@@ -193,6 +193,7 @@
                             <option value="7" >7</option>
                         `;
                         $("#selectedMarks").html(options);
+                        
                     }
                 }
             },800)

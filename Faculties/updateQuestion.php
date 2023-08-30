@@ -163,7 +163,7 @@
 <main class="my-5 ">
         <section class="flex justify-center items-center ">
             <section>
-                <h2 class="text-center text-white text-xl my-3">Update Question</h2>
+            <h2 class="px-10 py-3 text-blue-500 lg:text-2xl text-lg bg-white text-center rounded-lg shadow-lg my-5 ">Update Question</h2>
 
             <form  method="post" class="bg-white shadow-xl rounded-xl p-10" id="updateForm">
                 <div class="my-2">

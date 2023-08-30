@@ -2,8 +2,8 @@
 
     session_start();
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
+    // use PHPMailer\PHPMailer\PHPMailer;
+    // use PHPMailer\PHPMailer\Exception;
      
     require '../vendor/autoload.php';
     include("../Partials/connection.php");
@@ -181,7 +181,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create User</title>
-<body>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../script/jquery-3.6.3.js"></script>
     <script src="../script/script.js"></script>
@@ -209,119 +208,125 @@
         }
     ?>
 
+
+<section class="flex justify-center items-center">
+
+    <section>
+
+        <h2 class="px-10 py-3 text-blue-500 lg:text-2xl text-lg bg-white text-center rounded-lg shadow-lg my-5 ">Create New User</h2>
     
-
-
-    <div class="flex justify-center items-center   ">
-            <form action="createUser.php" method="post" class="p-16  lg:p-24 bg-blue-400 rounded-2xl shadow-2xl">
-            <div class="md:flex justify-between gap-10 items-start">
-                    <div>
-                            <div class="my-4">
-                                <label for="fname" class="text-white">First Name :</label>
-                                <br>
-                                <input type="text" name="fname" value="<?php echo $fname;?>" placeholder="Enter  First Name " class="p-2 my-2 rounded-lg shadow-lg" required>
-                                <?php
-                                    if($fnameErr){
-                                        echo "<p class='text-red-500 my-3 '> $fnameErr </p>";
-                                    }
-                                ?>
-                            </div>
-
-                            <div class="my-4">
-                                <label for="lname" class="text-white">Last Name :</label>
-                                <br>
-                                <input type="text" name="lname" value="<?php echo $lname;?>" placeholder="Enter Last Name  " class="p-2 my-2 rounded-lg shadow-lg" required>
-                                <?php
-                                    if($lnameErr){
-                                        echo "<p class='text-red-500 my-3 '> $lnameErr </p>";
-                                    }
-                                ?>
-                            </div>
-                            <div class="my-4">
-                                <label for="username" class="text-white">Username :</label>
-                                <br>
-                                <input type="text" id="username" name="username" value="<?php echo $username;?>" placeholder="Enter  Username " class="p-2 my-2 rounded-lg shadow-lg" onkeyup="checkUsernameExists()" required>
-                                <p class='text-red-500 my-3 ' id='usernameErr'>      </p>
-                                <?php
-                                    if($usernameErr){
-                                        echo "<p class='text-red-500 my-3 ' > $usernameErr </p>";
-                                    }
-                                ?>
-                            </div>  
-                            <div class="my-4">
-                                <label for="gender" class="text-white">Gender :</label>
-                                <br>
-                                <?php
-                                    if(!$gender){
-                                        echo '
-                                        <label for="gender">Male : <input type="radio" name="gender" value="male" ></label>
-                                        <label for="gender">Female : <input type="radio" name="gender" value="female"></label>
-                                        ';
-                                    }
-                                    else{
-                                        if($gender=="male"){
-
-                                            echo '   Male:<input type="radio" name="gender" value="male" id="male" checked>
-                                            Female:<input type="radio" name="gender" value="female" id="female" >';
-                                                   }
-                                                   else{
-                       
-                                            echo '   Male:<input type="radio" name="gender" value="male" id="male" >
-                                            Female:<input type="radio" name="gender" value="female" id="female" checked >';
-                                                   }
-                                               
-                                    }
-                                ?>
-
-                                <?php
-                                    if($genderErr){
-                                        echo "<p class='text-red-500 my-3 '> $genderErr </p>";
-                                    }
-                                ?>
-                            </div> 
-                    </div>
-                    <div>
-
-                    <div class="my-4">
-                                <label for="email" class="text-white">E-Mail :</label>
-                                <br>
-                                <input type="email" id="userEmail" name="email" value="<?php echo $email;?>" placeholder="Enter E-Mail " class="p-2 my-2 rounded-lg shadow-lg" required onkeyup="checkEmailExists()">
-                                <p class='text-red-500 my-3 ' id='userEmailErr'>      </p>
-                                <?php
-                                    if($emailErr){
-                                        echo "<p class='text-red-500 my-3 '> $emailErr </p>";
-                                    }
-                                ?>
-                            </div>
-
+        <div class="flex justify-center items-center   ">
+                <form action="createUser.php" method="post" class="p-16  lg:p-24 bg-blue-400 rounded-2xl shadow-2xl">
+                <div class="md:flex justify-between gap-10 items-start">
+                        <div>
+                                <div class="my-4">
+                                    <label for="fname" class="text-white">First Name :</label>
+                                    <br>
+                                    <input type="text" name="fname" value="<?php echo $fname;?>" placeholder="Enter  First Name " class="p-2 my-2 rounded-lg shadow-lg" required>
+                                    <?php
+                                        if($fnameErr){
+                                            echo "<p class='text-red-500 my-3 '> $fnameErr </p>";
+                                        }
+                                    ?>
+                                </div>
+    
+                                <div class="my-4">
+                                    <label for="lname" class="text-white">Last Name :</label>
+                                    <br>
+                                    <input type="text" name="lname" value="<?php echo $lname;?>" placeholder="Enter Last Name  " class="p-2 my-2 rounded-lg shadow-lg" required>
+                                    <?php
+                                        if($lnameErr){
+                                            echo "<p class='text-red-500 my-3 '> $lnameErr </p>";
+                                        }
+                                    ?>
+                                </div>
+                                <div class="my-4">
+                                    <label for="username" class="text-white">Username :</label>
+                                    <br>
+                                    <input type="text" id="username" name="username" value="<?php echo $username;?>" placeholder="Enter  Username " class="p-2 my-2 rounded-lg shadow-lg" onkeyup="checkUsernameExists()" required>
+                                    <p class='text-red-500 my-3 ' id='usernameErr'>      </p>
+                                    <?php
+                                        if($usernameErr){
+                                            echo "<p class='text-red-500 my-3 ' > $usernameErr </p>";
+                                        }
+                                    ?>
+                                </div>  
+                                <div class="my-4">
+                                    <label for="gender" class="text-white">Gender :</label>
+                                    <br>
+                                    <?php
+                                        if(!$gender){
+                                            echo '
+                                            <label for="gender">Male : <input type="radio" name="gender" value="male" ></label>
+                                            <label for="gender">Female : <input type="radio" name="gender" value="female"></label>
+                                            ';
+                                        }
+                                        else{
+                                            if($gender=="male"){
+    
+                                                echo '   Male:<input type="radio" name="gender" value="male" id="male" checked>
+                                                Female:<input type="radio" name="gender" value="female" id="female" >';
+                                                       }
+                                                       else{
+                           
+                                                echo '   Male:<input type="radio" name="gender" value="male" id="male" >
+                                                Female:<input type="radio" name="gender" value="female" id="female" checked >';
+                                                       }
+                                                   
+                                        }
+                                    ?>
+    
+                                    <?php
+                                        if($genderErr){
+                                            echo "<p class='text-red-500 my-3 '> $genderErr </p>";
+                                        }
+                                    ?>
+                                </div> 
+                        </div>
+                        <div>
+    
                         <div class="my-4">
-                                <label for="phno" class="text-white">Phone Number :</label>
+                                    <label for="email" class="text-white">E-Mail :</label>
+                                    <br>
+                                    <input type="email" id="userEmail" name="email" value="<?php echo $email;?>" placeholder="Enter E-Mail " class="p-2 my-2 rounded-lg shadow-lg" required onkeyup="checkEmailExists()">
+                                    <p class='text-red-500 my-3 ' id='userEmailErr'>      </p>
+                                    <?php
+                                        if($emailErr){
+                                            echo "<p class='text-red-500 my-3 '> $emailErr </p>";
+                                        }
+                                    ?>
+                                </div>
+    
+                            <div class="my-4">
+                                    <label for="phno" class="text-white">Phone Number :</label>
+                                    <br>
+                                    <input type="phno" name="phno" value="<?php echo $phno;?>" placeholder="Enter Phone Number " class="p-2 my-2 rounded-lg shadow-lg" required>
+                                    <?php
+                                        if($phnoErr){
+                                            echo "<p class='text-red-500 my-3 '> $phnoErr </p>";
+                                        }
+                                    ?>
+                                </div>
+                            
+                            <div  class="my-4">
+                                <label for="password"  class="text-white">Password :</label>
                                 <br>
-                                <input type="phno" name="phno" value="<?php echo $phno;?>" placeholder="Enter Phone Number " class="p-2 my-2 rounded-lg shadow-lg" required>
+                                <input type="password" name="password"  value="<?php echo $password;?>" placeholder="Enter  Password " class="p-2 my-2 rounded-lg shadow-lg" required>
                                 <?php
-                                    if($phnoErr){
-                                        echo "<p class='text-red-500 my-3 '> $phnoErr </p>";
+                                    if($passwordErr){
+                                        echo "<p class='text-red-500 my-3 '> $passwordErr </p>";
                                     }
                                 ?>
                             </div>
-                        
-                        <div  class="my-4">
-                            <label for="password"  class="text-white">Password :</label>
-                            <br>
-                            <input type="password" name="password"  value="<?php echo $password;?>" placeholder="Enter  Password " class="p-2 my-2 rounded-lg shadow-lg" required>
-                            <?php
-                                if($passwordErr){
-                                    echo "<p class='text-red-500 my-3 '> $passwordErr </p>";
-                                }
-                            ?>
                         </div>
                     </div>
-                </div>
-                <div class="flex justify-center items-center p-5">
-                    <input type="submit" id="submitBtn" name="submithojabhai" value="Create User" class="px-5 py-2 bg-white text-red-500 border border-red-500 hover:bg-red-500 hover:text-white rounded-lg shadow-lg">
-                </div>
-            </form>
-    </div>
+                    <div class="flex justify-center items-center p-5">
+                        <input type="submit" id="submitBtn" name="submithojabhai" value="Create User" class="px-5 py-2 bg-white text-red-500 border border-red-500 hover:bg-red-500 hover:text-white rounded-lg shadow-lg">
+                    </div>
+                </form>
+        </div>
+    </section>
+</section>
 
         <!--------------------------------------------------------- PreLoader ---------------------------------------------------- -->
 
