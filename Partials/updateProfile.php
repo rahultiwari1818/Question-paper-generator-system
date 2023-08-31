@@ -1,12 +1,13 @@
 <?php
     session_start();
-    include("./Partials/connection.php");
+    include("./connection.php");
 
 
     if(!isset($_SESSION["uId"])){
-        header("location: ./login.php");
+        header("location: ../login.php");
         exit();
     }
+
 
     $fname = "";
     $lname = "";
@@ -77,51 +78,19 @@
             if($valid){
                 try {
                     $uid = $_SESSION["uId"];
+                    try {
+                        //code...
+                        if(isset( $_GET["user"])){
+                            $uid = $_GET["user"];
+                        }
+                    } catch (\Throwable $th) {
+                        //throw $th;
+                
+                    }
+                
                     $sql = "update tbl_users set fname='$fname',lname='$lname',phno='$phno',email='$email',gender='$gender' where uId = $uid";
                     // $sql = "insert into tbl_users values(NULL,'$fname','$lname','USER','$phno','$email','$gender','$username','$password','$instituteName')";
                     if($conn->query($sql) == TRUE){
-                        //Code to Mail credentials to user   
-
-                        // $mail = new PHPMailer(true);
-                         
-                        // try {
-                        //     $mail->SMTPDebug = 2;                                      
-                        //     $mail->isSMTP();                                           
-                        //     $mail->Host       = 'smtp.gmail.com;';                   
-                        //     $mail->SMTPAuth   = true;                            
-                        //     $mail->Username   = 'qpg.system@gmail.com';                
-                        //     $mail->Password   = '';                       
-                        //     $mail->SMTPSecure = 'tls';                             
-                        //     $mail->Port       = 587; 
-                         
-                        //     $mail->setFrom('qpg.system@gmail.com', 'Admin ');          
-                        //     $mail->addAddress($email,$fname);
-                              
-                        //     // $mail->isHTML(true);                                 
-                        //     $mail->Subject = 'Successfully Registered in Question Paper Generator System';
-                        //     $mail->Body    = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System.<br> Your Username is '.$username.' and Password is '.$password.' .';
-                        //     // $mail->AltBody = 'Body in plain text for non-HTML mail clients';
-                        //     $mail->send();
-                        //     $emailSentMsg = "Username and Password Mailed to User Successfully.!";
-                        // } catch (Exception $e) {
-                        //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                        // }
-
-                        
-                        // $to = $email;
-                        // $subject = 'Successfully Registered in Question Paper Generator System';
-                        // $message = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System.<br> Your Username is '.$username.' and Password is '.$password.' .';
-                        // $headers = 'From: qpg.system@gmail.com' . "\r\n" .
-                        //     'Reply-To: qpg.system@gmail.com' . "\r\n" .
-                        //     'X-Mailer: PHP/' . phpversion();
-                        
-                        // if (mail($to, $subject, $message, $headers)) {
-                        //     $emailSentMsg = "Username and Password Mailed to User Successfully.!";
-                        // } else {
-                        //     // echo 'Email sending failed.';
-                        //     $emailSentMsg = "Email Could not be sent.!";
-                        // }
-
                         $successfull = true;
                         $fname = "";
                         $lname = "";
@@ -139,10 +108,13 @@
                         $genderErr = "";
                        
                          echo "Record Updated Succesfully";
-
+                         if(isset($_SERVER['HTTP_REFERER'])) {
+                            $previousPage = $_SERVER['HTTP_REFERER'];
+                            header("Location: $previousPage");
+                        }
                     }
                     else{
-                        echo $conn->error;
+                        // echo $conn->error;
                         
                     }
                 } catch (\Throwable $th) {
@@ -169,14 +141,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./script/jquery-3.6.3.js"></script>
-    <script src="./script/script.js"></script>
-    <link rel="stylesheet" href="./style/style.css">
+    <script src="../script/jquery-3.6.3.js"></script>
+    <script src="../script/script.js"></script>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
     
     <?php
-        // include("./Partials/navbar.php");
+        include("./navbar.php");
     ?>
 
     <main>
@@ -322,7 +294,7 @@
     <footer class="bg-white bottom-0  p-[1vh] fixed w-screen ">
             <section class="flex justify-center items-center">
                 <p class="font-serif antialiased font-black lg:text-xl text-base	"></p>
-                Developed With <img src="./Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">
+                Developed With <img src="../Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">
                  By Team LinkedList
             </section>
     </footer>

@@ -15,6 +15,7 @@
                         <a href='./addClass.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Classes</a>
                         <a href='./addSubject.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Subjects</a>
                         <a href='./viewUsers.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Users</a>
+                        <a href='./profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Profile</a>
                         <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-2 flex justify-around items-center gap-5  '>
                             <p>  Logout</p>
                             <svg xmlns='http://www.w3.org/2000/svg'  height='1em' viewBox='0 0 512 512'>
@@ -41,6 +42,7 @@
                         <a href='./addClass.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Classes</a>
                         <a href='./addSubject.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Subjects</a>
                         <a href='./viewUsers.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Users</a>
+                        <a href='./profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Profile</a>
                         <a href='./logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-3  flex justify-around items-center gap-5'>
 
                             <p>  Logout</p>
@@ -73,6 +75,7 @@
                         <a href='./uploadQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Upload Questions</a>
                         <a href='./viewQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Questions</a>
                         <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Generate Question Paper</a>
+                        <a href='./profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Profile</a>
                         <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-2 flex justify-around items-center gap-5'>
 
                             <p>  Logout</p>
@@ -98,6 +101,7 @@
                         <a href='./uploadQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Upload Questions</a>
                         <a href='./viewQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>View Questions</a>
                         <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Generate Question Paper</a>
+                        <a href='./profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Profile</a>
                         <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-3  flex justify-around items-center gap-5'>
 
                             <p>  Logout</p>

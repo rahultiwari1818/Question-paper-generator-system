@@ -124,19 +124,19 @@
                         // }
 
                         
-                        // $to = $email;
-                        // $subject = 'Successfully Registered in Question Paper Generator System';
-                        // $message = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System.<br> Your Username is '.$username.' and Password is '.$password.' .';
-                        // $headers = 'From: qpg.system@gmail.com' . "\r\n" .
-                        //     'Reply-To: qpg.system@gmail.com' . "\r\n" .
-                        //     'X-Mailer: PHP/' . phpversion();
+                        $to = $email;
+                        $subject = 'Successfully Registered in Question Paper Generator System';
+                        $message = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System of '.$instituteName .'.<br> Your Username is '.$username.' and Password is '.$password.' .';
+                        $headers = 'From: qpg.system@gmail.com' . "\r\n" .
+                            'Reply-To: qpg.system@gmail.com' . "\r\n" .
+                            'X-Mailer: PHP/' . phpversion();
                         
-                        // if (mail($to, $subject, $message, $headers)) {
-                        //     $emailSentMsg = "Username and Password Mailed to User Successfully.!";
-                        // } else {
-                        //     // echo 'Email sending failed.';
-                        //     $emailSentMsg = "Email Could not be sent.!";
-                        // }
+                        if (mail($to, $subject, $message, $headers)) {
+                            $emailSentMsg = "Username and Password Mailed to User Successfully.!";
+                        } else {
+                            // echo 'Email sending failed.';
+                            $emailSentMsg = "Email Could not be sent.!";
+                        }
 
                         $successfull = true;
                         $fname = "";
@@ -158,7 +158,8 @@
 
                     }
                     else{
-                        echo $conn->error;
+                        // echo $conn->error;
+                        
                         
                     }
                 } catch (\Throwable $th) {

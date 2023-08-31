@@ -114,14 +114,7 @@
                                 <p class="text-md text-center sm:text-md md:text-lg"><?php echo $gender; ?></p>
                             </div>
                         </div>
-                        <div class="flex justify-end items-center px-10">
-                            <a href="../Partials/updateProfile.php" class=" w-fit flex  justify-around items-center gap-5 px-5 py-2 bg-[#FFA500] text-white border border-white hover:bg-red-500 hover:text-white rounded-lg shadow-lg">
-                                <p>Update</p>
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                       <path d="M15.8577 5.65576L12.4828 2.31158L13.7962 0.998133C14.0834 0.710966 14.4372 0.567383 14.8577 0.567383C15.2782 0.567383 15.6321 0.710966 15.9192 0.998133L17.1558 2.23466C17.4429 2.52182 17.5917 2.87053 17.6019 3.28078C17.6122 3.69103 17.4737 4.03974 17.1865 4.32691L15.8577 5.65576ZM14.7731 6.75573L4.02886 17.5H0.653931V14.125L11.3982 3.38078L14.7731 6.75573Z" fill="#fff"/>
-                                   </svg>
-                            </a>
-                        </div>
+
                     </div>
                     <div class="w-full py-3 ">
                         <p class="text-center text-xl text-red-500 bg-gray-200 p-2 shadow-xl font-bold ">Thank You</p>
