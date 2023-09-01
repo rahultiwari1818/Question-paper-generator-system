@@ -43,7 +43,7 @@
                 $_SESSION["fname"] = $row["fname"];
                 if($row["role"]=="ADMIN"){
                     $_SESSION["instituteName"]=$row["institute_name"];
-                    header("location: ./Admin/createUser.php");
+                    header("location: ./Admin/adminDashBoard.php");
                     exit();
                 }
                 else{

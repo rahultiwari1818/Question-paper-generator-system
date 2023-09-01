@@ -28,6 +28,15 @@
                 include("../Partials/navbar.php");
     ?>
 
+    <section class='p-[1vw] w-[100vw]  z-30 bg-green-500 absolute top-0 shadow-xl' id='successUserProUpdMessage'>
+                <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeUserProUpdMsg()'>
+                <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
+            </p>
+        
+                    <p class='flex justify-center items-center'>User's Profile Updated Successfully</p>
+        </section> 
+
+
         <section class='p-[1vw] w-[100vw] z-30  bg-green-500 absolute top-0 shadow-xl' id='successUserDeletionMessage'>
             <p class='  absolute lg:top-5 md:top-4 top-3  right-5 cursor-pointer' onclick='removeUDMsg()'>
                 <img src='../Assets/Icons/close.svg' alt='Close Icon'/>
@@ -52,7 +61,7 @@
                             <th class="md:p-[10px] p-[5px] border bg-blue-500">E-mail</th>
                             <th class="md:p-[10px] p-[5px] border bg-blue-500">Gender</th>
                             <th class="md:p-[10px] p-[5px] border bg-blue-500">Username</th>
-                            <!-- <th class="md:p-[10px] p-[5px] border bg-blue-500"></th> -->
+                            <th class="md:p-[10px] p-[5px] border bg-blue-500"></th>
                             <th class="md:p-[10px] p-[5px] border bg-blue-500"></th>
                         </tr>
                         </thead>
@@ -96,7 +105,41 @@
         $(document).ready(()=>{
             $("#deleteUserCnfModal").hide();
             $("#successUserDeletionMessage").hide();
+            $("#successUserProUpdMessage").hide();
             fetchUsers();
+
+
+
+            function removeParamFromCurrentURL(paramToRemove) {
+                    try {
+                        const urlWithoutParam = window.location.href.replace(
+                        new RegExp(`([?&])${paramToRemove}=[^&#]*(#.*)?$`), '$1');  
+
+                        window.history.replaceState({}, document.title, urlWithoutParam);
+                    } catch (error) {
+                        
+                    }
+
+                }
+                // setTimeout(()=>{
+
+                // },2000)
+
+                try {
+                    const params = new URLSearchParams(window.location.search);
+                    const success = params.get("success");
+                    if(success){
+                        $("#successUserProUpdMessage").show();
+
+                        setTimeout(()=>{
+                            $("#successUserProUpdMessage").hide();
+                            const paramToRemove = "success";
+                            removeParamFromCurrentURL(paramToRemove);
+                        },3000)
+                    }
+                } catch (error) {
+                    
+                }
 
             $("#preLoader").hide();
 

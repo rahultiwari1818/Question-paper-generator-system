@@ -107,7 +107,7 @@
                     header("location: login.php");         
                 }
                 else{
-                    echo $conn->error; 
+                    // echo $conn->error; 
                 }
             } catch (\Throwable $th) {
                 //throw $th;

@@ -12,11 +12,13 @@
             <section>
                 <section class='lg:block hidden'>
                     <section class='flex justify-between items-center'>
-                        <a href='./addClass.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Classes</a>
-                        <a href='./addSubject.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Subjects</a>
-                        <a href='./viewUsers.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Users</a>
-                        <a href='./profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Profile</a>
-                        <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-2 flex justify-around items-center gap-5  '>
+                        <a href='/QPG/Admin/adminDashboard.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Home</a>
+                        <a href='/QPG/Admin/createUser.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Create User</a>
+                        <a href='/QPG/Admin/viewUsers.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>View Users</a>
+                        <a href='/QPG/Admin/addClass.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Classes</a>
+                        <a href='/QPG/Admin/addSubject.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Subjects</a>
+                        <a href='/QPG/Admin/profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Profile</a>
+                        <a href='/QPG/Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-2 flex justify-around items-center gap-5  '>
                             <p>  Logout</p>
                             <svg xmlns='http://www.w3.org/2000/svg'  height='1em' viewBox='0 0 512 512'>
                             <!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -39,11 +41,13 @@
                                 </svg>
                                 
                         </section>
-                        <a href='./addClass.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Classes</a>
-                        <a href='./addSubject.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Subjects</a>
-                        <a href='./viewUsers.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Users</a>
-                        <a href='./profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Profile</a>
-                        <a href='./logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-3  flex justify-around items-center gap-5'>
+                        <a href='/QPG/Admin/adminDashBoard.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Home</a>
+                        <a href='/QPG/Admin/createUser.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Create Users</a>
+                        <a href='/QPG/Admin/viewUsers.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>View Users</a>
+                        <a href='/QPG/Admin/addClass.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Classes</a>
+                        <a href='/QPG/Admin/addSubject.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Subjects</a>
+                        <a href='/QPG/Admin/profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Profile</a>
+                        <a href='/QPG/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-3  flex justify-around items-center gap-5'>
 
                             <p>  Logout</p>
                             <svg xmlns='http://www.w3.org/2000/svg'  height='1em' viewBox='0 0 512 512'><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d='M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z' fill=''/></svg>
@@ -72,11 +76,11 @@
             <section>
                 <section class='lg:block hidden'>
                     <section class='flex justify-between items-center'>
-                        <a href='./uploadQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Upload Questions</a>
-                        <a href='./viewQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Questions</a>
-                        <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Generate Question Paper</a>
-                        <a href='./profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Profile</a>
-                        <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-2 flex justify-around items-center gap-5'>
+                        <a href='/QPG/Faculties/uploadQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Upload Questions</a>
+                        <a href='/QPG/Faculties/viewQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2  text-white'>Questions</a>
+                        <a href='/QPG/Faculties/generatePaper.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Generate Question Paper</a>
+                        <a href='/QPG/Faculties/profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-2 text-white'>Profile</a>
+                        <a href='/QPG/Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-2 flex justify-around items-center gap-5'>
 
                             <p>  Logout</p>
                             <svg xmlns='http://www.w3.org/2000/svg'  height='1em' viewBox='0 0 512 512'><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d='M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z' fill=''/></svg>
@@ -98,11 +102,11 @@
                                 </svg>
                                 
                         </section>
-                        <a href='./uploadQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Upload Questions</a>
-                        <a href='./viewQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>View Questions</a>
-                        <a href='#' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Generate Question Paper</a>
-                        <a href='./profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Profile</a>
-                        <a href='../Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-3  flex justify-around items-center gap-5'>
+                        <a href='/QPG/Faculties/uploadQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Upload Questions</a>
+                        <a href='/QPG/Faculties/viewQuestions.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>View Questions</a>
+                        <a href='/QPG/Faculties/generatePaper.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Generate Question Paper</a>
+                        <a href='/QPG/Faculties/profile.php' class='px-4 py-3 bg-blue-500 outline-white outline shadow-xl rounded-xl mx-1 my-3 text-white block'>Profile</a>
+                        <a href='/QPG/Partials/logout.php' class='px-4 py-3 bg-white outline-red-500 text-red-500 hover:outline-white hover:bg-red-500 hover:text-white outline shadow-xl rounded-xl mx-1 my-3  flex justify-around items-center gap-5'>
 
                             <p>  Logout</p>
                             <svg xmlns='http://www.w3.org/2000/svg'  height='1em' viewBox='0 0 512 512'><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d='M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z' fill=''/></svg>

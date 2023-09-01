@@ -15,13 +15,22 @@
     $phno = "" ;
     $gender = "";
     $username = "";
+    $institute = "";
     $fnameErr = "";
     $lnameErr = "";
     $emailErr = "";
     $phnoErr = "";
     $usernameErr = "";
     $genderErr = "";
+    $instituteErr = "";
     $successfull = false;
+
+    $isAdmin = false;
+
+    if($_SESSION["role"]=="ADMIN" && !isset($_GET["user"])){
+        $isAdmin = true;
+    }
+
     try {
         if(isset($_POST["submithojabhai"]) && $_POST["submithojabhai"] == "Update"){
             $fname = $_POST["fname"];
@@ -30,6 +39,14 @@
             $email = $_POST["email"];
             $phno = $_POST["phno"];
             $valid = true;
+
+            if($isAdmin){
+                $institute = $_POST["institute"];
+                if(empty($institute)){
+                    $instituteErr = "Institute  Name Can Not be Empty.!";
+                    $valid = false;
+                }
+            }
     
     
             if(isset($_POST["gender"])){
@@ -78,17 +95,29 @@
             if($valid){
                 try {
                     $uid = $_SESSION["uId"];
+                    $redirectToAdmin = false;
                     try {
                         //code...
                         if(isset( $_GET["user"])){
                             $uid = $_GET["user"];
+                            $redirectToAdmin = true;
                         }
                     } catch (\Throwable $th) {
                         //throw $th;
                 
                     }
+
+                    $sql = "";
+
+                    if($isAdmin){
+                        $sql = "update tbl_users set fname='$fname',lname='$lname',phno='$phno',email='$email',gender='$gender',institute_name='$institute' where uId = $uid";
+                    }
+                    else{
+                        $sql = "update tbl_users set fname='$fname',lname='$lname',phno='$phno',email='$email',gender='$gender' where uId = $uid";
+                    }
+
+                    
                 
-                    $sql = "update tbl_users set fname='$fname',lname='$lname',phno='$phno',email='$email',gender='$gender' where uId = $uid";
                     // $sql = "insert into tbl_users values(NULL,'$fname','$lname','USER','$phno','$email','$gender','$username','$password','$instituteName')";
                     if($conn->query($sql) == TRUE){
                         $successfull = true;
@@ -97,6 +126,7 @@
                         $email = "";
                         $phno = "" ;
                         $gender = "";
+                        $institute = "";
                         $username = "";
                         $password = "";
                         $fnameErr = "";
@@ -106,12 +136,21 @@
                         $usernameErr = "";
                         $passwordErr = "";
                         $genderErr = "";
+                        $instituteErr = "";
                        
-                         echo "Record Updated Succesfully";
-                         if(isset($_SERVER['HTTP_REFERER'])) {
-                            $previousPage = $_SERVER['HTTP_REFERER'];
-                            header("Location: $previousPage");
-                        }
+                        //  echo "Record Updated Succesfully";
+                         if($redirectToAdmin){
+                            header("location: ../Admin/viewUsers.php?success=true");
+                            exit();
+                         }
+                         else if($_SESSION["role"]=="ADMIN"){
+                            header("location: ../Admin/profile.php?success=true");
+                            exit();
+                         }
+                         else{
+                            header("location: ../Faculties/profile.php?success=true");
+                            exit();
+                         }
                     }
                     else{
                         // echo $conn->error;
@@ -160,9 +199,13 @@
     <h2 class="px-10 py-3 text-blue-500 lg:text-2xl text-lg bg-white text-center rounded-lg shadow-lg my-5 ">Update Profile</h2>
 
     <div class="flex justify-center items-center   ">
-            <form action="updateProfile.php" method="post" class="p-16  lg:p-24 bg-blue-400 rounded-2xl shadow-2xl">
+            <form action="" method="post" class="p-16  lg:p-24 bg-blue-400 rounded-2xl shadow-2xl">
                 <?php
                     $uId = $_SESSION["uId"];
+                    if(isset( $_GET["user"])){
+                        $uId = $_GET["user"];
+                        // $redirectToAdmin = true;
+                    }
                     $sql = "select * from tbl_users where uId = $uId";
                     $result = mysqli_query($conn,$sql);
                     $row = $result->fetch_assoc();                
@@ -172,6 +215,7 @@
                     $phno = $row["phno"] ;
                     $gender = $row["gender"];
                     $username = $row["username"];
+                    $institute = $row["institute_name"];
                     $fnameErr = "";
                     $lnameErr = "";
                     $emailErr = "";
@@ -270,7 +314,32 @@
                                 ?>
                             </div>
                     </div>
+                        
+    
+
                 </div>
+
+                <?php
+                        if($isAdmin){
+                            ?>
+      
+                        <div  class="my-4 flex justify-center items-center">
+                            <div class="w-full">
+
+                                <label for="institute"  class="text-white">Institute Name :</label>
+                                <br>
+                                <input type="text" name="institute"  value="<?php echo $institute;?>" placeholder="Enter  Institute's Name " class="p-2 my-2 rounded-lg shadow-lg w-full" required>
+                                <?php
+                                    if($instituteErr){
+                                        echo "<p class='text-red-500 my-3 '> $instituteErr </p>";
+                                    }
+                                ?>
+                            </div>
+                         </div>
+                     <?php
+                        }
+                    ?>
+                      
                 <div class="flex justify-center items-center p-5">
                     <input type="submit" id="submitBtn" name="submithojabhai" value="Update" class="px-5 py-2 bg-white text-red-500 border border-red-500 hover:bg-red-500 hover:text-white rounded-lg shadow-lg">
                 </div>
