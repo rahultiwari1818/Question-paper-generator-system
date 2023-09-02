@@ -126,7 +126,8 @@
                         
                         $to = $email;
                         $subject = 'Successfully Registered in Question Paper Generator System';
-                        $message = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System of '.$instituteName .'.<br> Your Username is '.$username.' and Password is '.$password.' .';
+                        $message = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System of '.$instituteName
+                         .'.<br> Your Username is '.$username.' and Password is '.$password.' .';
                         $headers = 'From: qpg.system@gmail.com' . "\r\n" .
                             'Reply-To: qpg.system@gmail.com' . "\r\n" .
                             'X-Mailer: PHP/' . phpversion();

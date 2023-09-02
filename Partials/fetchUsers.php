@@ -11,7 +11,7 @@
 
     try {
 
-        $sql = "select * from tbl_users where role != 'ADMIN'";
+        $sql = "select uId,fname,lname,role,phno,email,gender,username,institute_name from tbl_users where role != 'ADMIN'";
         $result = mysqli_query($conn,$sql);
 
         $arr = array();
