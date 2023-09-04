@@ -66,7 +66,8 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                         </p>
                         <p class="text-lg bg-blue-500 text-white p-2 my-2 rounded-xl shadow-xl text-center">
                             Total Marks :
-                            <?php echo $_SESSION["totalMarks"]; ?>
+                            <input type="number" value="<?php echo $_SESSION['totalMarks']; ?>" name="" id="totalSetMarks" class="bg-transparent" disabled>
+                            
                         </p>
                         <p class="text-lg bg-blue-500 text-white p-2 my-2 rounded-xl shadow-xl text-center">
                             Total Time :
@@ -187,7 +188,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                     1 Mark
                                 </td>
                                 <td class="p-[10px] border ">
-                                    <input type="number" id="totalMcqs" name="totalMcqs" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" 
+                                    <input type="number" id="totalMcqs" name="totalMcqs" class=" block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  value="0"   min="0"
                                         <?php 
                                             if($mcqsInDb==0){
                                                 echo "disabled";
@@ -198,7 +199,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="optionalMcqs" id="optionalMcqs"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"   min="0"
                                         <?php 
                                             if($mcqsInDb==0){
                                                 echo "disabled";
@@ -239,7 +240,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 </td>
                                 <td class="p-[10px] border ">
 
-                                    <input type="number" name="totalFib" id="totalFib" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                    <input type="number" name="totalFib" id="totalFib" class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                         <?php 
                                             if($fibInDb==0){
                                                 echo "disabled";
@@ -251,7 +252,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number"  name="optionalFib" id="optionalFib"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                         <?php 
                                             if($fibInDb==0){
                                                 echo "disabled";
@@ -294,7 +295,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number"  name="totalTf" id="totalTf"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                         <?php 
                                             if($tfInDb==0){
                                                 echo "disabled";
@@ -306,7 +307,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number"  name="optionalTf" id="optionalTf"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                         <?php 
                                             if($tfInDb==0){
                                                 echo "disabled";
@@ -350,7 +351,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="totalAtf1" id="totalAtf1"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                              <?php 
                                             if($atf1InDb==0){
                                                 echo "disabled";
@@ -362,7 +363,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="optionalAtf1" id="optionalAtf1"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                           
                                            <?php 
                                             if($atf2InDb==0){
@@ -407,7 +408,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="totalAtf2" id="totalAtf2"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                            <?php 
                                             if($atf2InDb==0){
                                                 echo "disabled";
@@ -419,7 +420,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="optionalAtf2" id="optionalAtf2"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                            <?php 
                                             if($atf2InDb==0){
                                                 echo "disabled";
@@ -462,7 +463,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="totalAtf3" id="totalAtf3"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                            <?php 
                                             if($atf3InDb==0){
                                                 echo "disabled";
@@ -474,7 +475,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="optionalAtf3" id="optionalAtf3"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                            <?php 
                                             if($atf3InDb==0){
                                                 echo "disabled";
@@ -517,7 +518,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="totalAtf4" id="totalAtf4"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                            <?php 
                                             if($atf4InDb==0){
                                                 echo "disabled";
@@ -529,7 +530,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="optionalAtf4" id="optionalAtf4"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                            <?php 
                                             if($atf4InDb==0){
                                                 echo "disabled";
@@ -572,7 +573,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="totalAtf5" id="totalAtf5"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                            <?php 
                                             if($atf5InDb==0){
                                                 echo "disabled";
@@ -584,7 +585,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="optionalAtf5" id="optionalAtf5"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                            <?php 
                                             if($atf5InDb==0){
                                                 echo "disabled";
@@ -629,7 +630,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="totalAtf7" id="totalAtf7"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" value="0"  min="0"
                                            <?php 
                                             if($atf7InDb==0){
                                                 echo "disabled";
@@ -641,7 +642,7 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 <td class="p-[10px] border ">
 
                                     <input type="number" name="optionalAtf7" id="optionalAtf7"
-                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"
+                                        class="block shadow-xl  my-1 appearance-none w-full py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300"  value="0"  min="0"
                                            <?php 
                                             if($atf7InDb==0){
                                                 echo "disabled";
@@ -658,8 +659,11 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="6">
-                                    <button class="px-5 w-full py-2 bg-white text-red-500 border border-red-500 hover:bg-red-500 hover:text-white rounded-lg shadow-xl">Lock and Proceed</button>
+                                <td  class="p-[10px] border " colspan="2">
+                                        <p>Total Marks of Selected Questions : <span class="text-red-500 font-semibold" id="totalSelectedMarksSection">0</span> </p>
+                                </td>
+                                <td  class="p-[10px] border " colspan="4">
+                                    <input type="submit" value="Lock and Proceed" id="btnSubmit" name="lockhojabhai" class="px-5 w-full py-2 bg-white text-red-500 border border-red-500 hover:bg-red-500 hover:text-white rounded-lg shadow-xl">
                                 </td>
                             </tr>
                         </tbody>
@@ -685,40 +689,64 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
         $(document).ready(() => {
             $("#preLoader").hide();
 
+            let totalMarksForMcqs = 0 ;
+            let totalMarksForFib = 0 ;
+            let totalMarksForTf = 0 ;
+            let totalMarksForAtf1 = 0 ;
+            let totalMarksForAtf2 = 0 ;
+            let totalMarksForAtf3 = 0 ;
+            let totalMarksForAtf4 = 0 ;
+            let totalMarksForAtf5 = 0 ;
+            let totalMarksForAtf7 = 0 ;
+
+            let grandTotal = 0;
+
+            $("#btnSubmit").prop("disabled",true);
 
             // ---------------------------- Validation for Total Values ------------------------------------
 
             $("#totalMcqs").keyup(function(){
-                    valueValidation("mcqsInDb","totalMcqs")
+                    valueValidation("mcqsInDb","totalMcqs",true)
+                   totalMarksForMcqs = calculateQtypeWiseMarks("totalMcqs","optionalMcqs",1);
                 })
 
                 $("#totalFib").keyup(function(){
-                    valueValidation("fibInDb","totalFib")
+                    valueValidation("fibInDb","totalFib",true)
+                    totalMarksForFib = calculateQtypeWiseMarks("totalFib","optionalFib",1);
+
                 })
 
                 $("#totalTf").keyup(function(){
-                    valueValidation("tfInDB","totalTf")
+                    valueValidation("tfInDB","totalTf",true)
+                    totalMarksForTf = calculateQtypeWiseMarks("totalTf","optionalTf",1);
+
                 })
 
                 $("#totalAtf1").keyup(function(){
-                    valueValidation("atf1InDb","totalAtf1")
+                    valueValidation("atf1InDb","totalAtf1",true);
+                    totalMarksForAtf1 = calculateQtypeWiseMarks("totalAtf1","optionalAtf1",1);
                 })
 
                 $("#totalAtf2").keyup(function(){
-                    valueValidation("atf2InDb","totalAtf2")
+                    valueValidation("atf2InDb","totalAtf2",true);
+                    totalMarksForAtf2 = calculateQtypeWiseMarks("totalAtf2","optionalAtf2",2);
                 })
 
                 $("#totalAtf3").keyup(function(){
-                    valueValidation("atf3InDb","totalAtf3")
+                    valueValidation("atf3InDb","totalAtf3",true);
+                    totalMarksForAtf3 = calculateQtypeWiseMarks("totalAtf3","optionalAtf3",3);
                 })
                 $("#totalAtf4").keyup(function(){
-                    valueValidation("atf4InDb","totalAtf4")
+                    valueValidation("atf4InDb","totalAtf4",true)
+                    totalMarksForAtf4 = calculateQtypeWiseMarks("totalAtf4","optionalAtf4",4);
                 })
                 $("#totalAtf5").keyup(function(){
-                    valueValidation("atf5InDb","totalAtf5")
+                    valueValidation("atf5InDb","totalAtf5",true);
+                    totalMarksForAtf5 = calculateQtypeWiseMarks("totalAtf5","optionalAtf5",5);
                 });
                 $("#totalAtf7").keyup(function(){
-                    valueValidation("atf7InDb","totalAtf7")
+                    valueValidation("atf7InDb","totalAtf7",true);
+                    totalMarksForAtf7 = calculateQtypeWiseMarks("totalAtf7","optionalAtf7",7);
                 });
 
             //  ----------------------------------------------------------------------------------------
@@ -729,53 +757,122 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
 
                 $("#optionalMcqs").keyup(function(){
                     valueValidation("totalMcqs","optionalMcqs")
+                    totalMarksForMcqs = calculateQtypeWiseMarks("totalMcqs","optionalMcqs",1);
                 })
 
                 $("#optionalFib").keyup(function(){
                     valueValidation("totalFib","optionalFib")
+                    totalMarksForFib = calculateQtypeWiseMarks("totalFib","optionalFib",1);
                 })
 
                 $("#optionalTf").keyup(function(){
-                    valueValidation("totalTf","optionalTf")
+                    valueValidation("totalTf","optionalTf");
+                    totalMarksForTf = calculateQtypeWiseMarks("totalTf","optionalTf",1);
                 })
 
                 $("#optionalAtf1").keyup(function(){
-                    valueValidation("totalAtf1","optionalAtf1")
+                    valueValidation("totalAtf1","optionalAtf1");
+                    totalMarksForAtf1 = calculateQtypeWiseMarks("totalAtf1","optionalAtf1",1);
+
                 })
 
                 $("#optionalAtf2").keyup(function(){
-                    valueValidation("totalAtf2","optionalAtf2")
+                    valueValidation("totalAtf2","optionalAtf2");
+                    totalMarksForAtf2 = calculateQtypeWiseMarks("totalAtf2","optionalAtf2",2);
                 })
 
                 $("#optionalAtf3").keyup(function(){
-                    valueValidation("totalAtf3","optionalAtf3")
+                    valueValidation("totalAtf3","optionalAtf3");
+                    totalMarksForAtf3 = calculateQtypeWiseMarks("totalAtf3","optionalAtf3",3);
                 })
                 $("#optionalAtf4").keyup(function(){
-                    valueValidation("totalAtf4","optionalAtf4")
+                    valueValidation("totalAtf4","optionalAtf4");
+                    totalMarksForAtf4 = calculateQtypeWiseMarks("totalAtf4","optionalAtf4",4);
                 })
                 $("#optionalAtf5").keyup(function(){
-                    valueValidation("totalAtf5","optionalAtf5")
+                    valueValidation("totalAtf5","optionalAtf5");
+                    totalMarksForAtf5 = calculateQtypeWiseMarks("totalAtf5","optionalAtf5",5);
                 });
                 $("#optionalAtf7").keyup(function(){
-                    valueValidation("totalAtf7","optionalAtf7")
+                    valueValidation("totalAtf7","optionalAtf7");
+                    totalMarksForAtf7 = calculateQtypeWiseMarks("totalAtf7","optionalAtf7",7);
                 });
 
             //  ----------------------------------------------------------------------------------------
 
 
 
-            function valueValidation(total,optional){
+            function valueValidation(total,optional,flag){
                  var totalInput = $("#"+total);
                  var optionalInput = $("#"+optional);
                 
                 // Attach a keyup event handler to the optional input field
                     var totalValue = parseInt(totalInput.val());
                     var optionalValue = parseInt(optionalInput.val());
+
+                    if(isNaN(totalValue)){
+                        optionalInput.val(0); // Set optional value to total value
+                        totalInput.val(0); // Set optional value to total value
+                        return;
+                    }
+
+                    if(flag){
+
+                        if (optionalValue > totalValue) {
+                            optionalInput.val(totalValue-1); // Set optional value to total value
+                        }
+                    }
+                    else{
+                        if (optionalValue >= totalValue) {
+                            optionalInput.val(totalValue-1); // Set optional value to total value
+                        }
+
+                    }
                 
                     // Check if optional value is greater than total value
-                    if (optionalValue > totalValue) {
-                        optionalInput.val(totalValue-1); // Set optional value to total value
+                    
+            }
+
+            function calculateQtypeWiseMarks(total,optional,weightage){
+
+                var totalInput = $("#"+total);
+                var optionalInput = $("#"+optional);
+                
+                // Attach a keyup event handler to the optional input field
+                var totalValue = parseInt(totalInput.val());
+                var optionalValue = parseInt(optionalInput.val());
+
+                if(isNaN(totalValue)){
+                    totalValue = 0;
+                    return 0;
+                }
+                if(isNaN(optionalValue)){
+                    optionalValue = 0;
+                }
+
+                
+
+                let totalMarks =  (totalValue - optionalValue) * weightage;
+                calculateTotalMarks();
+                return totalMarks;
+            }
+
+
+            function calculateTotalMarks(){
+                setTimeout(()=>{
+                    let total = (totalMarksForAtf1+totalMarksForAtf2+totalMarksForAtf3+totalMarksForAtf4+totalMarksForAtf5+totalMarksForAtf7+totalMarksForFib+totalMarksForMcqs+totalMarksForTf);
+                    $("#totalSelectedMarksSection").text(total);
+                    if(total != $("#totalSetMarks").val()){
+                        $("#totalSelectedMarksSection").removeClass("text-green-500");
+                        $("#totalSelectedMarksSection").addClass("text-red-500");
+                        $("#btnSubmit").prop("disabled",true);
                     }
+                    else{
+                        $("#totalSelectedMarksSection").removeClass("text-red-500");
+                        $("#totalSelectedMarksSection").addClass("text-green-500");
+                        $("#btnSubmit").prop("disabled",false);
+                    }
+                },500)
             }
 
 

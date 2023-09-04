@@ -1,0 +1,4 @@
+            $sql = "insert into tbl_questions values(NULL,'$question','$type','$option1','$option2','$option3','$option4','$level',$weightage,$chapter,$class,$sub,$uid,'$currentDate')";
+
+
+insert into tbl_questions values(NULL,);

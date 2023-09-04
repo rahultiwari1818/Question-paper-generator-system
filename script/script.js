@@ -612,6 +612,9 @@ function searchQuestion() {
 
     fetch(`http://localhost/qpg/Partials/searchQuestion.php?question=${searchString}&type=${type}&class=${_class}&subject=${subject}`)
         .then((res) => res.json())
+        .catch((err)=>{
+            console.log(err)
+        })
         .then((res) => {
             console.log(res)
             if (res?.data) {

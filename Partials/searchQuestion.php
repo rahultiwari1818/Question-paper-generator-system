@@ -141,13 +141,25 @@
                 JOIN tbl_class b ON a.classId = b.cId
                 JOIN tbl_subjects c ON a.subId = c.sId
                 $whereClause";
+        // echo $sql;
 
         $result = mysqli_query($conn, $sql);
-        $arr = array();
-        while ($row = $result->fetch_assoc()) {
+        // print_r($result);
+        // $arr = array();
+        while($row = mysqli_fetch_assoc($result)){
             $arr[] = $row;
+            // print_r($row);
+            // echo "<br>";
+
+        };
+        // echo json_encode(["hey"=>"hey"]);
+        $json =  json_encode(["status" => 200,"data" =>$arr, "result" => true]);
+        // echo json_encode();
+        if ($json === false) {
+            echo json_last_error_msg();
+        } else {
+            echo $json;
         }
-        echo json_encode(["status" => 200, "data" => $arr, "result" => true]);
 
     }
     catch (\Throwable $th) {
