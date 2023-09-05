@@ -159,23 +159,22 @@
     </main>
 
 
-         <!--------------------------------------------------------- PreLoader ---------------------------------------------------- -->
+ <!--------------------------------------------------------- PreLoader ---------------------------------------------------- -->
 
 
 
          <div id="preLoader" class="absolute h-[100vh] z-50 w-[100vw] top-0 bg-white"></div>
 
 <!--------------------------------------------------------- ------------------------------- ---------------------------------------------------- -->
-                <!--------------------------------------------------------- Update Modal ---------------------------------------------------- -->
+<!--------------------------------------------------------- Update Modal ---------------------------------------------------- -->
 
-                <div id="passwordUpdateModal" class="flex justify-center items-center top-0 w-[100vw] h-[100vh] fixed bg-opacity-80  bg-gray-100">
+            <div id="passwordUpdateModal" class="flex justify-center items-center top-0 w-[100vw] h-[100vh] fixed bg-opacity-80  bg-gray-100">
                 <div class="bg-white lg:p-10 p-5 rounded-xl shadow-xl max-w-2/3">
 
                     <div class="float-right -mt-4 -mr-3 cursor-pointer" onclick="closeUpdatePasswordModal()">
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.40002 13.6534L0.346191 12.5995L5.94619 6.99953L0.346191 1.39953L1.40002 0.345703L7.00002 5.9457L12.6 0.345703L13.6538 1.39953L8.05384 6.99953L13.6538 12.5995L12.6 13.6534L7.00002 8.05335L1.40002 13.6534Z" fill="#000000"/>
                         </svg>
-
                     </div>
                     <div class=" lg:p-10 p-5 rounded-xl shadow-xl bg-blue-500">
                         <form action="" id="updatePasswordForm">
@@ -224,7 +223,7 @@
                         
                     }
 
-                }
+            }
                 // setTimeout(()=>{
 
                 // },2000)

@@ -47,6 +47,7 @@
                     exit();
                 }
                 else{
+                    $_SESSION["instituteName"]=$row["institute_name"];
                     header("location: ./Faculties/uploadQuestions.php");
                     exit();
                 }
