@@ -117,7 +117,7 @@ if (isset($_POST["totalAtf7"])) {
         </section>
 
         <section class="flex justify-center items-center">
-            <section class="  p-5 bg-white rounded-lg shadow-lg">
+            <section class="  p-5 bg-white rounded-lg shadow-lg" id="paperContent">
                 <section class="border border-2 p-3">
                     <section>
                         <p class="text-center text-2xl font-semibold">
@@ -172,6 +172,8 @@ if (isset($_POST["totalAtf7"])) {
                         if ($totalMcqs) {
                             $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'mcqs'  ORDER BY RAND() limit $totalMcqs";
                             $result = $conn->query($sql);
+                            // echo $result->num_rows;
+                            // echo " ".$totalMcqs; 
                             $selectedQuestions = [];
                     ?>
                         <section class="my-4 px-5">
@@ -253,7 +255,7 @@ if (isset($_POST["totalAtf7"])) {
                     ?>
                         <section class="my-4 px-5">
                             <section class="flex justify-between items-center">
-                                <p class="font-semibold -ml-2">Fill In the Blanks. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalTf-$optionalTf; ?> )</p>
+                                <p class="font-semibold -ml-2">True or False. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalTf-$optionalTf; ?> )</p>
                                 <p class="font-semibold">(<?php echo $totalTf; ?>)</p>
                             </section>
                     <?php
@@ -277,6 +279,218 @@ if (isset($_POST["totalAtf7"])) {
 
                         }
                     ?>
+
+                    <?php
+                        if ($totalAtf1) {
+                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf1";
+                            $result = $conn->query($sql);
+                            $selectedQuestions = [];
+                    ?>
+                        <section class="my-4 px-5">
+                            <section class="flex justify-between items-center">
+                                <p class="font-semibold -ml-2">Answer The Following Questions - 1 Mark Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf1-$optionalAtf1; ?> )</p>
+                                <p class="font-semibold">(<?php echo $totalAtf1; ?>)</p>
+                            </section>
+                    <?php
+                            $srno = 1;
+                            while ($row = $result->fetch_assoc()) {
+                    ?>
+                            <section class="my-2">
+                                <section class="flex justify-start gap-3">
+                                    <p><?echo $srno;?>.</p>
+                                    <p><?echo $row["question"];?></p>
+                                </section>
+
+                            </section>
+                    <?php
+                            $srno+=1;
+                        }
+
+                    ?>
+                        </section>  
+                    <?php
+
+                        }
+                    ?>
+
+
+
+                    <?php
+                        if ($totalAtf2) {
+                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf2";
+                            $result = $conn->query($sql);
+                            $selectedQuestions = [];
+                    ?>
+                        <section class="my-4 px-5">
+                            <section class="flex justify-between items-center">
+                                <p class="font-semibold -ml-2">Answer The Following Questions - 2 Marks Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf2-$optionalAtf2; ?> )</p>
+                                <p class="font-semibold">(<?php echo (($totalAtf2-$optionalAtf2)*2); ?>)</p>
+                            </section>
+                    <?php
+                            $srno = 1;
+                            while ($row = $result->fetch_assoc()) {
+                    ?>
+                            <section class="my-2">
+                                <section class="flex justify-start gap-3">
+                                    <p><?echo $srno;?>.</p>
+                                    <p><?echo $row["question"];?></p>
+                                </section>
+
+                            </section>
+                    <?php
+                            $srno+=1;
+                        }
+
+                    ?>
+                        </section>  
+                    <?php
+
+                        }
+                    ?>
+
+
+                    <?php
+                        if ($totalAtf3) {
+                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf3";
+                            $result = $conn->query($sql);
+                            $selectedQuestions = [];
+                    ?>
+                        <section class="my-4 px-5">
+                            <section class="flex justify-between items-center">
+                                <p class="font-semibold -ml-2">Answer The Following Questions - 3 Marks Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf3-$optionalAtf3; ?> )</p>
+                                <p class="font-semibold">(<?php echo (($totalAtf3-$optionalAtf3)*3); ?>)</p>
+                            </section>
+                    <?php
+                            $srno = 1;
+                            while ($row = $result->fetch_assoc()) {
+                    ?>
+                            <section class="my-2">
+                                <section class="flex justify-start gap-3">
+                                    <p><?echo $srno;?>.</p>
+                                    <p><?echo $row["question"];?></p>
+                                </section>
+
+                            </section>
+                    <?php
+                            $srno+=1;
+                        }
+
+                    ?>
+                        </section>  
+                    <?php
+
+                        }
+                    ?>
+
+
+
+
+                    <?php
+                        if ($totalAtf4) {
+                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf4";
+                            $result = $conn->query($sql);
+                            $selectedQuestions = [];
+                    ?>
+                        <section class="my-4 px-5">
+                            <section class="flex justify-between items-center">
+                                <p class="font-semibold -ml-2">Answer The Following Questions - 4 Marks Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf4-$optionalAtf4; ?> )</p>
+                                <p class="font-semibold">(<?php echo (($totalAtf4-$optionalAtf4)*4); ?>)</p>
+                            </section>
+                    <?php
+                            $srno = 1;
+                            while ($row = $result->fetch_assoc()) {
+                    ?>
+                            <section class="my-2">
+                                <section class="flex justify-start gap-3">
+                                    <p><?echo $srno;?>.</p>
+                                    <p><?echo $row["question"];?></p>
+                                </section>
+
+                            </section>
+                    <?php
+                            $srno+=1;
+                        }
+
+                    ?>
+                        </section>  
+                    <?php
+
+                        }
+                    ?>
+
+
+
+
+
+                    <?php
+                        if ($totalAtf5) {
+                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf5";
+                            $result = $conn->query($sql);
+                            $selectedQuestions = [];
+                    ?>
+                        <section class="my-4 px-5">
+                            <section class="flex justify-between items-center">
+                                <p class="font-semibold -ml-2">Answer The Following Questions - 5 Marks Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf5-$optionalAtf5; ?> )</p>
+                                <p class="font-semibold">(<?php echo (($totalAtf5-$optionalAtf5)*5); ?>)</p>
+                            </section>
+                    <?php
+                            $srno = 1;
+                            while ($row = $result->fetch_assoc()) {
+                    ?>
+                            <section class="my-2">
+                                <section class="flex justify-start gap-3">
+                                    <p><?echo $srno;?>.</p>
+                                    <p><?echo $row["question"];?></p>
+                                </section>
+
+                            </section>
+                    <?php
+                            $srno+=1;
+                        }
+
+                    ?>
+                        </section>  
+                    <?php
+
+                        }
+                    ?>
+
+
+
+
+                    <?php
+                        if ($totalAtf7) {
+                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf7";
+                            $result = $conn->query($sql);
+                            $selectedQuestions = [];
+                    ?>
+                        <section class="my-4 px-5">
+                            <section class="flex justify-between items-center">
+                                <p class="font-semibold -ml-2">Answer The Following Questions - 7 Marks Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf7-$optionalAtf7; ?> )</p>
+                                <p class="font-semibold">(<?php echo (($totalAtf7-$optionalAtf7)*7); ?>)</p>
+                            </section>
+                    <?php
+                            $srno = 1;
+                            while ($row = $result->fetch_assoc()) {
+                    ?>
+                            <section class="my-2">
+                                <section class="flex justify-start gap-3">
+                                    <p><?echo $srno;?>.</p>
+                                    <p><?echo $row["question"];?></p>
+                                </section>
+
+                            </section>
+                    <?php
+                            $srno+=1;
+                        }
+
+                    ?>
+                        </section>  
+                    <?php
+
+                        }
+                    ?>
+
 
 
 

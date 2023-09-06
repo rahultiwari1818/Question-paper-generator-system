@@ -857,4 +857,10 @@ function getQuestionData(id) {
 // -----------------------------------------------------------------------------------------------------------
 
 
+function fillContent(id){
+    let content = $("#paperContent");
+    console.log(content)
+    $("#"+id).html(content);
+}
+
 

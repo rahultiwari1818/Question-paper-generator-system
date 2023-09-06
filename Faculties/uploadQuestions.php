@@ -90,10 +90,27 @@
 
         if(!$err){
             $question = addslashes($question);
-            $options = addslashes($options);
+            $$option1 = addslashes($$option1);
+            $$option2 = addslashes($$option2);
+            $$option3 = addslashes($$option3);
+            $$option4 = addslashes($$option4);
+            // $options = addslashes($options);
+            $question = htmlspecialchars($question);
+            $option1 = htmlspecialchars($option1);
+            $option2 = htmlspecialchars($option2);
+            $option3 = htmlspecialchars($option3);
+            $option4 = htmlspecialchars($option4);
             $currentDate = date("Y-m-d");
-            $sql = "insert into tbl_questions values(NULL,'$question','$type','$option1','$option2','$option3','$option4','$level',$weightage,$chapter,$class,$sub,$uid,'$currentDate')";
-            if($conn->query($sql) === TRUE){
+            $sql = "INSERT INTO tbl_questions VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+// Create a prepared statement
+            $stmt = $conn->prepare($sql);
+
+// Bind parameters to the placeholders
+            $stmt->bind_param("ssssssssiiiss", $question, $type, $option1, $option2, $option3, $option4, $level, $weightage, $chapter, $class, $sub, $uid, $currentDate);
+
+            // $sql = "insert into tbl_questions values(NULL,'$question','$type','$option1','$option2','$option3','$option4','$level',$weightage,$chapter,$class,$sub,$uid,'$currentDate')";
+            if($stmt->execute()){
                 $successfull = true;
                 $question = "" ;
                 $type="";
@@ -363,3 +380,6 @@
 
 </body>
 </html>
+
+
+

@@ -86,9 +86,10 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
 
                 <?php
                     $uid = $_SESSION["uId"];
+                    $sid = $_SESSION["selectedSubject"];
 
                     // To count no of MCQS in Db
-                    $sql = "select count(*) as count from tbl_questions where uId = $uid and q_type='mcqs'";
+                    $sql = "select count(*) as count from tbl_questions where uId = $uid  and subId = $sid and q_type='mcqs'";
                     $result = mysqli_query($conn, $sql);
                     $row = $result->fetch_assoc();
                     $mcqsInDb = $row["count"];
@@ -96,55 +97,55 @@ if ((!isset($_SESSION["selectedClass"])) || (!isset($_SESSION["selectedSubject"]
 
 
                     // To count no of FIB in Db
-                    $sql = "select count(*) as count from tbl_questions where uId = $uid and q_type='fib'";
+                    $sql = "select count(*) as count from tbl_questions where uId = $uid   and subId = $sid and q_type='fib'";
                     $result = mysqli_query($conn, $sql);
                     $row = $result->fetch_assoc();
                     $fibInDb = $row["count"];
 
 
                     // To count no of TF in Db
-                    $sql = "select count(*) as count from tbl_questions where uId = $uid and q_type='tf'";
+                    $sql = "select count(*) as count from tbl_questions where uId = $uid   and subId = $sid and q_type='tf'";
                     $result = mysqli_query($conn, $sql);
                     $row = $result->fetch_assoc();
                     $tfInDb = $row["count"];
 
 
                     // To count no of ATF1 in Db
-                    $sql = "select count(*) as count from tbl_questions where uId = $uid and q_type='atf' and weightage=1";
+                    $sql = "select count(*) as count from tbl_questions where uId = $uid   and subId = $sid and q_type='atf' and weightage=1";
                     $result = mysqli_query($conn, $sql);
                     $row = $result->fetch_assoc();
                     $atf1InDb = $row["count"];
 
 
                     // To count no of ATF2 in Db
-                    $sql = "select count(*) as count from tbl_questions where uId = $uid  and q_type='atf' and weightage=2";
+                    $sql = "select count(*) as count from tbl_questions where uId = $uid    and subId = $sid and q_type='atf' and weightage=2";
                     $result = mysqli_query($conn, $sql);
                     $row = $result->fetch_assoc();
                     $atf2InDb = $row["count"];
 
 
                     // To count no of atf3 in Db
-                    $sql = "select count(*) as count from tbl_questions where uId = $uid  and q_type='atf' and weightage=3";
+                    $sql = "select count(*) as count from tbl_questions where uId = $uid    and subId = $sid and q_type='atf' and weightage=3";
                     $result = mysqli_query($conn, $sql);
                     $row = $result->fetch_assoc();
                     $atf3InDb = $row["count"];
 
 
                     // To count no of atf4 in Db
-                    $sql = "select count(*) as count from tbl_questions where uId = $uid  and q_type='atf' and weightage=4";
+                    $sql = "select count(*) as count from tbl_questions where uId = $uid    and subId = $sid and q_type='atf' and weightage=4";
                     $result = mysqli_query($conn, $sql);
                     $row = $result->fetch_assoc();
                     $atf4InDb = $row["count"];
 
 
                     // To count no of atf5 in Db
-                    $sql = "select count(*) as count from tbl_questions where uId = $uid and  q_type='atf' and weightage=5";
+                    $sql = "select count(*) as count from tbl_questions where uId = $uid   and subId = $sid and  q_type='atf' and weightage=5";
                     $result = mysqli_query($conn, $sql);
                     $row = $result->fetch_assoc();
                     $atf5InDb = $row["count"];
 
                     // To count no of atf7 in Db
-                    $sql = "select count(*) as count from tbl_questions where uId = $uid and  q_type='atf' and weightage=7";
+                    $sql = "select count(*) as count from tbl_questions where uId = $uid   and subId = $sid and  q_type='atf' and weightage=7";
                     $result = mysqli_query($conn, $sql);
                     $row = $result->fetch_assoc();
                     $atf7InDb = $row["count"];

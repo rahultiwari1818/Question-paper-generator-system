@@ -6,6 +6,7 @@
     <title>Testing Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./script/jquery-3.6.3.js"></script>
+    <script src="./script/script.js"></script>
     <link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
@@ -59,6 +60,10 @@
         </section>
     </nav>
 
+    <main id="content">
+
+    </main>
+
 
      <script>
         $("#hamburgerSection").hide();
@@ -105,6 +110,8 @@
     <script>
         $(document).ready(()=>{
             // if(sessionStorage)
+            // $("main").html($("#pageContent").html());
+            fillContent("content");
         })
     </script>
 </body>
