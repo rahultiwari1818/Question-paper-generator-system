@@ -85,433 +85,294 @@ if (isset($_POST["totalAtf7"])) {
 
 // -----------------------------------------------------------------------------------
 
+$paperContent = "";
+$institute_name = $_SESSION["instituteName"];
 
+
+
+$cid = $_SESSION["selectedClass"];
+$sql = "select *  from tbl_class where cId = $cid";
+$result = mysqli_query($conn, $sql);
+$row = $result->fetch_assoc();
+$class = $row["class"];
+
+$sid = $_SESSION["selectedSubject"];
+$sql = "select *  from tbl_subjects where sId = $sid";
+$result = mysqli_query($conn, $sql);
+$row = $result->fetch_assoc();
+$subject = $row["subject"];
+
+$total_marks = $_SESSION['totalMarks'];
+$total_time = $_SESSION["totalTime"];
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generate Paper</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../script/jquery-3.6.3.js"></script>
-    <script src="../script/script.js"></script>
-    <link rel="stylesheet" href="../style/style.css">
-</head>
-
-<body>
 
 
-    <?php
-    include("../Partials/navbar.php");
-    ?>
 
-    <main>
-        <section class="flex justify-center items-center">
-            <h2
-                class="px-10 md:w-1/2 py-3 text-blue-500 lg:text-2xl text-lg bg-white text-center rounded-lg shadow-lg my-5 ">
-                Generated Paper</h2>
+<?php
+$paperContent .= '<section style="border: 2px solid #000; padding: 0.75rem;">
+    <section>
+        <p style="text-align: center; font-size: 2rem; font-weight: bold;">
+            ' . $institute_name . '
+        </p>
+    </section>
+    <section>
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-size: 1.5rem; margin-top: 1rem; font-weight: bold;">
+                <span style="font-weight: bold;">Class:</span>
+                ' . $class . '
+            </p>
+            <p style="font-size: 1.5rem; margin-top: 1rem; font-weight: bold;">
+                <span style="font-weight: bold;">Subject:</span>
+                ' . $subject . '
+            </p>
         </section>
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-size: 1.5rem; margin-top: 1rem; font-weight: bold;">
+                <span style="font-weight: bold;">Total Marks:</span>
+                <input type="number" value="' . $total_marks . '" style="background: transparent;" disabled>
+            </p>
+            <p style="font-size: 1.5rem; margin-top: 1rem; font-weight: bold;">
+                <span style="font-weight: bold;">Total Time:</span>
+                ' . $total_time . ' <span style="font-weight: bold;">Minutes.</span>
+            </p>
+        </section>
+    </section>
+</section>
+<section style="border: 2px solid #000; padding: 0.75rem;">';
 
-        <section class="flex justify-center items-center">
-            <section class="  p-5 bg-white rounded-lg shadow-lg" id="paperContent">
-                <section class="border border-2 p-3">
-                    <section>
-                        <p class="text-center text-2xl font-semibold">
-                            <?php echo $_SESSION["instituteName"]; ?>
-                        </p>
-                    </section>
-                    <section>
-                        <section class="flex justify-between items-center gap-10">
-                            <p class="text-lg  my-4 ">
-                                <span class="font-semibold"> Class : <span>
-                                        <?php
-                                        $cid = $_SESSION["selectedClass"];
-                                        $sql = "select *  from tbl_class where cId = $cid";
-                                        $result = mysqli_query($conn, $sql);
-                                        $row = $result->fetch_assoc();
-                                        $class = $row["class"];
-                                        echo $class;
-                                        ?>
-                            </p>
-                            <p class="text-lg   my-4 ">
-                                <span class="font-semibold"> Subject : <span>
+if ($totalMcqs) {
+    $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'mcqs'  ORDER BY RAND() limit $totalMcqs";
+    $result = $conn->query($sql);
 
-                                        <?php
-                                        $sid = $_SESSION["selectedSubject"];
-                                        $sql = "select *  from tbl_subjects where sId = $sid";
-                                        $result = mysqli_query($conn, $sql);
-                                        $row = $result->fetch_assoc();
-                                        $subject = $row["subject"];
-                                        echo $subject;
-                                        ?>
-                            </p>
-                        </section>
-                        <section class="flex justify-between items-center gap-10">
-                            <p class="text-lg my-4">
-                                <span class="font-semibold"> Total Marks : <span>
-                                        <input type="number" value="<?php echo $_SESSION['totalMarks']; ?>" name=""
-                                            id="totalSetMarks" class="bg-transparent" disabled>
+    $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-weight: bold; margin-left: -0.75rem;">Multiple Choice Questions. (Any ' . ($totalMcqs - $optionalMcqs) . ')</p>
+            <p style="font-weight: bold;">(' . $totalMcqs . ')</p>
+        </section>';
 
-                            </p>
-                            <p class="text-lg my-4">
-                                <span class="font-semibold"> Total Time : <span>
-                                        <?php echo $_SESSION["totalTime"]; ?>
-                                        <span class="font-semibold"> Minutes. <span>
-
-                            </p>
-                        </section>
-                    </section>
-                </section>
-                <section class="border border-2 p-3">
-
-                    <?php
-                        if ($totalMcqs) {
-                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'mcqs'  ORDER BY RAND() limit $totalMcqs";
-                            $result = $conn->query($sql);
-                            // echo $result->num_rows;
-                            // echo " ".$totalMcqs; 
-                            $selectedQuestions = [];
-                    ?>
-                        <section class="my-4 px-5">
-                            <section class="flex justify-between items-center">
-                                <p class="font-semibold -ml-2">Multiple Choice Questions. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalMcqs-$optionalMcqs; ?> )</p>
-                                <p class="font-semibold">(<?php echo $totalMcqs; ?>)</p>
-                            </section>
-                    <?php
-                            $srno = 1;
-                            while ($row = $result->fetch_assoc()) {
-                    ?>
-                            <section class="my-2">
-                                <section class="flex justify-start gap-3">
-                                    <p><?echo $srno;?>.</p>
-                                    <p><?echo $row["question"];?></p>
-                                </section>
-                                <section>
-                                    <p><span class="px-3">A.</span><?echo $row["option1"];?></p>
-                                    <p><span class="px-3">B.</span><?echo $row["option2"];?></p>
-                                    <p><span class="px-3">C.</span><?echo $row["option3"];?></p>
-                                    <p><span class="px-3">D.</span><?echo $row["option4"];?></p>
-                                </section>
-                            </section>
-                    <?php
-                            $srno+=1;
-                        }
-
-                    ?>
-                        </section>  
-                    <?php
-
-                        }
-                    ?>
-
-
-
-                    <?php
-                        if ($totalFib) {
-                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'fib'  ORDER BY RAND() limit $totalFib";
-                            $result = $conn->query($sql);
-                            $selectedQuestions = [];
-                    ?>
-                        <section class="my-4 px-5">
-                            <section class="flex justify-between items-center">
-                                <p class="font-semibold -ml-2">Fill In the Blanks. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalFib-$optionalFib; ?> )</p>
-                                <p class="font-semibold">(<?php echo $totalFib; ?>)</p>
-                            </section>
-                    <?php
-                            $srno = 1;
-                            while ($row = $result->fetch_assoc()) {
-                    ?>
-                            <section class="my-2">
-                                <section class="flex justify-start gap-3">
-                                    <p><?echo $srno;?>.</p>
-                                    <p><?echo $row["question"];?></p>
-                                </section>
-
-                            </section>
-                    <?php
-                            $srno+=1;
-                        }
-
-                    ?>
-                        </section>  
-                    <?php
-
-                        }
-                    ?>
-
-
-
-                    
-                    
-                    <?php
-                        if ($totalTf) {
-                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'tf'  ORDER BY RAND() limit $totalTf";
-                            $result = $conn->query($sql);
-                            $selectedQuestions = [];
-                    ?>
-                        <section class="my-4 px-5">
-                            <section class="flex justify-between items-center">
-                                <p class="font-semibold -ml-2">True or False. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalTf-$optionalTf; ?> )</p>
-                                <p class="font-semibold">(<?php echo $totalTf; ?>)</p>
-                            </section>
-                    <?php
-                            $srno = 1;
-                            while ($row = $result->fetch_assoc()) {
-                    ?>
-                            <section class="my-2">
-                                <section class="flex justify-start gap-3">
-                                    <p><?echo $srno;?>.</p>
-                                    <p><?echo $row["question"];?></p>
-                                </section>
-
-                            </section>
-                    <?php
-                            $srno+=1;
-                        }
-
-                    ?>
-                        </section>  
-                    <?php
-
-                        }
-                    ?>
-
-                    <?php
-                        if ($totalAtf1) {
-                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf1";
-                            $result = $conn->query($sql);
-                            $selectedQuestions = [];
-                    ?>
-                        <section class="my-4 px-5">
-                            <section class="flex justify-between items-center">
-                                <p class="font-semibold -ml-2">Answer The Following Questions - 1 Mark Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf1-$optionalAtf1; ?> )</p>
-                                <p class="font-semibold">(<?php echo $totalAtf1; ?>)</p>
-                            </section>
-                    <?php
-                            $srno = 1;
-                            while ($row = $result->fetch_assoc()) {
-                    ?>
-                            <section class="my-2">
-                                <section class="flex justify-start gap-3">
-                                    <p><?echo $srno;?>.</p>
-                                    <p><?echo $row["question"];?></p>
-                                </section>
-
-                            </section>
-                    <?php
-                            $srno+=1;
-                        }
-
-                    ?>
-                        </section>  
-                    <?php
-
-                        }
-                    ?>
-
-
-
-                    <?php
-                        if ($totalAtf2) {
-                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf2";
-                            $result = $conn->query($sql);
-                            $selectedQuestions = [];
-                    ?>
-                        <section class="my-4 px-5">
-                            <section class="flex justify-between items-center">
-                                <p class="font-semibold -ml-2">Answer The Following Questions - 2 Marks Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf2-$optionalAtf2; ?> )</p>
-                                <p class="font-semibold">(<?php echo (($totalAtf2-$optionalAtf2)*2); ?>)</p>
-                            </section>
-                    <?php
-                            $srno = 1;
-                            while ($row = $result->fetch_assoc()) {
-                    ?>
-                            <section class="my-2">
-                                <section class="flex justify-start gap-3">
-                                    <p><?echo $srno;?>.</p>
-                                    <p><?echo $row["question"];?></p>
-                                </section>
-
-                            </section>
-                    <?php
-                            $srno+=1;
-                        }
-
-                    ?>
-                        </section>  
-                    <?php
-
-                        }
-                    ?>
-
-
-                    <?php
-                        if ($totalAtf3) {
-                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf3";
-                            $result = $conn->query($sql);
-                            $selectedQuestions = [];
-                    ?>
-                        <section class="my-4 px-5">
-                            <section class="flex justify-between items-center">
-                                <p class="font-semibold -ml-2">Answer The Following Questions - 3 Marks Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf3-$optionalAtf3; ?> )</p>
-                                <p class="font-semibold">(<?php echo (($totalAtf3-$optionalAtf3)*3); ?>)</p>
-                            </section>
-                    <?php
-                            $srno = 1;
-                            while ($row = $result->fetch_assoc()) {
-                    ?>
-                            <section class="my-2">
-                                <section class="flex justify-start gap-3">
-                                    <p><?echo $srno;?>.</p>
-                                    <p><?echo $row["question"];?></p>
-                                </section>
-
-                            </section>
-                    <?php
-                            $srno+=1;
-                        }
-
-                    ?>
-                        </section>  
-                    <?php
-
-                        }
-                    ?>
-
-
-
-
-                    <?php
-                        if ($totalAtf4) {
-                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf4";
-                            $result = $conn->query($sql);
-                            $selectedQuestions = [];
-                    ?>
-                        <section class="my-4 px-5">
-                            <section class="flex justify-between items-center">
-                                <p class="font-semibold -ml-2">Answer The Following Questions - 4 Marks Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf4-$optionalAtf4; ?> )</p>
-                                <p class="font-semibold">(<?php echo (($totalAtf4-$optionalAtf4)*4); ?>)</p>
-                            </section>
-                    <?php
-                            $srno = 1;
-                            while ($row = $result->fetch_assoc()) {
-                    ?>
-                            <section class="my-2">
-                                <section class="flex justify-start gap-3">
-                                    <p><?echo $srno;?>.</p>
-                                    <p><?echo $row["question"];?></p>
-                                </section>
-
-                            </section>
-                    <?php
-                            $srno+=1;
-                        }
-
-                    ?>
-                        </section>  
-                    <?php
-
-                        }
-                    ?>
-
-
-
-
-
-                    <?php
-                        if ($totalAtf5) {
-                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf5";
-                            $result = $conn->query($sql);
-                            $selectedQuestions = [];
-                    ?>
-                        <section class="my-4 px-5">
-                            <section class="flex justify-between items-center">
-                                <p class="font-semibold -ml-2">Answer The Following Questions - 5 Marks Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf5-$optionalAtf5; ?> )</p>
-                                <p class="font-semibold">(<?php echo (($totalAtf5-$optionalAtf5)*5); ?>)</p>
-                            </section>
-                    <?php
-                            $srno = 1;
-                            while ($row = $result->fetch_assoc()) {
-                    ?>
-                            <section class="my-2">
-                                <section class="flex justify-start gap-3">
-                                    <p><?echo $srno;?>.</p>
-                                    <p><?echo $row["question"];?></p>
-                                </section>
-
-                            </section>
-                    <?php
-                            $srno+=1;
-                        }
-
-                    ?>
-                        </section>  
-                    <?php
-
-                        }
-                    ?>
-
-
-
-
-                    <?php
-                        if ($totalAtf7) {
-                            $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf7";
-                            $result = $conn->query($sql);
-                            $selectedQuestions = [];
-                    ?>
-                        <section class="my-4 px-5">
-                            <section class="flex justify-between items-center">
-                                <p class="font-semibold -ml-2">Answer The Following Questions - 7 Marks Each. &nbsp; &nbsp; &nbsp; (Any <?php echo $totalAtf7-$optionalAtf7; ?> )</p>
-                                <p class="font-semibold">(<?php echo (($totalAtf7-$optionalAtf7)*7); ?>)</p>
-                            </section>
-                    <?php
-                            $srno = 1;
-                            while ($row = $result->fetch_assoc()) {
-                    ?>
-                            <section class="my-2">
-                                <section class="flex justify-start gap-3">
-                                    <p><?echo $srno;?>.</p>
-                                    <p><?echo $row["question"];?></p>
-                                </section>
-
-                            </section>
-                    <?php
-                            $srno+=1;
-                        }
-
-                    ?>
-                        </section>  
-                    <?php
-
-                        }
-                    ?>
-
-
-
-
-
-
-                </section>
+    $srno = 1;
+    while ($row = $result->fetch_assoc()) {
+        $paperContent .= '<section style="margin-top: 0.5rem;">
+            <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
+                <p>' . $srno . '.</p>
+                <p>' . $row["question"] . '</p>
             </section>
-        </section>
+            <section>
+                <p style="padding-left: 0.75rem;">A.' . $row["option1"] . '</p>
+                <p style="padding-left: 0.75rem;">B.' . $row["option2"] . '</p>
+                <p style="padding-left: 0.75rem;">C.' . $row["option3"] . '</p>
+                <p style="padding-left: 0.75rem;">D.' . $row["option4"] . '</p>
+            </section>
+        </section>';
 
-    </main>
+        $srno += 1;
+    }
 
+    $paperContent .= '</section>';
+}
 
+if ($totalFib) {
+    $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'fib'  ORDER BY RAND() limit $totalFib";
+    $result = $conn->query($sql);
 
-    <footer class="bg-white bottom-0  p-[1vh] fixed w-screen  ">
-        <section class="flex justify-center items-center">
-            <p class="font-serif antialiased font-black lg:text-xl text-base	"></p>
-            Developed With <img src="../Assets/Icons/HeartIcon.svg" class="h-5 w-5 mx-2" alt="Heart Icon">
-            By Team LinkedList
-        </section>
-    </footer>
+    $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-weight: bold; margin-left: -0.75rem;">Fill In the Blanks. (Any ' . ($totalFib - $optionalFib) . ')</p>
+            <p style="font-weight: bold;">(' . $totalFib . ')</p>
+        </section>';
 
-</body>
+    $srno = 1;
+    while ($row = $result->fetch_assoc()) {
+        $paperContent .= '<section style="margin-top: 0.5rem;">
+            <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
+                <p>' . $srno . '.</p>
+                <p>' . $row["question"] . '</p>
+            </section>
+        </section>';
 
-</html>
+        $srno += 1;
+    }
+
+    $paperContent .= '</section>';
+}
+
+if ($totalTf) {
+    $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'tf'  ORDER BY RAND() limit $totalTf";
+    $result = $conn->query($sql);
+
+    $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-weight: bold; margin-left: -0.75rem;">True or False. (Any ' . ($totalTf - $optionalTf) . ')</p>
+            <p style="font-weight: bold;">(' . $totalTf . ')</p>
+        </section>';
+
+    $srno = 1;
+    while ($row = $result->fetch_assoc()) {
+        $paperContent .= '<section style="margin-top: 0.5rem;">
+            <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
+                <p>' . $srno . '.</p>
+                <p>' . $row["question"] . '</p>
+            </section>
+        </section>';
+
+        $srno += 1;
+    }
+
+    $paperContent .= '</section>';
+}
+
+if ($totalAtf1) {
+    $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf1";
+    $result = $conn->query($sql);
+
+    $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 1 Mark Each. (Any ' . ($totalAtf1 - $optionalAtf1) . ')</p>
+            <p style="font-weight: bold;">(' . $totalAtf1 . ')</p>
+        </section>';
+
+    $srno = 1;
+    while ($row = $result->fetch_assoc()) {
+        $paperContent .= '<section style="margin-top: 0.5rem;">
+            <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
+                <p>' . $srno . '.</p>
+                <p>' . $row["question"] . '</p>
+            </section>
+        </section>';
+
+        $srno += 1;
+    }
+
+    $paperContent .= '</section>';
+}
+
+if ($totalAtf2) {
+    $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf2";
+    $result = $conn->query($sql);
+
+    $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 2 Marks Each. (Any ' . ($totalAtf2 - $optionalAtf2) * 2 . ')</p>
+            <p style="font-weight: bold;">(' . ($totalAtf2 - $optionalAtf2) * 2 . ')</p>
+        </section>';
+
+    $srno = 1;
+    while ($row = $result->fetch_assoc()) {
+        $paperContent .= '<section style="margin-top: 0.5rem;">
+            <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
+                <p>' . $srno . '.</p>
+                <p>' . $row["question"] . '</p>
+            </section>
+        </section>';
+
+        $srno += 1;
+    }
+
+    $paperContent .= '</section>';
+}
+
+if ($totalAtf3) {
+    $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf3";
+    $result = $conn->query($sql);
+
+    $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 3 Marks Each. (Any ' . ($totalAtf3 - $optionalAtf3) * 3 . ')</p>
+            <p style="font-weight: bold;">(' . ($totalAtf3 - $optionalAtf3) * 3 . ')</p>
+        </section>';
+
+    $srno = 1;
+    while ($row = $result->fetch_assoc()) {
+        $paperContent .= '<section style="margin-top: 0.5rem;">
+            <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
+                <p>' . $srno . '.</p>
+                <p>' . $row["question"] . '</p>
+            </section>
+        </section>';
+
+        $srno += 1;
+    }
+
+    $paperContent .= '</section>';
+}
+
+if ($totalAtf4) {
+    $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf4";
+    $result = $conn->query($sql);
+
+    $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 4 Marks Each. (Any ' . ($totalAtf4 - $optionalAtf4) * 4 . ')</p>
+            <p style="font-weight: bold;">(' . ($totalAtf4 - $optionalAtf4) * 4 . ')</p>
+        </section>';
+
+    $srno = 1;
+    while ($row = $result->fetch_assoc()) {
+        $paperContent .= '<section style="margin-top: 0.5rem;">
+            <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
+                <p>' . $srno . '.</p>
+                <p>' . $row["question"] . '</p>
+            </section>
+        </section>';
+
+        $srno += 1;
+    }
+
+    $paperContent .= '</section>';
+}
+
+if ($totalAtf5) {
+    $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf5";
+    $result = $conn->query($sql);
+
+    $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 5 Marks Each. (Any ' . ($totalAtf5 - $optionalAtf5) * 5 . ')</p>
+            <p style="font-weight: bold;">(' . ($totalAtf5 - $optionalAtf5) * 5 . ')</p>
+        </section>';
+
+    $srno = 1;
+    while ($row = $result->fetch_assoc()) {
+        $paperContent .= '<section style="margin-top: 0.5rem;">
+            <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
+                <p>' . $srno . '.</p>
+                <p>' . $row["question"] . '</p>
+            </section>
+        </section>';
+
+        $srno += 1;
+    }
+
+    $paperContent .= '</section>';
+}
+
+if ($totalAtf7) {
+    $sql = "SELECT * FROM tbl_questions WHERE classId = $classId AND subId = $subjectId AND uId = $userId AND q_type = 'atf'  ORDER BY RAND() limit $totalAtf7";
+    $result = $conn->query($sql);
+
+    $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
+        <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 7 Marks Each. (Any ' . ($totalAtf7 - $optionalAtf7) * 7 . ')</p>
+            <p style="font-weight: bold;">(' . ($totalAtf7 - $optionalAtf7) * 7 . ')</p>
+        </section>';
+
+    $srno = 1;
+    while ($row = $result->fetch_assoc()) {
+        $paperContent .= '<section style="margin-top: 0.5rem;">
+            <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
+                <p>' . $srno . '.</p>
+                <p>' . $row["question"] . '</p>
+            </section>
+        </section>';
+
+        $srno += 1;
+    }
+
+    $paperContent .= '</section>';
+}
+
+$paperContent .= '</section>';
+?>
+
