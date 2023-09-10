@@ -34,6 +34,10 @@ $optionalAtf5 = "";
 $totalAtf7 = "";
 $optionalAtf7 = "";
 
+if(!isset($_SESSION["selectedClass"])|| (!$_SESSION["selectedSubject"])||(!$_SESSION["selectedSubject"])){
+    header("location: ./generatePaper.php");
+}
+
 $classId = $_SESSION["selectedClass"];
 $subjectId = $_SESSION["selectedSubject"];
 $userId = $_SESSION["uId"];
@@ -113,7 +117,7 @@ $total_time = $_SESSION["totalTime"];
 
 
 <?php
-$paperContent .= '<section style="border: 2px solid #000; padding: 0.75rem;">
+$paperContent .= '<section style="border: 1px solid #000; padding: 0.5rem;">
     <section>
         <p style="text-align: center; font-size: 2rem; font-weight: bold;">
             ' . $institute_name . '
@@ -133,7 +137,7 @@ $paperContent .= '<section style="border: 2px solid #000; padding: 0.75rem;">
         <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
             <p style="font-size: 1.5rem; margin-top: 1rem; font-weight: bold;">
                 <span style="font-weight: bold;">Total Marks:</span>
-                <input type="number" value="' . $total_marks . '" style="background: transparent;" disabled>
+                <input type="number" value="' . $total_marks . '" style="background: transparent;border: none; outline: none;" disabled>
             </p>
             <p style="font-size: 1.5rem; margin-top: 1rem; font-weight: bold;">
                 <span style="font-weight: bold;">Total Time:</span>
@@ -158,8 +162,8 @@ if ($totalMcqs) {
     while ($row = $result->fetch_assoc()) {
         $paperContent .= '<section style="margin-top: 0.5rem;">
             <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
-                <p>' . $srno . '.</p>
-                <p>' . $row["question"] . '</p>
+                <p>' . $srno .  '  . &nbsp; &nbsp;  ' .$row["question"].'</p>
+        
             </section>
             <section>
                 <p style="padding-left: 0.75rem;">A.' . $row["option1"] . '</p>
@@ -189,8 +193,8 @@ if ($totalFib) {
     while ($row = $result->fetch_assoc()) {
         $paperContent .= '<section style="margin-top: 0.5rem;">
             <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
-                <p>' . $srno . '.</p>
-                <p>' . $row["question"] . '</p>
+            <p>' . $srno .  '  . &nbsp; &nbsp;  ' .$row["question"].'</p>
+
             </section>
         </section>';
 
@@ -214,8 +218,8 @@ if ($totalTf) {
     while ($row = $result->fetch_assoc()) {
         $paperContent .= '<section style="margin-top: 0.5rem;">
             <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
-                <p>' . $srno . '.</p>
-                <p>' . $row["question"] . '</p>
+            <p>' . $srno .  '  . &nbsp; &nbsp;  ' .$row["question"].'</p>
+
             </section>
         </section>';
 
@@ -239,8 +243,8 @@ if ($totalAtf1) {
     while ($row = $result->fetch_assoc()) {
         $paperContent .= '<section style="margin-top: 0.5rem;">
             <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
-                <p>' . $srno . '.</p>
-                <p>' . $row["question"] . '</p>
+                <p>' . $srno .  '  . &nbsp; &nbsp;  ' .$row["question"].'</p>
+
             </section>
         </section>';
 
@@ -264,8 +268,8 @@ if ($totalAtf2) {
     while ($row = $result->fetch_assoc()) {
         $paperContent .= '<section style="margin-top: 0.5rem;">
             <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
-                <p>' . $srno . '.</p>
-                <p>' . $row["question"] . '</p>
+            <p>' . $srno .  '  . &nbsp; &nbsp;  ' .$row["question"].'</p>
+
             </section>
         </section>';
 
@@ -289,8 +293,8 @@ if ($totalAtf3) {
     while ($row = $result->fetch_assoc()) {
         $paperContent .= '<section style="margin-top: 0.5rem;">
             <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
-                <p>' . $srno . '.</p>
-                <p>' . $row["question"] . '</p>
+            <p>' . $srno .  '  . &nbsp; &nbsp;  ' .$row["question"].'</p>
+
             </section>
         </section>';
 
@@ -314,8 +318,8 @@ if ($totalAtf4) {
     while ($row = $result->fetch_assoc()) {
         $paperContent .= '<section style="margin-top: 0.5rem;">
             <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
-                <p>' . $srno . '.</p>
-                <p>' . $row["question"] . '</p>
+            <p>' . $srno .  '  . &nbsp; &nbsp;  ' .$row["question"].'</p>
+
             </section>
         </section>';
 
@@ -339,8 +343,8 @@ if ($totalAtf5) {
     while ($row = $result->fetch_assoc()) {
         $paperContent .= '<section style="margin-top: 0.5rem;">
             <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
-                <p>' . $srno . '.</p>
-                <p>' . $row["question"] . '</p>
+            <p>' . $srno .  '  . &nbsp; &nbsp;  ' .$row["question"].'</p>
+
             </section>
         </section>';
 
@@ -364,8 +368,8 @@ if ($totalAtf7) {
     while ($row = $result->fetch_assoc()) {
         $paperContent .= '<section style="margin-top: 0.5rem;">
             <section style="display: flex; justify-content: flex-start; gap: 0.75rem;">
-                <p>' . $srno . '.</p>
-                <p>' . $row["question"] . '</p>
+            <p>' . $srno .  '  . &nbsp; &nbsp;  ' .$row["question"].'</p>
+
             </section>
         </section>';
 
@@ -376,12 +380,18 @@ if ($totalAtf7) {
 }
 
 $paperContent .= '</section>';
-
 use \Mpdf\Mpdf;
 
 $mpdf = new Mpdf();
 
-$mpdf->WriteHTML();
+$mpdf->WriteHTML($paperContent);
 $mpdf->Output();
+
+
+unset($_SESSION["selectedClass"]);
+unset($_SESSION["selectedClass"]);
+unset($_SESSION["totalMarks"]);
+unset($_SESSION["totalTime"]);
+
 ?>
 

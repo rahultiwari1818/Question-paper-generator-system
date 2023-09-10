@@ -92,6 +92,7 @@
     
             if($valid){
                 try {
+                    $orignalpasswd = $password;
                     $password = password_hash($password,1);
                     $instituteName = $_SESSION["instituteName"];
                     $sql = "insert into tbl_users values(NULL,'$fname','$lname','USER','$phno','$email','$gender','$username','$password','$instituteName')";
@@ -126,11 +127,76 @@
                         
                         $to = $email;
                         $subject = 'Successfully Registered in Question Paper Generator System';
-                        $message = 'Hey '.$fname.' <br> You are Successfully Registered as User in Question Paper Generator System of '.$instituteName
-                         .'.<br> Your Username is '.$username.' and Password is '.$password.' .';
-                        $headers = 'From: qpg.system@gmail.com' . "\r\n" .
-                            'Reply-To: qpg.system@gmail.com' . "\r\n" .
-                            'X-Mailer: PHP/' . phpversion();
+                        $message = '<!DOCTYPE html>
+                        <html>
+                        <head>
+                            <title>Registration Confirmation</title>
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    background-color: #f4f4f4;
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                        
+                                .container {
+                                    max-width: 600px;
+                                    margin: 0 auto;
+                                    padding: 20px;
+                                    background-color: #fff;
+                                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                                }
+                        
+                                h1 {
+                                    color: #007BFF;
+                                }
+                        
+                                p {
+                                    font-size: 16px;
+                                    line-height: 1.6;
+                                    color: #333;
+                                }
+                        
+                                .note {
+                                    font-size: 14px;
+                                    color: #888;
+                                }
+                        
+                                .signature {
+                                    margin-top: 20px;
+                                    font-weight: bold;
+                                    color: #555;
+                                }
+                                
+                            </style>
+                        </head>
+                        <body>
+                            <div class="container">
+                                <h1>Registration Confirmation</h1>
+                                <p>Hey '.$fname .',</p>
+                                <p>You are Successfully Registered as a User in the Question Paper Generator System of <?php echo $instituteName; ?>.</p>
+                                <p>Your Login Credentials : </p>
+                                <ul>
+                                    <li>Username : <strong>'. $username .'</strong></li>
+                                    <li>Password : <strong>'.$orignalpasswd .'</strong>.</li>
+                                </ul>
+                                <p>For Security Reasons , We Recommend You To Change Your Password After Signing In </p> 
+                                <p class="note">Please keep your login details secure.</p>
+                                <p>
+                                <p class="signature">Best Regards,<br>'.$instituteName.'</p>
+                            </div>
+                        </body>
+                        </html>
+                        ';
+
+                    $headers = 'From: qpg.system@gmail.com' . "\r\n" .
+    'Reply-To: qpg.system@gmail.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion() . "\r\n"; // Append this line
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; // Append this line
+$headers .= "MIME-Version: 1.0" . "\r\n"; // Append this line
+
+
+
                         
                         if (mail($to, $subject, $message, $headers)) {
                             $emailSentMsg = "Username and Password Mailed to User Successfully.!";
