@@ -104,7 +104,16 @@
 
         if(!$err){
             $question = addslashes($question);
-            $options = addslashes($options);
+            $$option1 = addslashes($$option1);
+            $$option2 = addslashes($$option2);
+            $$option3 = addslashes($$option3);
+            $$option4 = addslashes($$option4);
+            // $options = addslashes($options);
+            $question = htmlspecialchars($question);
+            $option1 = htmlspecialchars($option1);
+            $option2 = htmlspecialchars($option2);
+            $option3 = htmlspecialchars($option3);
+            $option4 = htmlspecialchars($option4);
             $currentDate = date("Y-m-d");
             // echo "$qid id hai bhai";
             $sql = "update tbl_questions set question='$question', q_type='$type',option1='$option1',option2='$option2',option3='$option3',option4='$option4',level='$level',weightage=$weightage,chapter=$chapter,classId=$class,subId=$sub where qId=$qid";

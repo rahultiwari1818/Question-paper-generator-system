@@ -2,6 +2,8 @@
 session_start();
 include("../Partials/connection.php");
 
+require_once '../vendor/autoload.php';
+
 
 if (!isset($_SESSION["uId"])) {
     header("location: ../login.php");
@@ -374,5 +376,12 @@ if ($totalAtf7) {
 }
 
 $paperContent .= '</section>';
+
+use \Mpdf\Mpdf;
+
+$mpdf = new Mpdf();
+
+$mpdf->WriteHTML();
+$mpdf->Output();
 ?>
 
