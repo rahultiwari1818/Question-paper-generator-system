@@ -260,7 +260,7 @@ if ($totalAtf2) {
 
     $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
         <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 2 Marks Each. (Any ' . ($totalAtf2 - $optionalAtf2) * 2 . ')</p>
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 2 Marks Each. (Any ' . ($totalAtf2 - $optionalAtf2)  . ')</p>
             <p style="font-weight: bold;">(' . ($totalAtf2 - $optionalAtf2) * 2 . ')</p>
         </section>';
 
@@ -285,7 +285,7 @@ if ($totalAtf3) {
 
     $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
         <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 3 Marks Each. (Any ' . ($totalAtf3 - $optionalAtf3) * 3 . ')</p>
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 3 Marks Each. (Any ' . ($totalAtf3 - $optionalAtf3)  . ')</p>
             <p style="font-weight: bold;">(' . ($totalAtf3 - $optionalAtf3) * 3 . ')</p>
         </section>';
 
@@ -310,7 +310,7 @@ if ($totalAtf4) {
 
     $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
         <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 4 Marks Each. (Any ' . ($totalAtf4 - $optionalAtf4) * 4 . ')</p>
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 4 Marks Each. (Any ' . ($totalAtf4 - $optionalAtf4)  . ')</p>
             <p style="font-weight: bold;">(' . ($totalAtf4 - $optionalAtf4) * 4 . ')</p>
         </section>';
 
@@ -335,7 +335,7 @@ if ($totalAtf5) {
 
     $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
         <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 5 Marks Each. (Any ' . ($totalAtf5 - $optionalAtf5) * 5 . ')</p>
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 5 Marks Each. (Any ' . ($totalAtf5 - $optionalAtf5)  . ')</p>
             <p style="font-weight: bold;">(' . ($totalAtf5 - $optionalAtf5) * 5 . ')</p>
         </section>';
 
@@ -360,7 +360,7 @@ if ($totalAtf7) {
 
     $paperContent .= '<section style="margin-top: 1rem; padding-left: 1.25rem; padding-right: 1.25rem;">
         <section style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 7 Marks Each. (Any ' . ($totalAtf7 - $optionalAtf7) * 7 . ')</p>
+            <p style="font-weight: bold; margin-left: -0.75rem;">Answer The Following Questions - 7 Marks Each. (Any ' . ($totalAtf7 - $optionalAtf7)  . ')</p>
             <p style="font-weight: bold;">(' . ($totalAtf7 - $optionalAtf7) * 7 . ')</p>
         </section>';
 
