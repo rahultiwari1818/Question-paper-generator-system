@@ -30,7 +30,7 @@ let updateUserId = undefined;
 
 function fetchUsers() {
 
-    fetch("http://localhost/qpg/Partials/fetchUsers.php")
+    fetch(" /qpg/Partials/fetchUsers.php")
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
@@ -96,7 +96,7 @@ function deleteUser() {
 
     // console.log(data);
 
-    fetch("http://localhost/qpg/Partials/deleteUser.php", {
+    fetch(" /qpg/Partials/deleteUser.php", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json' // Set the content type to JSON for sending data as JSON
@@ -137,7 +137,7 @@ function removeUserProUpdMsg(){
 function checkEmailExists() {
     let email = $('#userEmail').val();
 
-    fetch(`http://localhost/qpg/Partials/checkEmailExists.php?email=${email}`)
+    fetch(` /qpg/Partials/checkEmailExists.php?email=${email}`)
         .then(res => res.json())
         .then((res) => {
             if (res.exists) {
@@ -154,7 +154,7 @@ function checkEmailExists() {
 function checkUsernameExists() {
     let username = $("#username").val();
 
-    fetch(`http://localhost/qpg/Partials/checkUserName.php?username=${username}`)
+    fetch(` /qpg/Partials/checkUserName.php?username=${username}`)
         .then((res) => res.json())
         .then((res) => {
             if (res.exists) {
@@ -172,7 +172,7 @@ function checkUsernameExists() {
 function searchUser(){
    let searchVal =  $("#searchUser").val();
 
-   fetch(`http://localhost/qpg/Partials/searchUser.php?search=${searchVal}`)
+   fetch(` /qpg/Partials/searchUser.php?search=${searchVal}`)
    .then(res=>res.json())
    .then(res=>{
     let data = res?.data;
@@ -239,7 +239,7 @@ function updatePassword(){
     };
 
 
-    fetch("http://localhost/qpg/Partials/updatePassword.php", {
+    fetch(" /qpg/Partials/updatePassword.php", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json' // Set the content type to JSON for sending data as JSON
@@ -271,7 +271,7 @@ function updatePassword(){
 // ------------------------------ Functions Related to Classes -----------------------------------------------
 
 function displayClassesInTable() {
-    fetch("http://localhost/qpg/Partials/fetchClasses.php")
+    fetch(" /qpg/Partials/fetchClasses.php")
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
@@ -319,7 +319,7 @@ function deleteClass() {
         id: deleteClassId
     };
 
-    fetch("http://localhost/qpg/Partials/deleteClass.php", {
+    fetch(" /qpg/Partials/deleteClass.php", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json' // Set the content type to JSON for sending data as JSON
@@ -348,7 +348,7 @@ function deleteClass() {
 function openClassUpdateModal(id) {
     $("#updateClassModal").show();
     updateClassId = id;
-    fetch(`http://localhost/qpg/Partials/fetchSpecificClass.php?id=${updateClassId}`)
+    fetch(` /qpg/Partials/fetchSpecificClass.php?id=${updateClassId}`)
         .then(res => res.json())
         .then(res => {
             if (res.result) {
@@ -379,7 +379,7 @@ function updateClass() {
         class: $("#updateClassName").val(),
     }
 
-    fetch("http://localhost/qpg/Partials/updateClass.php", {
+    fetch(" /qpg/Partials/updateClass.php", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json' // Set the content type to JSON for sending data as JSON
@@ -411,7 +411,7 @@ function removeCDMsg() {
 function checkClassExists(txtId, errId) {
     let className = $("#" + txtId).val();
     className = className.trim();
-    fetch(`http://localhost/qpg/Partials/checkClassExists.php?className=${className}`)
+    fetch(` /qpg/Partials/checkClassExists.php?className=${className}`)
         .then(res => res.json())
         .then((res) => {
             if (res?.exists) {
@@ -428,7 +428,7 @@ function checkClassExists(txtId, errId) {
 // --------------------------------- Functions Related to Subjects ------------------------------------------------------
 
 function fetchSubjects() {
-    fetch("http://localhost/qpg/Partials/fetchSubjects.php")
+    fetch(" /qpg/Partials/fetchSubjects.php")
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
@@ -468,7 +468,7 @@ function showSubjectUpdateModal(id) {
     $("#updateSubjectModal").show();
     fetchClassesInSubject("UpdateClassInSubject", id);
     updateSubId = id;
-    fetch(`http://localhost/qpg/Partials/fetchSpecificSubject.php?id=${id}`)
+    fetch(` /qpg/Partials/fetchSpecificSubject.php?id=${id}`)
         .then(res => res.json())
         .then(res => {
             // console.log(res)
@@ -497,7 +497,7 @@ function updateSubject() {
         'class': $("#UpdateClassInSubject").val(),
     }
 
-    fetch("http://localhost/qpg/Partials/updateSubject.php", {
+    fetch(" /qpg/Partials/updateSubject.php", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json' // Set the content type to JSON for sending data as JSON
@@ -540,7 +540,7 @@ function deleteSubject() {
         id: deleteSubId
     };
 
-    fetch("http://localhost/qpg/Partials/deleteSubject.php", {
+    fetch(" /qpg/Partials/deleteSubject.php", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json' // Set the content type to JSON for sending data as JSON
@@ -582,7 +582,7 @@ function checkSubjectExists() {
 }
 
 function fetchClassesInSubject(ctrlId, sid) {
-    fetch("http://localhost/qpg/Partials/fetchClasses.php")
+    fetch(" /qpg/Partials/fetchClasses.php")
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
@@ -610,7 +610,7 @@ function searchQuestion() {
     let _class = $("#viewClass").val();
     let subject = $("#viewSubject").val();
 
-    fetch(`http://localhost/qpg/Partials/searchQuestion.php?question=${searchString}&type=${type}&class=${_class}&subject=${subject}`)
+    fetch(` /qpg/Partials/searchQuestion.php?question=${searchString}&type=${type}&class=${_class}&subject=${subject}`)
         .then((res) => res.json())
         .catch((err)=>{
             console.log(err)
@@ -709,7 +709,7 @@ function closeDeleteModal() {
 }
 
 function redirectToUpdate(id) {
-    window.location.href = `http://localhost/qpg/Faculties/updateQuestion.php?question=${id}`;
+    window.location.href = ` /qpg/Faculties/updateQuestion.php?question=${id}`;
 }
 
 
@@ -719,7 +719,7 @@ function deleteQuestion() {
         id: deleteQuesId
     };
 
-    fetch("http://localhost/qpg/Partials/deleteQuestion.php", {
+    fetch(" /qpg/Partials/deleteQuestion.php", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json' // Set the content type to JSON for sending data as JSON
@@ -756,7 +756,7 @@ function removeMsg() {
 
 
 function fetchClassesInUploadQuestion(id) {
-    fetch("http://localhost/qpg/Partials/fetchClasses.php")
+    fetch(" /qpg/Partials/fetchClasses.php")
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
@@ -779,7 +779,7 @@ function fetchSubjectsClassWise(cId, subId) {
     let classId = (cId) ? cId : $("#classUPQ").val();
     console.log(subId, classId)
 
-    fetch(`http://localhost/qpg/Partials/fetchSubjectsClassWise.php?class=${classId}`)
+    fetch(` /qpg/Partials/fetchSubjectsClassWise.php?class=${classId}`)
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
@@ -801,7 +801,7 @@ function fetchSubjectsForView(divId,classId) {
 
 
 
-    fetch(`http://localhost/qpg/Partials/fetchSubjectsClassWise.php?class=${classId}`)
+    fetch(` /qpg/Partials/fetchSubjectsClassWise.php?class=${classId}`)
         .then(res => res.json())
         .then(res => {
             let data = res?.data;
@@ -827,7 +827,7 @@ function removeQDMsg() {
 
 
 function getQuestionData(id) {
-    fetch(`http://localhost/qpg/Partials/getSpecificQuestion.php?qid=${id}`)
+    fetch(` /qpg/Partials/getSpecificQuestion.php?qid=${id}`)
         .then(res => res.json())
         .then(res => {
             if (res.result) {

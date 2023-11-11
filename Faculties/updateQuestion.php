@@ -321,7 +321,7 @@
             
             $("#cancelBtn").click(()=>{
                 // console.log("clicked")
-                window.location.href="http://localhost/qpg/Faculties/viewQuestions.php";
+                window.location.href=" /qpg/Faculties/viewQuestions.php";
             })
             
 

@@ -90,10 +90,10 @@
 
         if(!$err){
             $question = addslashes($question);
-            $$option1 = addslashes($$option1);
-            $$option2 = addslashes($$option2);
-            $$option3 = addslashes($$option3);
-            $$option4 = addslashes($$option4);
+            $option1 = addslashes($option1);
+            $option2 = addslashes($option2);
+            $option3 = addslashes($option3);
+            $option4 = addslashes($option4);
             // $options = addslashes($options);
             $question = htmlspecialchars($question);
             $option1 = htmlspecialchars($option1);

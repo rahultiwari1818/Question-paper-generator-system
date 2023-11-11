@@ -68,7 +68,7 @@
             </select>
             <input type="search" name="search"  id="searchQuestion" placeholder="Search Questions" class="my-2 mx-2 shadow-xl    appearance-none  py-2 px-4 pr-8 rounded-lg border focus:outline-none focus:ring focus:border-blue-300" onkeyup="searchQuestion()" onblur="searchQuestion()"> 
             <section class=" flex justify-center items-center bg-white rounded-xl shadow p-5 mx-5 my-5   ">
-                    <section class=" max-h-[80vh] overflow-y-scroll ">
+                    <section class=" max-h-[60vh] overflow-y-scroll ">
                         <table class="p-5  text-black rounded-xl border ">
                             <thead class="text-white top-0 sticky">
                             <tr>
